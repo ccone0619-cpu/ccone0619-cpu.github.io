@@ -13,19 +13,34 @@
     if (element && value != null) element.setAttribute(name, value);
   };
 
+  const renderIcons = () => {
+    if (window.lucide && typeof window.lucide.createIcons === "function") window.lucide.createIcons();
+  };
+
   const renderIdentity = () => {
     setText("[data-brand-mark]", data.identity.mark);
     setText("[data-brand-name]", data.identity.name.toUpperCase());
     setText("[data-footer-name]", data.identity.name.toUpperCase());
     setText("[data-availability]", data.identity.availability);
     setText("[data-location]", data.identity.location);
+    const location = $("[data-location]");
+    if (location) location.hidden = !data.identity.location;
+    const availabilityPill = $(".availability-pill");
+    if (availabilityPill) availabilityPill.hidden = !data.identity.availability;
     setText("[data-year]", new Date().getFullYear());
     document.title = `${data.identity.name} — Personal Portfolio`;
-    const emailLink = $("[data-email-link]");
-    emailLink.textContent = data.identity.email;
-    emailLink.href = `mailto:${data.identity.email}`;
+    const phoneLink = $("[data-phone-link]");
+    if (phoneLink) {
+      phoneLink.textContent = data.identity.phone;
+      phoneLink.href = `tel:${data.identity.phone}`;
+    }
+    setText("[data-wechat]", data.identity.wechat);
     const cvLink = $("[data-cv-link]");
-    cvLink.href = data.identity.cvUrl;
+    if (cvLink) {
+      const hasCv = Boolean(data.identity.cvUrl && data.identity.cvUrl !== "#");
+      cvLink.hidden = !hasCv;
+      if (hasCv) cvLink.href = data.identity.cvUrl;
+    }
     const socials = $("[data-socials]");
     socials.innerHTML = data.identity.socials.map((item) => `<a href="${item.url}" target="_blank" rel="noreferrer">${item.label}</a>`).join("");
   };
@@ -109,7 +124,7 @@
     $("[data-dialog-tags]").innerHTML = project.tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
     if (typeof dialog.showModal === "function") dialog.showModal();
     else dialog.setAttribute("open", "");
-    lucide.createIcons();
+    renderIcons();
   };
 
   const bindInteractions = () => {
@@ -145,14 +160,16 @@
       media.innerHTML = "";
     });
 
-    $("[data-copy-email]").addEventListener("click", async () => {
+    const copyToClipboard = async (value, message) => {
       try {
-        await navigator.clipboard.writeText(data.identity.email);
-        showToast("邮箱地址已复制");
+        await navigator.clipboard.writeText(value);
+        showToast(message);
       } catch (_) {
-        showToast(data.identity.email);
+        showToast(value);
       }
-    });
+    };
+    $("[data-copy-phone]").addEventListener("click", () => copyToClipboard(data.identity.phone, "手机号已复制"));
+    $("[data-copy-wechat]").addEventListener("click", () => copyToClipboard(data.identity.wechat, "微信号已复制"));
 
     const menuToggle = $(".menu-toggle");
     const mobileNav = $("#mobile-nav");
@@ -162,13 +179,13 @@
       menuToggle.setAttribute("aria-label", isOpen ? "打开菜单" : "关闭菜单");
       mobileNav.hidden = isOpen;
       menuToggle.innerHTML = `<i data-lucide="${isOpen ? "menu" : "x"}" aria-hidden="true"></i>`;
-      lucide.createIcons();
+      renderIcons();
     });
     $$(".mobile-nav a").forEach((link) => link.addEventListener("click", () => {
       mobileNav.hidden = true;
       menuToggle.setAttribute("aria-expanded", "false");
       menuToggle.innerHTML = '<i data-lucide="menu" aria-hidden="true"></i>';
-      lucide.createIcons();
+      renderIcons();
     }));
   };
 
@@ -202,7 +219,8 @@
     renderFilters();
     renderProjects();
     bindInteractions();
-    lucide.createIcons();
+    document.documentElement.classList.add("js");
+    renderIcons();
     initReveal();
   };
 

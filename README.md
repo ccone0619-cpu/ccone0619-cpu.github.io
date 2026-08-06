@@ -31,6 +31,8 @@ git push
 name: "你的真实姓名",
 role: "你的职业 / 身份",
 location: "所在城市 · 远程协作",
+phone: "你的手机号",
+wechat: "你的微信号",
 email: "your@email.com",
 cvUrl: "assets/your-resume.pdf"
 ```

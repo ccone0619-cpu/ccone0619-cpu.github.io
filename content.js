@@ -1,22 +1,20 @@
 // Edit this file to update the portfolio without touching the layout.
 window.PORTFOLIO_CONTENT = {
   identity: {
-    mark: "YN",
+    mark: "ZZY",
     name: "赵洲钰",
-    role: "aigc创作者/ 剪辑师",
-    location: "杭州 ·",
+    role: "AIGC 创作者 / 剪辑师",
+    location: "杭州",
     availability: "",
-    email: "hello@yourname.studio",
+    phone: "18570252625",
+    wechat: "Cc1_0619",
+    email: "",
     cvUrl: "#",
-    socials: [
-      { label: "Instagram", url: "#" },
-      { label: "Behance", url: "#" },
-      { label: "小红书", url: "#" }
-    ]
+    socials: []
   },
   hero: {
     title: "让想法\n变得可见。",
-    description: "我把复杂的叙事、品牌和体验，整理成有观点、可感知、能被记住的作品。",
+    description: "我用 AIGC 生成、剪辑与叙事，把一个想法推进成可以被看见、被听见、被记住的作品。",
     note: "精选项目 2023 — 2026",
     image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=88",
     imageAlt: "作品集主视觉人物肖像占位图",
@@ -25,30 +23,30 @@ window.PORTFOLIO_CONTENT = {
   },
   about: {
     eyebrow: "ABOUT",
-    title: "从策略到画面，\n保持一条线。",
-    body: "我关注内容如何被看见，也关注它为什么值得被看见。我的工作横跨品牌叙事、影像导演、视觉设计与数字体验，习惯从问题出发，最后交付一个清晰而有气质的答案。",
-    quote: "好作品不需要解释自己，它会让人停下来。"
+    title: "用生成与剪辑，\n把想法变成作品。",
+    body: "我是赵洲钰，一名 AIGC 创作者和剪辑师。我关注画面、节奏和情绪如何一起工作，擅长把抽象的想法整理成有观感、有叙事、能落地的内容。",
+    quote: "让生成负责想象，让剪辑负责表达。"
   },
   stats: [
-    { value: "12+", label: "完整项目" },
-    { value: "08", label: "合作城市" },
-    { value: "04", label: "工作方向" }
+    { value: "AIGC", label: "生成创作" },
+    { value: "EDIT", label: "剪辑工作流" },
+    { value: "∞", label: "持续探索" }
   ],
   strengths: [
     {
       number: "01",
-      title: "叙事判断",
-      body: "把散落的信息整理成一条有起伏、有重点的观看路径。"
+      title: "AIGC 创作",
+      body: "把文字、画面和声音组织成有方向的生成方案，让想法快速进入可视化阶段。"
     },
     {
       number: "02",
-      title: "视觉系统",
-      body: "从色彩、字体、材质到动态，建立能持续生长的视觉语言。"
+      title: "剪辑节奏",
+      body: "从素材整理到情绪起伏，建立清晰、准确、能留住观众的观看节奏。"
     },
     {
       number: "03",
-      title: "落地协作",
-      body: "连接创意与执行，让概念在真实预算、时间和团队里成立。"
+      title: "视觉表达",
+      body: "在生成结果与最终成片之间做判断，让风格、情绪和信息保持一致。"
     }
   ],
   projects: [
