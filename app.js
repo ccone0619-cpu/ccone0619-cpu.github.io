@@ -28,7 +28,7 @@
     const availabilityPill = $(".availability-pill");
     if (availabilityPill) availabilityPill.hidden = !data.identity.availability;
     setText("[data-year]", new Date().getFullYear());
-    document.title = `${data.identity.name} — Personal Portfolio`;
+    document.title = `${data.identity.name} — AIGC 内容创作者与视频剪辑师`;
     const phoneLink = $("[data-phone-link]");
     if (phoneLink) {
       phoneLink.textContent = data.identity.phone;
@@ -80,6 +80,30 @@
     `).join("");
   };
 
+  const renderResume = () => {
+    setText("[data-resume-eyebrow]", data.resume.eyebrow);
+    setText("[data-resume-title]", data.resume.title);
+    setText("[data-resume-intro]", data.resume.intro);
+    setText("[data-resume-file-note]", data.resume.fileNote);
+    $("[data-resume-facts]").innerHTML = data.resume.facts.map((item) => `
+      <div class="resume-fact">
+        <dt>${item.label}</dt>
+        <dd>${item.value}</dd>
+      </div>
+    `).join("");
+    $("[data-resume-skills]").innerHTML = data.resume.skills.map((skill) => `<span class="resume-skill">${skill}</span>`).join("");
+    $("[data-resume-experience]").innerHTML = data.resume.experience.map((item, index) => `
+      <article class="resume-item reveal" data-reveal-delay="${index * 70}">
+        <span class="resume-item-meta">${item.meta}</span>
+        <div>
+          <h3>${item.title}</h3>
+          <p class="resume-item-role">${item.role}</p>
+          <p>${item.body}</p>
+        </div>
+      </article>
+    `).join("");
+  };
+
   const projectMedia = (project, inDialog = false) => {
     if (project.type === "video") {
       return inDialog
@@ -101,7 +125,7 @@
       <article class="project-card reveal" data-project-id="${project.id}" data-category="${project.category}" tabindex="0" role="button" aria-label="查看 ${project.title} 项目详情" data-reveal-delay="${index * 80}">
         <div class="project-visual">
           ${projectMedia(project)}
-          ${project.type === "video" ? '<span class="media-badge"><i data-lucide="play" aria-hidden="true"></i> VIDEO</span>' : '<span class="media-badge"><i data-lucide="image" aria-hidden="true"></i> IMAGE</span>'}
+          ${project.type === "video" ? '<span class="media-badge"><i data-lucide="play" aria-hidden="true"></i> VIDEO</span>' : `<span class="media-badge"><i data-lucide="sparkles" aria-hidden="true"></i> ${project.badge || "IMAGE"}</span>`}
         </div>
         <div class="project-info">
           <div class="project-meta"><span>${project.category}</span><span>${project.year}</span></div>
@@ -184,9 +208,22 @@
     $$(".mobile-nav a").forEach((link) => link.addEventListener("click", () => {
       mobileNav.hidden = true;
       menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "打开菜单");
       menuToggle.innerHTML = '<i data-lucide="menu" aria-hidden="true"></i>';
       renderIcons();
     }));
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      $$(".project-card video").forEach((video) => {
+        const card = video.closest(".project-card");
+        card.addEventListener("pointerenter", () => video.play().catch(() => {}));
+        card.addEventListener("pointerleave", () => {
+          video.pause();
+          video.currentTime = 0;
+        });
+      });
+    }
   };
 
   const showToast = (message) => {
@@ -211,10 +248,50 @@
     items.forEach((item) => observer.observe(item));
   };
 
+  const initScrollEffects = () => {
+    const header = $(".site-header");
+    const progress = $("[data-scroll-progress]");
+    let frame = 0;
+    const update = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const value = maxScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 0;
+      progress.style.transform = `scaleX(${value})`;
+      header.classList.toggle("is-scrolled", window.scrollY > 12);
+      frame = 0;
+    };
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    update();
+  };
+
+  const initHeroTilt = () => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const area = $(".hero-visual");
+    const target = $("[data-hero-tilt]");
+    if (reduceMotion || !finePointer || !area || !target) return;
+
+    area.addEventListener("pointerenter", () => { target.style.willChange = "transform"; });
+    area.addEventListener("pointermove", (event) => {
+      const rect = area.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      target.style.transform = `perspective(1000px) rotateX(${-y * 3}deg) rotateY(${x * 3}deg) translateY(-2px)`;
+    });
+    area.addEventListener("pointerleave", () => {
+      target.style.transform = "";
+      window.setTimeout(() => { target.style.willChange = ""; }, 320);
+    });
+  };
+
   const init = () => {
     renderIdentity();
     renderHero();
     renderAbout();
+    renderResume();
     renderStrengths();
     renderFilters();
     renderProjects();
@@ -222,6 +299,8 @@
     document.documentElement.classList.add("js");
     renderIcons();
     initReveal();
+    initScrollEffects();
+    initHeroTilt();
   };
 
   init();

@@ -3,101 +3,143 @@ window.PORTFOLIO_CONTENT = {
   identity: {
     mark: "ZZY",
     name: "赵洲钰",
-    role: "AIGC 创作者 / 剪辑师",
-    location: "杭州",
+    role: "AIGC 内容创作者｜视频剪辑师",
+    location: "杭州 · 20 岁",
     availability: "",
     phone: "18570252625",
     wechat: "Cc1_0619",
     email: "",
-    cvUrl: "#",
+    cvUrl: "assets/zhao-zhouyu-resume.pdf",
     socials: []
   },
   hero: {
-    title: "让想法\n变得可见。",
-    description: "我用 AIGC 生成、剪辑与叙事，把一个想法推进成可以被看见、被听见、被记住的作品。",
-    note: "精选项目 2023 — 2026",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=88",
-    imageAlt: "作品集主视觉人物肖像占位图",
+    title: "把想法\n变成成片。",
+    description: "熟悉 AI 漫剧完整制作流程，也熟悉从分镜、视觉资产到视频生成和后期剪辑的完整工作流。",
+    note: "杭州 · 20 岁 · 多部红果上线短剧",
+    image: "assets/images/hero-editing.jpg",
+    imageAlt: "视频剪辑软件时间线的近景",
     imageCount: "01 / 04",
-    imageCaption: "SELECTED WORKS"
+    imageCaption: "AIGC · EDIT · STORY"
   },
   about: {
     eyebrow: "ABOUT",
-    title: "用生成与剪辑，\n把想法变成作品。",
-    body: "我是赵洲钰，一名 AIGC 创作者和剪辑师。我关注画面、节奏和情绪如何一起工作，擅长把抽象的想法整理成有观感、有叙事、能落地的内容。",
-    quote: "让生成负责想象，让剪辑负责表达。"
+    title: "从分镜到成片，\n把每一步做完整。",
+    body: "熟悉 AI 漫剧完整制作流程及主流 AIGC 创作工具，拥有个人创作工作流。参与制作多部红果上线短剧，能够独立完成所分配剧集的分镜、视觉资产、视频生成、剪辑及成片输出。",
+    quote: "让 AI 负责想象，让剪辑负责叙事。"
   },
   stats: [
-    { value: "AIGC", label: "生成创作" },
-    { value: "EDIT", label: "剪辑工作流" },
-    { value: "∞", label: "持续探索" }
+    { value: "多部", label: "红果上线短剧" },
+    { value: "TOP 4", label: "红果漫剧新剧榜" },
+    { value: "全流程", label: "独立负责所分配剧集" }
   ],
+  resume: {
+    eyebrow: "PROFILE / EXPERIENCE",
+    title: "把生成力，\n变成交付力。",
+    intro: "AIGC 视觉资产、AI 视频生成与后期剪辑，是我把想法落地的三条主线。",
+    fileNote: "PDF · 个人简历",
+    facts: [
+      { label: "职业方向", value: "AIGC 内容创作 · 视频剪辑" },
+      { label: "所在地", value: "杭州 · 20 岁" },
+      { label: "平台经验", value: "多部红果上线短剧" },
+      { label: "工作方式", value: "独立完成分配剧集全流程" }
+    ],
+    skills: ["AIGC 视觉资产", "AI 视频生成", "分镜制作", "视频剪辑", "Midjourney", "Image", "Nano Banana", "Seedance", "After Effects", "Premiere Pro"],
+    experience: [
+      {
+        meta: "PROJECT 01",
+        title: "红果 AI 漫剧制作",
+        role: "AIGC 内容创作者",
+        body: "参与多部红果平台上线短剧制作，独立负责所分配剧集的完整制作。"
+      },
+      {
+        meta: "WORKFLOW 02",
+        title: "分镜与 4K 视觉资产",
+        role: "Midjourney · Image · Nano Banana",
+        body: "使用 Midjourney、Image 完成画面生成，通过 Nano Banana 制作 4K 视觉资产，为视频生成建立统一的视觉基础。"
+      },
+      {
+        meta: "WORKFLOW 03",
+        title: "Seedance 视频生成与后期",
+        role: "Seedance · After Effects · Premiere Pro",
+        body: "使用 Seedance 生成视频，结合 AE、PR 完成后期剪辑与成片输出。"
+      },
+      {
+        meta: "RESULT 04",
+        title: "红果漫剧新剧榜第 4 名",
+        role: "项目成果",
+        body: "参与制作的一部 AI 漫剧进入红果漫剧新剧榜第 4 名。"
+      }
+    ]
+  },
   strengths: [
     {
       number: "01",
-      title: "AIGC 创作",
-      body: "把文字、画面和声音组织成有方向的生成方案，让想法快速进入可视化阶段。"
+      title: "全流程制作",
+      body: "从分镜、视觉资产到视频生成、剪辑和成片输出，能够独立推进所分配剧集。"
     },
     {
       number: "02",
-      title: "剪辑节奏",
-      body: "从素材整理到情绪起伏，建立清晰、准确、能留住观众的观看节奏。"
+      title: "视觉资产",
+      body: "熟悉 Midjourney、Image 与 Nano Banana，能制作统一且可用的 4K 画面资产。"
     },
     {
       number: "03",
-      title: "视觉表达",
-      body: "在生成结果与最终成片之间做判断，让风格、情绪和信息保持一致。"
+      title: "剪辑交付",
+      body: "使用 Seedance、AE、PR 把生成素材整理成节奏清晰、可以上线的完整成片。"
     }
   ],
   projects: [
     {
-      id: "quiet-signal",
-      title: "静默信号",
-      category: "影像",
-      year: "2026",
-      type: "video",
-      image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1800&q=88",
-      video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-      summary: "一支关于等待、误认与重新连接的品牌短片。",
-      detail: "以一座临海城市为背景，使用克制的摄影机运动和自然光，记录一个人如何从失去方向开始重新建立联系。",
-      role: "导演 · 视觉概念 · 剪辑",
-      tags: ["品牌短片", "叙事影像", "导演"]
+      id: "red-fruit-aigc-drama",
+      title: "红果 AI 漫剧制作",
+      category: "项目经历",
+      year: "红果上线",
+      type: "image",
+      badge: "TOP 4",
+      image: "assets/images/project-cinema.jpg",
+      summary: "参与多部红果平台上线短剧，独立负责所分配剧集的完整制作。",
+      detail: "以 AI 漫剧为核心，完成分镜、视觉资产、视频生成、剪辑及成片输出，参与的其中一部作品进入红果漫剧新剧榜第 4 名。",
+      role: "分镜 · 视觉资产 · 视频生成 · 剪辑",
+      tags: ["红果上线", "AI 漫剧", "全流程"]
     },
     {
-      id: "north-window",
-      title: "北窗以北",
-      category: "品牌",
-      year: "2025",
+      id: "storyboard-assets",
+      title: "分镜与 4K 视觉资产",
+      category: "制作流程",
+      year: "MIDJOURNEY · IMAGE",
       type: "image",
-      image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1800&q=88",
-      summary: "为一家新建筑事务所建立从空间到文字的品牌识别。",
-      detail: "将建筑事务所的工作方法转译成一套冷静、留白、可延展的品牌系统，覆盖命名、网站和线下出版物。",
-      role: "品牌策略 · 视觉系统 · 网站设计",
-      tags: ["品牌识别", "建筑", "数字体验"]
+      badge: "4K ASSETS",
+      image: "assets/images/project-camera.jpg",
+      summary: "从分镜设计到画面生成，建立可复用的个人视觉工作流。",
+      detail: "使用 Midjourney、Image 完成画面生成，再通过 Nano Banana 制作 4K 视觉资产，为后续视频生成保持角色、场景和风格的一致。",
+      role: "分镜制作 · 视觉资产",
+      tags: ["4K 资产", "Midjourney", "Nano Banana"]
     },
     {
-      id: "after-rain",
-      title: "雨后公路",
-      category: "摄影",
-      year: "2025",
+      id: "seedance-generation",
+      title: "Seedance 视频生成",
+      category: "制作流程",
+      year: "SEEDANCE",
       type: "image",
-      image: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1800&q=88",
-      summary: "一组关于迁徙、天气和私人记忆的摄影记录。",
-      detail: "没有预设的目的地，只保留在路上的片段。画面在低饱和的自然色里寻找人与环境之间的距离。",
-      role: "摄影 · 策展 · 出版",
-      tags: ["摄影项目", "出版物", "个人实践"]
+      badge: "AI VIDEO",
+      image: "assets/images/project-theater.jpg",
+      summary: "把静态视觉资产推进成连贯、可剪辑的视频素材。",
+      detail: "使用 Seedance 生成视频，围绕镜头节奏、动作连续性和情绪表达进行素材筛选，为后期剪辑保留足够的叙事空间。",
+      role: "AI 视频生成",
+      tags: ["Seedance", "镜头生成", "动作连续"]
     },
     {
-      id: "field-notes",
-      title: "现场笔记",
-      category: "数字体验",
-      year: "2024",
+      id: "post-production",
+      title: "AE / PR 成片输出",
+      category: "后期剪辑",
+      year: "AE · PR",
       type: "image",
-      image: "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1800&q=88",
-      summary: "一个让展览从现场延伸到屏幕的数字档案。",
-      detail: "为一个跨城市展览搭建可持续更新的线上档案，重点处理作品之间的关系、语境和观众的阅读节奏。",
-      role: "体验策略 · 交互设计 · 前端实现",
-      tags: ["交互设计", "展览", "前端"]
+      badge: "FINAL CUT",
+      image: "assets/images/hero-editing.jpg",
+      summary: "结合 AE、PR 完成后期剪辑与成片输出。",
+      detail: "从素材整理、节奏控制到包装和最终输出，围绕叙事和情绪完成后期剪辑，让生成素材成为可以观看、可以交付的完整作品。",
+      role: "视频剪辑 · 成片交付",
+      tags: ["After Effects", "Premiere Pro", "成片输出"]
     }
   ]
 };

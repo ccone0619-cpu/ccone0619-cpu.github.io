@@ -2,7 +2,7 @@
 
 公开地址：<https://ccone0619-cpu.github.io/apple-portfolio-site/>
 
-这是一个无构建依赖的静态作品集网站。内容集中放在 `content.js`，图片和视频可以放在 `assets/images` 与 `assets/videos`。
+这是一个无构建依赖的静态作品集网站。内容集中放在 `content.js`，图片和视频可以放在 `assets/images` 与 `assets/videos`，简历 PDF 放在 `assets`。
 
 ## 方式一：直接在 GitHub 修改
 
@@ -81,6 +81,24 @@ cvUrl: "assets/your-resume.pdf"
 ```
 
 视频建议使用 H.264 编码的 MP4，单个文件尽量控制在 50MB 以内。GitHub 单文件上限是 100MB；更大的视频建议使用 Vimeo、Bilibili 或视频 CDN，再把直链填入 `video`。
+
+## 修改履历区
+
+履历区的标题、个人摘要、技能、项目经历和下载文件都在 `content.js` 的 `resume` 中修改：
+
+```js
+resume: {
+  title: "你的履历标题",
+  intro: "一段个人职业摘要。",
+  facts: [],
+  skills: [],
+  experience: []
+}
+```
+
+下载按钮使用 `identity.cvUrl`。上传新的 PDF 后，把它改成对应路径，例如 `assets/my-resume.pdf`。
+
+页面还包含轻量滚动显现、顶部阅读进度、主视觉跟随、桌面视频悬停预览和按钮按压反馈；系统开启减少动效时会自动关闭这些效果。
 
 ## 简历和其他文件
 
