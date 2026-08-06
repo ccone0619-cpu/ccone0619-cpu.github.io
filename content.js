@@ -5,7 +5,6 @@ window.PORTFOLIO_CONTENT = {
     name: "赵洲钰",
     role: "AIGC 内容创作者｜视频剪辑师",
     location: "杭州 · 20 岁",
-    availability: "",
     phone: "18570252625",
     wechat: "Cc1_0619",
     email: "",
@@ -13,16 +12,20 @@ window.PORTFOLIO_CONTENT = {
     socials: []
   },
   hero: {
-    title: "把想法\n变成成片。",
+    title: "AIGC 创作者\n视频剪辑师",
     description: "熟悉 AI 漫剧完整制作流程，也熟悉从分镜、视觉资产到视频生成和后期剪辑的完整工作流。",
-    note: "杭州 · 20 岁 · 多部红果上线短剧",
+    note: "杭州 · 20 岁 · 可独立完成所分配剧集的全流程",
     image: "assets/images/hero-editing.jpg",
     imageAlt: "视频剪辑软件时间线的近景",
-    imageCount: "01 / 04",
-    imageCaption: "AIGC · EDIT · STORY"
+    profile: {
+      target: "AIGC 内容创作 / 视频剪辑",
+      workstyle: "独立完成 AI 漫剧全流程",
+      tools: "Midjourney · Image · Nano Banana · Seedance",
+      result: "参与作品进入红果漫剧新剧榜第 4 名"
+    }
   },
   about: {
-    eyebrow: "ABOUT",
+    eyebrow: "PROFILE SUMMARY",
     title: "从分镜到成片，\n把每一步做完整。",
     body: "熟悉 AI 漫剧完整制作流程及主流 AIGC 创作工具，拥有个人创作工作流。参与制作多部红果上线短剧，能够独立完成所分配剧集的分镜、视觉资产、视频生成、剪辑及成片输出。",
     quote: "让 AI 负责想象，让剪辑负责叙事。"
@@ -33,9 +36,9 @@ window.PORTFOLIO_CONTENT = {
     { value: "全流程", label: "独立负责所分配剧集" }
   ],
   resume: {
-    eyebrow: "PROFILE / EXPERIENCE",
-    title: "把生成力，\n变成交付力。",
-    intro: "AIGC 视觉资产、AI 视频生成与后期剪辑，是我把想法落地的三条主线。",
+    eyebrow: "RESUME / EXPERIENCE",
+    title: "项目经验，\n专业技能。",
+    intro: "参与多部红果上线 AI 漫剧，能够独立完成分镜、视觉资产、视频生成、剪辑与成片输出。",
     fileNote: "PDF · 个人简历",
     facts: [
       { label: "职业方向", value: "AIGC 内容创作 · 视频剪辑" },
@@ -88,6 +91,7 @@ window.PORTFOLIO_CONTENT = {
       body: "使用 Seedance、AE、PR 把生成素材整理成节奏清晰、可以上线的完整成片。"
     }
   ],
+  personalWorks: [],
   projects: [
     {
       id: "red-fruit-aigc-drama",

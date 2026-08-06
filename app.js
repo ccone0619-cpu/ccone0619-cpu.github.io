@@ -21,40 +21,37 @@
     setText("[data-brand-mark]", data.identity.mark);
     setText("[data-brand-name]", data.identity.name.toUpperCase());
     setText("[data-footer-name]", data.identity.name.toUpperCase());
-    setText("[data-availability]", data.identity.availability);
     setText("[data-location]", data.identity.location);
     const location = $("[data-location]");
     if (location) location.hidden = !data.identity.location;
-    const availabilityPill = $(".availability-pill");
-    if (availabilityPill) availabilityPill.hidden = !data.identity.availability;
     setText("[data-year]", new Date().getFullYear());
-    document.title = `${data.identity.name} — AIGC 内容创作者与视频剪辑师`;
     const phoneLink = $("[data-phone-link]");
     if (phoneLink) {
       phoneLink.textContent = data.identity.phone;
       phoneLink.href = `tel:${data.identity.phone}`;
     }
     setText("[data-wechat]", data.identity.wechat);
-    const cvLink = $("[data-cv-link]");
-    if (cvLink) {
+    $$('[data-cv-link]').forEach((cvLink) => {
       const hasCv = Boolean(data.identity.cvUrl && data.identity.cvUrl !== "#");
       cvLink.hidden = !hasCv;
       if (hasCv) cvLink.href = data.identity.cvUrl;
-    }
+    });
     const socials = $("[data-socials]");
-    socials.innerHTML = data.identity.socials.map((item) => `<a href="${item.url}" target="_blank" rel="noreferrer">${item.label}</a>`).join("");
+    if (socials) socials.innerHTML = data.identity.socials.map((item) => `<a href="${item.url}" target="_blank" rel="noreferrer">${item.label}</a>`).join("");
   };
 
   const renderHero = () => {
     setText("[data-hero-name]", data.identity.name);
-    setText("[data-hero-role]", data.identity.role);
     setText("[data-hero-title]", data.hero.title);
     setText("[data-hero-description]", data.hero.description);
     setText("[data-hero-note]", data.hero.note);
+    setText("[data-hero-target]", data.hero.profile.target);
+    setText("[data-hero-location]", data.identity.location);
+    setText("[data-hero-workstyle]", data.hero.profile.workstyle);
+    setText("[data-hero-tools]", data.hero.profile.tools);
+    setText("[data-hero-result]", data.hero.profile.result);
     setAttribute("[data-hero-image]", "src", data.hero.image);
     setAttribute("[data-hero-image]", "alt", data.hero.imageAlt);
-    setText("[data-hero-count]", data.hero.imageCount);
-    setText("[data-hero-caption]", data.hero.imageCaption);
   };
 
   const renderAbout = () => {
@@ -62,7 +59,9 @@
     setText("[data-about-title]", data.about.title);
     setText("[data-about-body]", data.about.body);
     setText("[data-about-quote]", data.about.quote);
-    $("[data-stats]").innerHTML = data.stats.map((stat) => `
+    const stats = $("[data-stats]");
+    if (!stats) return;
+    stats.innerHTML = data.stats.map((stat) => `
       <div class="stat">
         <span class="stat-value">${stat.value}</span>
         <span class="stat-label">${stat.label}</span>
@@ -71,7 +70,9 @@
   };
 
   const renderStrengths = () => {
-    $("[data-strengths]").innerHTML = data.strengths.map((item) => `
+    const strengths = $("[data-strengths]");
+    if (!strengths) return;
+    strengths.innerHTML = data.strengths.map((item) => `
       <article class="strength reveal">
         <span class="strength-number">${item.number}</span>
         <h3>${item.title}</h3>
@@ -85,14 +86,18 @@
     setText("[data-resume-title]", data.resume.title);
     setText("[data-resume-intro]", data.resume.intro);
     setText("[data-resume-file-note]", data.resume.fileNote);
-    $("[data-resume-facts]").innerHTML = data.resume.facts.map((item) => `
+    const facts = $("[data-resume-facts]");
+    const skills = $("[data-resume-skills]");
+    const experience = $("[data-resume-experience]");
+    if (!facts || !skills || !experience) return;
+    facts.innerHTML = data.resume.facts.map((item) => `
       <div class="resume-fact">
         <dt>${item.label}</dt>
         <dd>${item.value}</dd>
       </div>
     `).join("");
-    $("[data-resume-skills]").innerHTML = data.resume.skills.map((skill) => `<span class="resume-skill">${skill}</span>`).join("");
-    $("[data-resume-experience]").innerHTML = data.resume.experience.map((item, index) => `
+    skills.innerHTML = data.resume.skills.map((skill) => `<span class="resume-skill">${skill}</span>`).join("");
+    experience.innerHTML = data.resume.experience.map((item, index) => `
       <article class="resume-item reveal" data-reveal-delay="${index * 70}">
         <span class="resume-item-meta">${item.meta}</span>
         <div>
@@ -113,32 +118,57 @@
     return `<img src="${project.image}" alt="${project.title} 项目视觉" loading="lazy" />`;
   };
 
+  const projectCard = (project, index) => `
+    <article class="project-card reveal" data-project-id="${project.id}" data-category="${project.category}" tabindex="0" role="button" aria-label="查看 ${project.title} 项目详情" data-reveal-delay="${index * 80}">
+      <div class="project-visual">
+        ${projectMedia(project)}
+        ${project.type === "video" ? '<span class="media-badge"><i data-lucide="play" aria-hidden="true"></i> VIDEO</span>' : `<span class="media-badge"><i data-lucide="sparkles" aria-hidden="true"></i> ${project.badge || "IMAGE"}</span>`}
+      </div>
+      <div class="project-info">
+        <div class="project-meta"><span>${project.category}</span><span>${project.year}</span></div>
+        <h3>${project.title}</h3>
+        <p>${project.summary}</p>
+        <span class="project-arrow" aria-hidden="true"><i data-lucide="arrow-up-right"></i></span>
+      </div>
+    </article>
+  `;
+
+  const renderPersonalWorks = () => {
+    const container = $("[data-personal-works]");
+    if (!container) return;
+    if (!data.personalWorks.length) {
+      container.innerHTML = `
+        <div class="personal-work-empty reveal">
+          <span class="personal-work-empty-icon" aria-hidden="true"><i data-lucide="folder-open"></i></span>
+          <div>
+            <span class="personal-work-empty-label">待上传</span>
+            <h3>作品整理中</h3>
+            <p>完整成片、剪辑片段和视觉资产案例将陆续收录。</p>
+          </div>
+        </div>
+      `;
+      return;
+    }
+    container.innerHTML = data.personalWorks.map(projectCard).join("");
+  };
+
   const renderFilters = () => {
+    const filterList = $("[data-filters]");
+    if (!filterList) return;
     const filters = ["全部", ...new Set(data.projects.map((project) => project.category))];
-    $("[data-filters]").innerHTML = filters.map((filter, index) => `
+    filterList.innerHTML = filters.map((filter, index) => `
       <button class="filter-button${index === 0 ? " is-active" : ""}" type="button" data-filter="${filter}">${filter}</button>
     `).join("");
   };
 
   const renderProjects = () => {
-    $("[data-projects]").innerHTML = data.projects.map((project, index) => `
-      <article class="project-card reveal" data-project-id="${project.id}" data-category="${project.category}" tabindex="0" role="button" aria-label="查看 ${project.title} 项目详情" data-reveal-delay="${index * 80}">
-        <div class="project-visual">
-          ${projectMedia(project)}
-          ${project.type === "video" ? '<span class="media-badge"><i data-lucide="play" aria-hidden="true"></i> VIDEO</span>' : `<span class="media-badge"><i data-lucide="sparkles" aria-hidden="true"></i> ${project.badge || "IMAGE"}</span>`}
-        </div>
-        <div class="project-info">
-          <div class="project-meta"><span>${project.category}</span><span>${project.year}</span></div>
-          <h3>${project.title}</h3>
-          <p>${project.summary}</p>
-          <span class="project-arrow" aria-hidden="true"><i data-lucide="arrow-up-right"></i></span>
-        </div>
-      </article>
-    `).join("");
+    const container = $("[data-projects]");
+    if (container) container.innerHTML = data.projects.map(projectCard).join("");
   };
 
   const openProject = (project) => {
     const dialog = $("#project-dialog");
+    if (!dialog || !project) return;
     $("[data-dialog-media]").innerHTML = projectMedia(project, true);
     setText("[data-dialog-category]", project.category);
     setText("[data-dialog-year]", project.year);
@@ -152,37 +182,48 @@
   };
 
   const bindInteractions = () => {
-    $("[data-filters]").addEventListener("click", (event) => {
-      const button = event.target.closest("[data-filter]");
-      if (!button) return;
-      $$(".filter-button").forEach((item) => item.classList.toggle("is-active", item === button));
-      const filter = button.dataset.filter;
-      $$(".project-card").forEach((card) => card.classList.toggle("is-hidden", filter !== "全部" && card.dataset.category !== filter));
-    });
+    const filterList = $("[data-filters]");
+    if (filterList) {
+      filterList.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-filter]");
+        if (!button) return;
+        $$(".filter-button").forEach((item) => item.classList.toggle("is-active", item === button));
+        const filter = button.dataset.filter;
+        $$('[data-projects] .project-card').forEach((card) => card.classList.toggle("is-hidden", filter !== "全部" && card.dataset.category !== filter));
+      });
+    }
 
-    $("[data-projects]").addEventListener("click", (event) => {
-      const card = event.target.closest("[data-project-id]");
-      if (card) openProject(data.projects.find((project) => project.id === card.dataset.projectId));
-    });
-    $("[data-projects]").addEventListener("keydown", (event) => {
-      if (event.key !== "Enter" && event.key !== " ") return;
-      const card = event.target.closest("[data-project-id]");
-      if (card) { event.preventDefault(); openProject(data.projects.find((project) => project.id === card.dataset.projectId)); }
+    const allProjects = [...data.personalWorks, ...data.projects];
+    $$('[data-projects], [data-personal-works]').forEach((container) => {
+      container.addEventListener("click", (event) => {
+        const card = event.target.closest("[data-project-id]");
+        if (card) openProject(allProjects.find((project) => project.id === card.dataset.projectId));
+      });
+      container.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        const card = event.target.closest("[data-project-id]");
+        if (card) {
+          event.preventDefault();
+          openProject(allProjects.find((project) => project.id === card.dataset.projectId));
+        }
+      });
     });
 
     const dialog = $("#project-dialog");
-    const closeProjectDialog = () => dialog.close();
-    $("[data-dialog-close]").addEventListener("click", closeProjectDialog);
-    dialog.addEventListener("click", (event) => { if (event.target === dialog) closeProjectDialog(); });
-    dialog.addEventListener("close", () => {
-      const media = $("[data-dialog-media]");
-      const video = $("video", media);
-      if (video) {
-        video.pause();
-        video.currentTime = 0;
-      }
-      media.innerHTML = "";
-    });
+    if (dialog) {
+      const closeProjectDialog = () => dialog.close();
+      $("[data-dialog-close]").addEventListener("click", closeProjectDialog);
+      dialog.addEventListener("click", (event) => { if (event.target === dialog) closeProjectDialog(); });
+      dialog.addEventListener("close", () => {
+        const media = $("[data-dialog-media]");
+        const video = $("video", media);
+        if (video) {
+          video.pause();
+          video.currentTime = 0;
+        }
+        media.innerHTML = "";
+      });
+    }
 
     const copyToClipboard = async (value, message) => {
       try {
@@ -192,26 +233,30 @@
         showToast(value);
       }
     };
-    $("[data-copy-phone]").addEventListener("click", () => copyToClipboard(data.identity.phone, "手机号已复制"));
-    $("[data-copy-wechat]").addEventListener("click", () => copyToClipboard(data.identity.wechat, "微信号已复制"));
+    const copyPhone = $("[data-copy-phone]");
+    const copyWechat = $("[data-copy-wechat]");
+    if (copyPhone) copyPhone.addEventListener("click", () => copyToClipboard(data.identity.phone, "手机号已复制"));
+    if (copyWechat) copyWechat.addEventListener("click", () => copyToClipboard(data.identity.wechat, "微信号已复制"));
 
     const menuToggle = $(".menu-toggle");
     const mobileNav = $("#mobile-nav");
-    menuToggle.addEventListener("click", () => {
-      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-      menuToggle.setAttribute("aria-expanded", String(!isOpen));
-      menuToggle.setAttribute("aria-label", isOpen ? "打开菜单" : "关闭菜单");
-      mobileNav.hidden = isOpen;
-      menuToggle.innerHTML = `<i data-lucide="${isOpen ? "menu" : "x"}" aria-hidden="true"></i>`;
-      renderIcons();
-    });
-    $$(".mobile-nav a").forEach((link) => link.addEventListener("click", () => {
-      mobileNav.hidden = true;
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "打开菜单");
-      menuToggle.innerHTML = '<i data-lucide="menu" aria-hidden="true"></i>';
-      renderIcons();
-    }));
+    if (menuToggle && mobileNav) {
+      menuToggle.addEventListener("click", () => {
+        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "打开菜单" : "关闭菜单");
+        mobileNav.hidden = isOpen;
+        menuToggle.innerHTML = `<i data-lucide="${isOpen ? "menu" : "x"}" aria-hidden="true"></i>`;
+        renderIcons();
+      });
+      $$(".mobile-nav a").forEach((link) => link.addEventListener("click", () => {
+        mobileNav.hidden = true;
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "打开菜单");
+        menuToggle.innerHTML = '<i data-lucide="menu" aria-hidden="true"></i>';
+        renderIcons();
+      }));
+    }
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
@@ -228,6 +273,7 @@
 
   const showToast = (message) => {
     const toast = $("[data-toast]");
+    if (!toast) return;
     toast.textContent = message;
     toast.classList.add("is-visible");
     window.clearTimeout(showToast.timer);
@@ -251,6 +297,7 @@
   const initScrollEffects = () => {
     const header = $(".site-header");
     const progress = $("[data-scroll-progress]");
+    if (!header || !progress) return;
     let frame = 0;
     const update = () => {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -267,32 +314,13 @@
     update();
   };
 
-  const initHeroTilt = () => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const area = $(".hero-visual");
-    const target = $("[data-hero-tilt]");
-    if (reduceMotion || !finePointer || !area || !target) return;
-
-    area.addEventListener("pointerenter", () => { target.style.willChange = "transform"; });
-    area.addEventListener("pointermove", (event) => {
-      const rect = area.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      target.style.transform = `perspective(1000px) rotateX(${-y * 3}deg) rotateY(${x * 3}deg) translateY(-2px)`;
-    });
-    area.addEventListener("pointerleave", () => {
-      target.style.transform = "";
-      window.setTimeout(() => { target.style.willChange = ""; }, 320);
-    });
-  };
-
   const init = () => {
     renderIdentity();
     renderHero();
     renderAbout();
     renderResume();
     renderStrengths();
+    renderPersonalWorks();
     renderFilters();
     renderProjects();
     bindInteractions();
@@ -300,7 +328,6 @@
     renderIcons();
     initReveal();
     initScrollEffects();
-    initHeroTilt();
   };
 
   init();

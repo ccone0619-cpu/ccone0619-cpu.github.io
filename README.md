@@ -1,8 +1,8 @@
-# 个人作品集网站
+# 个人求职作品集网站
 
 公开地址：<https://ccone0619-cpu.github.io/apple-portfolio-site/>
 
-这是一个无构建依赖的静态作品集网站。内容集中放在 `content.js`，图片和视频可以放在 `assets/images` 与 `assets/videos`，简历 PDF 放在 `assets`。
+这是一个无构建依赖的多页静态求职作品集网站。`index.html` 是求职首页，`resume.html` 是完整简历，`works.html` 是个人作品与项目经历。内容集中放在 `content.js`，图片和视频可以放在 `assets/images` 与 `assets/videos`，简历 PDF 放在 `assets`。
 
 ## 方式一：直接在 GitHub 修改
 
@@ -41,20 +41,20 @@ cvUrl: "assets/your-resume.pdf"
 
 ## 添加图片作品
 
-先把图片上传到 `assets/images`，再在 `projects` 中新增一个项目：
+先把图片上传到 `assets/images`，再在 `personalWorks` 中新增一个作品：
 
 ```js
 {
   id: "my-project",
   title: "我的项目",
-  category: "品牌",
+  category: "个人作品",
   year: "2026",
   type: "image",
   image: "assets/images/my-project.jpg",
   summary: "一句话介绍项目。",
   detail: "项目完整介绍。",
   role: "我的职责",
-  tags: ["品牌识别", "视觉设计"]
+  tags: ["AIGC", "视觉设计"]
 }
 ```
 
@@ -62,21 +62,21 @@ cvUrl: "assets/your-resume.pdf"
 
 ## 添加视频作品
 
-视频项目需要一张封面图和一个 MP4 视频地址：
+视频作品需要一张封面图和一个 MP4 视频地址，在 `personalWorks` 中加入：
 
 ```js
 {
   id: "my-film",
   title: "我的视频项目",
-  category: "影像",
+  category: "个人作品",
   year: "2026",
   type: "video",
   image: "assets/images/my-film-poster.jpg",
   video: "assets/videos/my-film.mp4",
   summary: "一句话介绍视频。",
   detail: "视频项目完整介绍。",
-  role: "导演 · 剪辑",
-  tags: ["品牌短片", "影像"]
+  role: "AIGC 创作 · 剪辑",
+  tags: ["AI 视频", "剪辑"]
 }
 ```
 
@@ -98,7 +98,7 @@ resume: {
 
 下载按钮使用 `identity.cvUrl`。上传新的 PDF 后，把它改成对应路径，例如 `assets/my-resume.pdf`。
 
-页面还包含轻量滚动显现、顶部阅读进度、主视觉跟随、桌面视频悬停预览和按钮按压反馈；系统开启减少动效时会自动关闭这些效果。
+页面还包含轻量滚动显现、顶部阅读进度、桌面视频悬停预览和按钮按压反馈；系统开启减少动效时会自动关闭这些效果。
 
 ## 简历和其他文件
 

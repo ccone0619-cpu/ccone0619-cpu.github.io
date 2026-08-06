@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f5f7" />
+    <meta name="description" content="赵洲钰的个人简历，包含 AIGC 内容创作、红果 AI 漫剧制作、视频生成与后期剪辑经历。" />
+    <title>赵洲钰 — 个人简历</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="返回首页">
+          <span class="brand-mark" data-brand-mark>ZZY</span>
+          <span class="brand-word" data-brand-name>赵洲钰</span>
+        </a>
+        <nav class="desktop-nav" aria-label="主导航">
+          <a href="index.html">首页</a>
+          <a href="resume.html" aria-current="page">简历</a>
+          <a href="works.html">作品</a>
+          <a href="index.html#contact">联系</a>
+        </nav>
+        <button class="menu-toggle icon-button" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="打开菜单">
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav" aria-label="移动端导航" hidden>
+        <a href="index.html">首页</a>
+        <a href="resume.html" aria-current="page">简历</a>
+        <a href="works.html">作品</a>
+        <a href="index.html#contact">联系</a>
+      </nav>
+      <div class="scroll-progress" aria-hidden="true"><span data-scroll-progress></span></div>
+    </header>
+
+    <main id="main-content">
+      <section class="page-intro section-pad" aria-labelledby="page-title">
+        <div class="container page-intro-grid">
+          <div class="reveal">
+            <p class="eyebrow">RESUME / EXPERIENCE</p>
+            <h1 id="page-title">个人简历</h1>
+          </div>
+          <div class="page-intro-copy reveal" data-reveal-delay="80">
+            <p data-resume-intro></p>
+            <a class="button button-blue" data-cv-link href="#" hidden>下载 PDF 简历 <i data-lucide="download" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="resume resume-page section-pad" aria-labelledby="resume-title">
+        <div class="container section-heading reveal">
+          <div>
+            <p class="eyebrow" data-resume-eyebrow></p>
+            <h2 id="resume-title" data-resume-title></h2>
+          </div>
+          <p class="section-aside">从岗位方向、项目经验到工具能力，完整呈现我的工作基础。</p>
+        </div>
+        <div class="container resume-layout">
+          <aside class="resume-summary reveal" aria-label="履历摘要" data-reveal-delay="80">
+            <dl class="resume-facts" data-resume-facts></dl>
+            <div class="resume-tools">
+              <p class="resume-kicker">TOOLS &amp; SKILLS</p>
+              <div class="resume-skill-list" data-resume-skills></div>
+            </div>
+            <div class="resume-download">
+              <a class="button button-blue" data-cv-link href="#" hidden>下载完整简历 <i data-lucide="download" aria-hidden="true"></i></a>
+              <span data-resume-file-note></span>
+            </div>
+          </aside>
+          <div class="resume-experience" data-resume-experience></div>
+        </div>
+      </section>
+
+      <section class="next-step section-pad" aria-labelledby="next-step-title">
+        <div class="container next-step-inner reveal">
+          <div>
+            <p class="eyebrow">SELECTED WORK</p>
+            <h2 id="next-step-title">下一页，<br /><em>看实际作品。</em></h2>
+          </div>
+          <a class="button button-blue" href="works.html">查看个人作品 <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span data-year></span> <span data-footer-name>赵洲钰</span>. Built with intent.</p>
+        <div class="social-links" data-socials></div>
+        <a class="back-to-top" href="#top" aria-label="返回顶部" title="返回顶部"><i data-lucide="arrow-up" aria-hidden="true"></i></a>
+      </div>
+    </footer>
+
+    <noscript><div class="noscript-note">请开启 JavaScript 以查看完整简历。</div></noscript>
+    <script src="content.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
