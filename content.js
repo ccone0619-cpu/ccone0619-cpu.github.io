@@ -2,10 +2,10 @@
 window.PORTFOLIO_CONTENT = {
   identity: {
     mark: "YN",
-    name: "你的名字",
-    role: "独立创意工作者 / 导演 / 设计师",
-    location: "上海 · 远程协作",
-    availability: "接受 2026 年秋季项目",
+    name: "赵洲钰",
+    role: "aigc创作者/ 剪辑师",
+    location: "杭州 ·",
+    availability: "",
     email: "hello@yourname.studio",
     cvUrl: "#",
     socials: [
