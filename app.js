@@ -42,6 +42,7 @@
 
   const renderHero = () => {
     setText("[data-hero-name]", data.identity.name);
+    setText("[data-hero-role]", data.identity.role);
     setText("[data-hero-title]", data.hero.title);
     setText("[data-hero-description]", data.hero.description);
     setText("[data-hero-note]", data.hero.note);
@@ -123,7 +124,7 @@
     <article class="project-card${project.layout ? ` project-card-${project.layout}` : ""} reveal" data-project-id="${project.id}" data-category="${project.category}" tabindex="0" role="button" aria-label="查看 ${project.title} 项目详情" data-reveal-delay="${index * 80}">
       <div class="project-visual">
         ${projectMedia(project)}
-        ${project.type === "video" ? '<span class="media-badge"><i data-lucide="play" aria-hidden="true"></i> VIDEO</span>' : `<span class="media-badge"><i data-lucide="sparkles" aria-hidden="true"></i> ${project.badge || "IMAGE"}</span>`}
+        ${project.type === "video" ? '<span class="media-badge"><i data-lucide="play" aria-hidden="true"></i> 播放</span>' : `<span class="media-badge"><i data-lucide="sparkles" aria-hidden="true"></i> ${project.badge || "项目"}</span>`}
       </div>
       <div class="project-info">
         <div class="project-meta"><span>${project.category}</span><span>${project.year}</span></div>
@@ -140,7 +141,7 @@
         <img src="${project.image}" alt="${project.imageAlt || `${project.title} 视频封面`}" loading="lazy" />
       </div>
       <div class="editing-card-info">
-        <div class="editing-card-meta"><span>0${index + 1} / VIDEO</span><span>${project.year}</span></div>
+        <div class="editing-card-meta"><span>作品 0${index + 1}</span><span>${project.year}</span></div>
         <h3>${project.title}</h3>
         <p>${project.summary}</p>
       </div>

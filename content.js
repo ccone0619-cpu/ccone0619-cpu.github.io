@@ -12,20 +12,20 @@ window.PORTFOLIO_CONTENT = {
     socials: []
   },
   hero: {
-    title: "AIGC 创作者\n视频剪辑师",
-    description: "熟悉 AI 漫剧完整制作流程，也熟悉从分镜、视觉资产到视频生成和后期剪辑的完整工作流。",
+    title: "赵洲钰",
+    description: "我用 AIGC 建立画面，用剪辑完成叙事。参与多部红果上线短剧，可独立交付所分配剧集的完整制作。",
     note: "杭州 · 20 岁 · 可独立完成所分配剧集的全流程",
-    image: "assets/images/hero-editing.jpg",
-    imageAlt: "视频剪辑软件时间线的近景",
+    image: "assets/images/holiday-poster.jpg",
+    imageAlt: "AIGC 微电影《寒假》的代表画面",
     profile: {
       target: "AIGC 内容创作 / 视频剪辑",
       workstyle: "独立完成 AI 漫剧全流程",
       tools: "Midjourney · Image · Nano Banana · Seedance",
-      result: "参与作品进入红果漫剧新剧榜第 4 名"
+      result: "《寒假》· AIGC 微电影风格短片"
     }
   },
   about: {
-    eyebrow: "PROFILE SUMMARY",
+    eyebrow: "个人简介",
     title: "从分镜到成片，\n把每一步做完整。",
     body: "熟悉 AI 漫剧完整制作流程及主流 AIGC 创作工具，拥有个人创作工作流。参与制作多部红果上线短剧，能够独立完成所分配剧集的分镜、视觉资产、视频生成、剪辑及成片输出。",
     quote: "让 AI 负责想象，让剪辑负责叙事。"
@@ -36,7 +36,7 @@ window.PORTFOLIO_CONTENT = {
     { value: "全流程", label: "独立负责所分配剧集" }
   ],
   resume: {
-    eyebrow: "RESUME / EXPERIENCE",
+    eyebrow: "经历与能力",
     title: "项目经验，\n专业技能。",
     intro: "参与多部红果上线 AI 漫剧，能够独立完成分镜、视觉资产、视频生成、剪辑与成片输出。",
     fileNote: "PDF · 个人简历",
