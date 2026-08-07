@@ -113,11 +113,11 @@
   const projectMedia = (project, inDialog = false) => {
     if (project.type === "video") {
       return inDialog
-        ? `<video controls playsinline preload="auto" poster="${project.image}"><source src="${project.video}" type="video/mp4" />你的浏览器不支持视频播放。</video>`
-        : `<img class="project-media-image" src="${project.image}" alt="${project.imageAlt || `${project.title} 视频封面`}" loading="lazy" />`;
+        ? `<video controls playsinline preload="metadata" poster="${project.image}" aria-label="播放 ${project.title}"><source src="${project.video}" type="video/mp4" />你的浏览器不支持视频播放。</video>`
+        : `<img class="project-media-image" src="${project.image}" alt="${project.imageAlt || `${project.title} 视频封面`}" loading="lazy" decoding="async" />`;
     }
     const imageClass = project.layout ? ` project-media-${project.layout}` : "";
-    return `<img class="project-media-image${imageClass}" src="${project.image}" alt="${project.imageAlt || `${project.title} 项目视觉`}" loading="lazy" />`;
+    return `<img class="project-media-image${imageClass}" src="${project.image}" alt="${project.imageAlt || `${project.title} 项目视觉`}" loading="lazy" decoding="async" />`;
   };
 
   const projectCard = (project, index) => `
@@ -138,7 +138,7 @@
   const editingCard = (project, index) => `
     <article class="editing-card reveal" data-project-id="${project.id}" tabindex="0" role="button" aria-label="播放 ${project.title}" data-reveal-delay="${index * 80}">
       <div class="editing-card-visual">
-        <img src="${project.image}" alt="${project.imageAlt || `${project.title} 视频封面`}" loading="lazy" />
+        <img src="${project.image}" alt="${project.imageAlt || `${project.title} 视频封面`}" loading="lazy" decoding="async" />
       </div>
       <div class="editing-card-info">
         <div class="editing-card-meta"><span>作品 0${index + 1}</span><span>${project.year}</span></div>
@@ -177,7 +177,21 @@
   const openProject = (project) => {
     const dialog = $("#project-dialog");
     if (!dialog || !project) return;
-    $("[data-dialog-media]").innerHTML = projectMedia(project, true);
+    const media = $("[data-dialog-media]");
+    media.innerHTML = projectMedia(project, true);
+    const video = $("video", media);
+    if (video) {
+      video.addEventListener("error", () => {
+        media.innerHTML = `
+          <div class="media-error" role="status">
+            <i data-lucide="circle-alert" aria-hidden="true"></i>
+            <strong>视频暂时无法加载</strong>
+            <p>请检查网络后重试。作品说明和制作过程仍可继续查看。</p>
+          </div>
+        `;
+        renderIcons();
+      }, { once: true });
+    }
     setText("[data-dialog-category]", project.category);
     setText("[data-dialog-year]", project.year);
     setText("[data-dialog-title]", project.title);
@@ -195,7 +209,11 @@
       </figure>
     `).join("") : "";
     if (typeof dialog.showModal === "function") dialog.showModal();
-    else dialog.setAttribute("open", "");
+    else {
+      dialog.classList.add("is-fallback");
+      dialog.setAttribute("open", "");
+      document.body.classList.add("dialog-open");
+    }
     renderIcons();
   };
 
@@ -218,10 +236,7 @@
 
     const dialog = $("#project-dialog");
     if (dialog) {
-      const closeProjectDialog = () => dialog.close();
-      $("[data-dialog-close]").addEventListener("click", closeProjectDialog);
-      dialog.addEventListener("click", (event) => { if (event.target === dialog) closeProjectDialog(); });
-      dialog.addEventListener("close", () => {
+      const clearProjectDialog = () => {
         const media = $("[data-dialog-media]");
         const video = $("video", media);
         if (video) {
@@ -229,6 +244,22 @@
           video.currentTime = 0;
         }
         media.innerHTML = "";
+      };
+      const closeProjectDialog = () => {
+        if (dialog.classList.contains("is-fallback")) {
+          dialog.removeAttribute("open");
+          dialog.classList.remove("is-fallback");
+          document.body.classList.remove("dialog-open");
+          clearProjectDialog();
+          return;
+        }
+        dialog.close();
+      };
+      $("[data-dialog-close]").addEventListener("click", closeProjectDialog);
+      dialog.addEventListener("click", (event) => { if (event.target === dialog) closeProjectDialog(); });
+      dialog.addEventListener("close", clearProjectDialog);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && dialog.classList.contains("is-fallback")) closeProjectDialog();
       });
     }
 
@@ -248,6 +279,13 @@
     const menuToggle = $(".menu-toggle");
     const mobileNav = $("#mobile-nav");
     if (menuToggle && mobileNav) {
+      const closeMobileNav = () => {
+        mobileNav.hidden = true;
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "打开菜单");
+        menuToggle.innerHTML = '<i data-lucide="menu" aria-hidden="true"></i>';
+        renderIcons();
+      };
       menuToggle.addEventListener("click", () => {
         const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
         menuToggle.setAttribute("aria-expanded", String(!isOpen));
@@ -256,13 +294,9 @@
         menuToggle.innerHTML = `<i data-lucide="${isOpen ? "menu" : "x"}" aria-hidden="true"></i>`;
         renderIcons();
       });
-      $$(".mobile-nav a").forEach((link) => link.addEventListener("click", () => {
-        mobileNav.hidden = true;
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "打开菜单");
-        menuToggle.innerHTML = '<i data-lucide="menu" aria-hidden="true"></i>';
-        renderIcons();
-      }));
+      $$(".mobile-nav a").forEach((link) => link.addEventListener("click", closeMobileNav));
+      document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !mobileNav.hidden) closeMobileNav(); });
+      window.addEventListener("resize", () => { if (window.innerWidth > 760 && !mobileNav.hidden) closeMobileNav(); });
     }
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
