@@ -174,20 +174,6 @@
     container.innerHTML = data.personalWorks.map(projectCard).join("");
   };
 
-  const renderFilters = () => {
-    const filterList = $("[data-filters]");
-    if (!filterList) return;
-    const filters = ["全部", ...new Set(data.projects.map((project) => project.category))];
-    filterList.innerHTML = filters.map((filter, index) => `
-      <button class="filter-button${index === 0 ? " is-active" : ""}" type="button" data-filter="${filter}">${filter}</button>
-    `).join("");
-  };
-
-  const renderProjects = () => {
-    const container = $("[data-projects]");
-    if (container) container.innerHTML = data.projects.map(projectCard).join("");
-  };
-
   const openProject = (project) => {
     const dialog = $("#project-dialog");
     if (!dialog || !project) return;
@@ -214,19 +200,8 @@
   };
 
   const bindInteractions = () => {
-    const filterList = $("[data-filters]");
-    if (filterList) {
-      filterList.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-filter]");
-        if (!button) return;
-        $$(".filter-button").forEach((item) => item.classList.toggle("is-active", item === button));
-        const filter = button.dataset.filter;
-        $$('[data-projects] .project-card').forEach((card) => card.classList.toggle("is-hidden", filter !== "全部" && card.dataset.category !== filter));
-      });
-    }
-
-    const allProjects = [...data.personalWorks, ...data.projects];
-    $$('[data-projects], [data-personal-works], [data-editing-works]').forEach((container) => {
+    const allProjects = data.personalWorks;
+    $$('[data-personal-works], [data-editing-works]').forEach((container) => {
       container.addEventListener("click", (event) => {
         const card = event.target.closest("[data-project-id]");
         if (card) openProject(allProjects.find((project) => project.id === card.dataset.projectId));
@@ -354,8 +329,6 @@
     renderStrengths();
     renderEditingWorks();
     renderPersonalWorks();
-    renderFilters();
-    renderProjects();
     bindInteractions();
     document.documentElement.classList.add("js");
     renderIcons();
