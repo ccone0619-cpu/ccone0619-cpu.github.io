@@ -120,6 +120,48 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     {
+      id: "women-drama-edit",
+      title: "女频短剧片段",
+      category: "AI 漫剧片段",
+      year: "01:00",
+      type: "video",
+      image: "assets/images/women-poster.jpg",
+      imageAlt: "女频 AI 漫剧片段视频封面",
+      video: "assets/videos/women-web.mp4",
+      summary: "女频叙事向 AI 漫剧片段，完成画面生成、动态素材整理和后期节奏剪辑。",
+      detail: "围绕女频叙事节奏完成的 AI 漫剧片段，重点处理人物情绪、镜头衔接和成片节奏，让生成素材服务于剧情表达。",
+      role: "AI 视频生成 · 剪辑",
+      tags: ["女频漫剧", "AI 视频", "剪辑"]
+    },
+    {
+      id: "return-drama-edit",
+      title: "《归还》",
+      category: "AI 漫剧片段",
+      year: "00:49",
+      type: "video",
+      image: "assets/images/return-poster.jpg",
+      imageAlt: "AI 漫剧《归还》视频封面",
+      video: "assets/videos/return-web.mp4",
+      summary: "一支偏叙事与情绪表达的 AI 漫剧片段，完成素材组织、剪辑和成片输出。",
+      detail: "从视觉素材整理到剪辑输出，围绕人物关系和情绪变化控制镜头节奏，完成可观看、可交付的 AI 漫剧片段。",
+      role: "视觉资产 · 视频生成 · 剪辑",
+      tags: ["AI 漫剧", "情绪叙事", "成片输出"]
+    },
+    {
+      id: "climb-drama-edit",
+      title: "《攀登》",
+      category: "AI 漫剧片段",
+      year: "00:53",
+      type: "video",
+      image: "assets/images/climb-poster.jpg",
+      imageAlt: "AI 漫剧《攀登》视频封面",
+      video: "assets/videos/climb-web.mp4",
+      summary: "动作与成长主题的 AI 视频片段，突出镜头推进、动作连续性和剪辑节奏。",
+      detail: "围绕动作与成长主题完成的视频片段，重点处理动作连续、镜头推进和音乐节奏，让 AI 生成素材形成完整的观看体验。",
+      role: "AI 视频生成 · 动作剪辑",
+      tags: ["AI 视频", "动作镜头", "剪辑"]
+    },
+    {
       id: "red-fruit-ranking-proof",
       title: "红果漫剧新剧榜第 4 名",
       category: "项目成果",
