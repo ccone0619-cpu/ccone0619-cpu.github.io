@@ -115,11 +115,12 @@
         ? `<video controls playsinline preload="metadata" poster="${project.image}"><source src="${project.video}" type="video/mp4" />你的浏览器不支持视频播放。</video>`
         : `<video muted loop playsinline preload="metadata" poster="${project.image}"><source src="${project.video}" type="video/mp4" /></video>`;
     }
-    return `<img src="${project.image}" alt="${project.title} 项目视觉" loading="lazy" />`;
+    const imageClass = project.layout ? ` project-media-${project.layout}` : "";
+    return `<img class="project-media-image${imageClass}" src="${project.image}" alt="${project.imageAlt || `${project.title} 项目视觉`}" loading="lazy" />`;
   };
 
   const projectCard = (project, index) => `
-    <article class="project-card reveal" data-project-id="${project.id}" data-category="${project.category}" tabindex="0" role="button" aria-label="查看 ${project.title} 项目详情" data-reveal-delay="${index * 80}">
+    <article class="project-card${project.layout ? ` project-card-${project.layout}` : ""} reveal" data-project-id="${project.id}" data-category="${project.category}" tabindex="0" role="button" aria-label="查看 ${project.title} 项目详情" data-reveal-delay="${index * 80}">
       <div class="project-visual">
         ${projectMedia(project)}
         ${project.type === "video" ? '<span class="media-badge"><i data-lucide="play" aria-hidden="true"></i> VIDEO</span>' : `<span class="media-badge"><i data-lucide="sparkles" aria-hidden="true"></i> ${project.badge || "IMAGE"}</span>`}

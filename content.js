@@ -91,7 +91,23 @@ window.PORTFOLIO_CONTENT = {
       body: "使用 Seedance、AE、PR 把生成素材整理成节奏清晰、可以上线的完整成片。"
     }
   ],
-  personalWorks: [],
+  personalWorks: [
+    {
+      id: "red-fruit-ranking-proof",
+      title: "红果漫剧新剧榜第 4 名",
+      category: "项目成果",
+      year: "红果漫剧新剧榜",
+      type: "image",
+      layout: "proof",
+      badge: "TOP 4",
+      image: "assets/images/red-fruit-ranking.jpg",
+      imageAlt: "红果漫剧新剧榜截图，参与制作的作品排名第 4",
+      summary: "参与制作的一部 AI 漫剧进入红果漫剧新剧榜第 4 名。",
+      detail: "这张榜单截图记录了参与制作的 AI 漫剧进入红果漫剧新剧榜第 4 名。我的工作覆盖分镜、视觉资产、视频生成、剪辑与成片输出。",
+      role: "分镜 · 视觉资产 · 视频生成 · 剪辑",
+      tags: ["红果上线", "项目成果", "TOP 4"]
+    }
+  ],
   projects: [
     {
       id: "red-fruit-aigc-drama",
