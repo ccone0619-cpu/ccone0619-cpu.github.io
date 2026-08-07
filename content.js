@@ -101,7 +101,7 @@ window.PORTFOLIO_CONTENT = {
       layout: "feature",
       image: "assets/images/holiday-poster.jpg",
       imageAlt: "微电影《寒假》的成片画面",
-      video: "https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%AF%92%E5%81%87.mp4",
+      video: "assets/videos/holiday-web-hq.mp4",
       summary: "以返乡与亲情为叙事核心的 AIGC 微电影风格短片，完成视觉资产组织、视频生成与 AE 后期成片。",
       detail: "围绕返乡与亲情完成的一支 AIGC 微电影风格短片。制作过程覆盖角色与场景视觉资产整理、镜头生成、素材筛选、节奏剪辑、画面合成与最终输出，并通过无限画布和 AE 工程对完整工作流进行管理。",
       role: "视觉资产 · AI 视频生成 · AE 后期 · 剪辑",

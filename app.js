@@ -112,7 +112,7 @@
   const projectMedia = (project, inDialog = false) => {
     if (project.type === "video") {
       return inDialog
-        ? `<video controls playsinline preload="metadata" poster="${project.image}"><source src="${project.video}" type="video/mp4" />你的浏览器不支持视频播放。</video>`
+        ? `<video controls playsinline preload="auto" poster="${project.image}"><source src="${project.video}" type="video/mp4" />你的浏览器不支持视频播放。</video>`
         : `<img class="project-media-image" src="${project.image}" alt="${project.imageAlt || `${project.title} 视频封面`}" loading="lazy" />`;
     }
     const imageClass = project.layout ? ` project-media-${project.layout}` : "";
