@@ -93,6 +93,33 @@ window.PORTFOLIO_CONTENT = {
   ],
   personalWorks: [
     {
+      id: "zhenbei-king-episode",
+      title: "《镇北王》· 红果上榜短剧",
+      category: "红果上线项目",
+      year: "项目案例",
+      type: "video",
+      layout: "feature",
+      image: "assets/images/zhenbei-king-poster.jpg",
+      imageAlt: "《镇北王》一集的成片画面，人物在暗色场景中交锋",
+      video: "https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E9%95%87%E5%8C%97%E7%8E%8B.mp4",
+      summary: "红果上榜短剧中的一集，完整展示从角色与场景资产到视频节点的制作流程。",
+      detail: "这是参与红果上榜短剧制作的一集。我负责所分配剧集的分镜拆解、角色与场景视觉资产、画面生成、视频生成，以及后续剪辑和成片输出。右侧画布截图记录了从原图、声音到视频节点的完整工作流。",
+      role: "分镜 · 视觉资产 · AI 视频生成 · 剪辑交付",
+      tags: ["红果上榜", "《镇北王》", "全流程制作"],
+      gallery: [
+        {
+          image: "assets/images/zhenbei-canvas-workflow.png",
+          alt: "《镇北王》项目画布工作流截图，包含角色、场景、声音、分镜与视频节点",
+          label: "画布工作流：从资产到成片"
+        },
+        {
+          image: "assets/images/red-fruit-ranking.jpg",
+          alt: "红果漫剧新剧榜截图，参与制作的作品排名第 4",
+          label: "项目结果：红果漫剧新剧榜第 4 名"
+        }
+      ]
+    },
+    {
       id: "fang-pv-edit",
       title: "仿 PV 片段",
       category: "视频剪辑",
