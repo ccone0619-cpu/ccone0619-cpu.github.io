@@ -113,7 +113,7 @@
     if (project.type === "video") {
       return inDialog
         ? `<video controls playsinline preload="metadata" poster="${project.image}"><source src="${project.video}" type="video/mp4" />你的浏览器不支持视频播放。</video>`
-        : `<video muted loop playsinline preload="metadata" poster="${project.image}"><source src="${project.video}" type="video/mp4" /></video>`;
+        : `<img class="project-media-image" src="${project.image}" alt="${project.imageAlt || `${project.title} 视频封面`}" loading="lazy" />`;
     }
     const imageClass = project.layout ? ` project-media-${project.layout}` : "";
     return `<img class="project-media-image${imageClass}" src="${project.image}" alt="${project.imageAlt || `${project.title} 项目视觉`}" loading="lazy" />`;
@@ -177,6 +177,16 @@
     setText("[data-dialog-detail]", project.detail);
     setText("[data-dialog-role]", project.role);
     $("[data-dialog-tags]").innerHTML = project.tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
+    const process = $("[data-dialog-process]");
+    const gallery = $("[data-dialog-gallery]");
+    const hasGallery = Boolean(project.gallery && project.gallery.length);
+    process.hidden = !hasGallery;
+    gallery.innerHTML = hasGallery ? project.gallery.map((item) => `
+      <figure class="dialog-gallery-item">
+        <img src="${item.image}" alt="${item.alt}" loading="lazy" />
+        <figcaption>${item.label}</figcaption>
+      </figure>
+    `).join("") : "";
     if (typeof dialog.showModal === "function") dialog.showModal();
     else dialog.setAttribute("open", "");
     renderIcons();

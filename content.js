@@ -93,6 +93,33 @@ window.PORTFOLIO_CONTENT = {
   ],
   personalWorks: [
     {
+      id: "holiday-short-film",
+      title: "《寒假》",
+      category: "微电影风格短片",
+      year: "01:35",
+      type: "video",
+      layout: "feature",
+      image: "assets/images/holiday-poster.jpg",
+      imageAlt: "微电影《寒假》的成片画面",
+      video: "https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%AF%92%E5%81%87.mp4",
+      summary: "以返乡与亲情为叙事核心的 AIGC 微电影风格短片，完成视觉资产组织、视频生成与 AE 后期成片。",
+      detail: "围绕返乡与亲情完成的一支 AIGC 微电影风格短片。制作过程覆盖角色与场景视觉资产整理、镜头生成、素材筛选、节奏剪辑、画面合成与最终输出，并通过无限画布和 AE 工程对完整工作流进行管理。",
+      role: "视觉资产 · AI 视频生成 · AE 后期 · 剪辑",
+      tags: ["微电影", "AIGC", "After Effects"],
+      gallery: [
+        {
+          image: "assets/images/holiday-workflow.jpg",
+          alt: "《寒假》项目的无限画布工作流，包含角色、场景、镜头和声音素材",
+          label: "视觉资产与镜头工作流"
+        },
+        {
+          image: "assets/images/holiday-ae-project.jpg",
+          alt: "《寒假》在 After Effects 中进行合成与后期处理的工程界面",
+          label: "After Effects 后期工程"
+        }
+      ]
+    },
+    {
       id: "red-fruit-ranking-proof",
       title: "红果漫剧新剧榜第 4 名",
       category: "项目成果",
