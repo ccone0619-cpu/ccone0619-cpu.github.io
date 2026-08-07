@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f5f5f7" />
+    <meta name="theme-color" content="#171916" />
     <meta name="description" content="赵洲钰的个人求职简介，展示 AIGC 内容创作、AI 漫剧制作、视频生成与后期剪辑能力。" />
     <title>赵洲钰 — 个人求职简介</title>
     <link rel="stylesheet" href="styles.css" />
@@ -40,69 +40,76 @@
       <section class="hero section-pad" aria-labelledby="hero-title">
         <div class="container hero-grid">
           <div class="hero-copy reveal">
-            <p class="hero-identity"><strong data-hero-name></strong><span>个人求职简介</span></p>
+            <p class="hero-identity"><strong data-hero-name></strong><span>求职作品集 · 2026</span></p>
             <h1 id="hero-title" data-hero-title></h1>
             <p class="hero-description" data-hero-description></p>
             <div class="hero-actions">
-              <a class="button button-blue" href="resume.html">查看简历 <i data-lucide="arrow-right" aria-hidden="true"></i></a>
-              <a class="text-link" href="works.html">查看作品 <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+              <a class="button button-blue" href="works.html">先看精选作品 <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+              <a class="text-link" href="resume.html">查看完整简历 <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
             </div>
             <p class="hero-note" data-hero-note></p>
           </div>
-          <aside class="hero-profile-card reveal" data-reveal-delay="120" aria-label="求职档案摘要">
-            <div class="profile-card-media">
-              <img data-hero-image src="" alt="" />
-              <span class="profile-card-media-label">AIGC · EDIT · STORY</span>
+          <div class="hero-stage reveal" data-reveal-delay="120" aria-label="代表作品预览">
+            <div class="stage-topline"><span>SELECTED FRAME / 01</span><span>AIGC SHORT DRAMA</span></div>
+            <div class="stage-media"><img data-hero-image src="" alt="" /></div>
+            <div class="stage-caption">
+              <div><span class="stage-label">代表成果</span><strong data-hero-result></strong></div>
+              <span class="stage-index">01 / 05</span>
             </div>
-            <div class="profile-card-body">
-              <div class="profile-card-heading">
-                <span class="profile-card-kicker">JOB PROFILE</span>
-                <strong data-hero-target></strong>
-              </div>
-              <dl class="profile-card-facts">
-                <div><dt>所在地</dt><dd data-hero-location></dd></div>
-                <div><dt>工作方式</dt><dd data-hero-workstyle></dd></div>
-                <div><dt>核心工具</dt><dd data-hero-tools></dd></div>
-              </dl>
-              <div class="profile-card-result">
-                <span>项目成果</span>
-                <strong data-hero-result></strong>
-              </div>
-            </div>
-          </aside>
+          </div>
         </div>
         <div class="container hero-bottomline">
-          <span class="scroll-label"><i data-lucide="mouse" aria-hidden="true"></i> 向下浏览</span>
+          <span class="scroll-label"><i data-lucide="arrow-down" aria-hidden="true"></i> 向下浏览</span>
           <span class="hero-location" data-location></span>
         </div>
       </section>
 
+      <section class="proof-strip" aria-label="求职亮点">
+        <div class="container proof-grid" data-stats></div>
+      </section>
+
       <section class="statement section-pad" id="about" aria-labelledby="about-title">
         <div class="container statement-grid">
-          <p class="eyebrow reveal" data-about-eyebrow></p>
-          <div class="statement-main reveal" data-reveal-delay="80">
+          <div class="statement-lead reveal">
+            <p class="eyebrow" data-about-eyebrow></p>
             <h2 id="about-title" data-about-title></h2>
+          </div>
+          <div class="statement-main reveal" data-reveal-delay="80">
             <p class="statement-body" data-about-body></p>
             <p class="statement-quote" data-about-quote></p>
           </div>
         </div>
-        <div class="container stat-row reveal" data-reveal-delay="140" data-stats></div>
+      </section>
+
+      <section class="editing-showcase section-pad" id="editing-works" aria-labelledby="editing-title">
+        <div class="container section-heading reveal">
+          <div>
+            <p class="eyebrow">EDITING WORKS / 01—03</p>
+            <h2 id="editing-title">剪辑作品，<br /><em>看节奏与交付。</em></h2>
+          </div>
+          <p class="section-aside">这里保留三席剪辑作品。点击任一项目，可以直接播放成片并查看项目说明。</p>
+        </div>
+        <div class="container editing-grid" data-editing-works></div>
+        <div class="container section-route reveal" data-reveal-delay="120">
+          <p>更多视觉资产、AI 漫剧和制作过程证据。</p>
+          <a class="text-link" href="works.html">查看全部作品 <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+        </div>
       </section>
 
       <section class="strengths section-pad" id="strengths" aria-labelledby="strengths-title">
         <div class="container section-heading reveal">
           <div>
-            <p class="eyebrow">CAPABILITIES</p>
-            <h2 id="strengths-title">我能直接承担，<br /><em>三类工作。</em></h2>
+            <p class="eyebrow">WHAT I CAN OWN</p>
+            <h2 id="strengths-title">可以直接承担，<br /><em>三类工作。</em></h2>
           </div>
-          <p class="section-aside">从视觉资产到成片交付，明确的工作边界让协作更高效。</p>
+          <p class="section-aside">从镜头前的视觉资产，到时间线里的最终成片，工作边界清楚，交付结果明确。</p>
         </div>
         <div class="container strengths-grid" data-strengths></div>
         <div class="container section-route reveal" data-reveal-delay="120">
-          <p>查看完整项目经历、专业技能和个人作品。</p>
+          <p>需要更完整的项目经历与工具清单？</p>
           <div class="section-route-actions">
-            <a class="text-link" href="resume.html">完整简历 <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
-            <a class="text-link" href="works.html">个人作品 <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+            <a class="text-link" href="resume.html">打开简历 <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+            <a class="text-link" href="#contact">联系我 <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
           </div>
         </div>
       </section>
@@ -139,6 +146,24 @@
         <a class="back-to-top" href="#top" aria-label="返回顶部" title="返回顶部"><i data-lucide="arrow-up" aria-hidden="true"></i></a>
       </div>
     </footer>
+
+    <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-shell">
+        <button class="dialog-close icon-button" type="button" data-dialog-close aria-label="关闭项目详情" title="关闭项目详情"><i data-lucide="x" aria-hidden="true"></i></button>
+        <div class="dialog-media" data-dialog-media></div>
+        <div class="dialog-body">
+          <div class="dialog-meta"><span data-dialog-category></span><span data-dialog-year></span></div>
+          <h2 id="dialog-title" data-dialog-title></h2>
+          <p data-dialog-detail></p>
+          <section class="dialog-process" data-dialog-process aria-labelledby="dialog-process-title" hidden>
+            <p class="eyebrow">PROCESS / PROJECT FILES</p>
+            <h3 id="dialog-process-title">制作过程</h3>
+            <div class="dialog-gallery" data-dialog-gallery></div>
+          </section>
+          <div class="dialog-footer"><span data-dialog-role></span><div data-dialog-tags></div></div>
+        </div>
+      </div>
+    </dialog>
 
     <div class="toast" role="status" aria-live="polite" data-toast></div>
     <noscript><div class="noscript-note">请开启 JavaScript 以查看完整作品集。</div></noscript>

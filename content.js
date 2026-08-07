@@ -93,6 +93,20 @@ window.PORTFOLIO_CONTENT = {
   ],
   personalWorks: [
     {
+      id: "fang-pv-edit",
+      title: "仿 PV 片段",
+      category: "视频剪辑",
+      year: "VIDEO",
+      type: "video",
+      image: "assets/images/hero-editing.jpg",
+      imageAlt: "仿 PV 视频片段预览",
+      video: "https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E4%BB%BFpv.mp4",
+      summary: "一支偏 PV 质感的视频剪辑片段，点击查看完整视频与节奏处理。",
+      detail: "仿 PV 风格的视频剪辑片段，重点展示画面组织、镜头节奏与成片输出。",
+      role: "视频剪辑 · 成片输出",
+      tags: ["PV 剪辑", "视频作品", "成片输出"]
+    },
+    {
       id: "holiday-short-film",
       title: "《寒假》",
       category: "微电影风格短片",

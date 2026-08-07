@@ -134,6 +134,26 @@
     </article>
   `;
 
+  const editingCard = (project, index) => `
+    <article class="editing-card reveal" data-project-id="${project.id}" tabindex="0" role="button" aria-label="播放 ${project.title}" data-reveal-delay="${index * 80}">
+      <div class="editing-card-visual">
+        <img src="${project.image}" alt="${project.imageAlt || `${project.title} 视频封面`}" loading="lazy" />
+      </div>
+      <div class="editing-card-info">
+        <div class="editing-card-meta"><span>0${index + 1} / VIDEO</span><span>${project.year}</span></div>
+        <h3>${project.title}</h3>
+        <p>${project.summary}</p>
+      </div>
+    </article>
+  `;
+
+  const renderEditingWorks = () => {
+    const container = $("[data-editing-works]");
+    if (!container) return;
+    const editingWorks = data.personalWorks.filter((project) => project.type === "video").slice(0, 3);
+    container.innerHTML = editingWorks.map(editingCard).join("");
+  };
+
   const renderPersonalWorks = () => {
     const container = $("[data-personal-works]");
     if (!container) return;
@@ -205,7 +225,7 @@
     }
 
     const allProjects = [...data.personalWorks, ...data.projects];
-    $$('[data-projects], [data-personal-works]').forEach((container) => {
+    $$('[data-projects], [data-personal-works], [data-editing-works]').forEach((container) => {
       container.addEventListener("click", (event) => {
         const card = event.target.closest("[data-project-id]");
         if (card) openProject(allProjects.find((project) => project.id === card.dataset.projectId));
@@ -331,6 +351,7 @@
     renderAbout();
     renderResume();
     renderStrengths();
+    renderEditingWorks();
     renderPersonalWorks();
     renderFilters();
     renderProjects();
