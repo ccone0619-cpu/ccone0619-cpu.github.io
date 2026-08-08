@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#171916" />
+    <meta name="description" content="编辑赵洲钰个人作品集文字内容。" />
+    <title>编辑作品集 — 赵洲钰</title>
+    <link rel="stylesheet" href="styles.css?v=8" />
+    <script src="assets/vendor/lucide.min.js?v=1.30.0" defer></script>
+  </head>
+  <body class="editor-shell">
+    <a class="skip-link" href="#editor-main">跳到编辑内容</a>
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="返回作品集首页">
+          <span class="brand-mark">ZZY</span>
+          <span class="brand-word">编辑作品集</span>
+        </a>
+        <nav class="desktop-nav" aria-label="编辑器导航">
+          <a href="index.html">查看网站</a>
+          <a href="works.html">查看作品</a>
+        </nav>
+        <button class="menu-toggle icon-button" type="button" aria-expanded="false" aria-controls="editor-mobile-nav" aria-label="打开菜单">
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+      </div>
+      <nav class="mobile-nav" id="editor-mobile-nav" aria-label="移动端编辑器导航" hidden>
+        <a href="index.html">查看网站</a>
+        <a href="works.html">查看作品</a>
+      </nav>
+    </header>
+
+    <main class="editor-main" id="editor-main">
+      <section class="editor-hero section-pad">
+        <div class="container editor-hero-grid">
+          <div>
+            <p class="eyebrow">本地内容编辑器</p>
+            <h1>修改文字，<br /><em>再发布。</em></h1>
+          </div>
+          <div class="editor-hero-copy">
+            <p>这里修改的是作品集文字内容，不会改动原始视频和图片。完成后下载新的 <code>content.js</code>，替换项目根目录里的同名文件，再发布到 GitHub Pages。</p>
+            <div class="editor-actions">
+              <button class="button button-blue" type="button" data-save>保存草稿 <i data-lucide="save" aria-hidden="true"></i></button>
+              <button class="button button-quiet" type="button" data-download>下载 content.js <i data-lucide="download" aria-hidden="true"></i></button>
+            </div>
+            <p class="editor-status" data-status role="status" aria-live="polite">已加载当前网站内容</p>
+          </div>
+        </div>
+      </section>
+
+      <form class="editor-form" data-editor-form>
+        <div class="container editor-layout">
+          <aside class="editor-side">
+            <div class="editor-side-inner">
+              <p class="eyebrow">编辑范围</p>
+              <nav class="editor-toc" aria-label="编辑区导航">
+                <a href="#identity">个人信息</a>
+                <a href="#hero-copy">首页首屏</a>
+                <a href="#about-copy">个人简介</a>
+                <a href="#resume-copy">简历内容</a>
+                <a href="#strengths-copy">个人优势</a>
+                <a href="#works-copy">作品文字</a>
+              </nav>
+              <div class="editor-help">
+                <strong>发布前检查</strong>
+                <p>下载后把文件命名为 <code>content.js</code>，覆盖旧文件。不要改动文件第一行和最后的分号。</p>
+              </div>
+              <button class="text-button danger-text" type="button" data-reset>恢复网站原始内容</button>
+            </div>
+          </aside>
+
+          <div class="editor-sections">
+            <section class="editor-section" id="identity" data-section="identity">
+              <div class="editor-section-heading"><span class="editor-index">01</span><div><p class="eyebrow">Identity</p><h2>个人信息</h2></div></div>
+              <div class="editor-fields editor-fields-2">
+                <label class="field"><span>姓名</span><input name="identity.name" type="text" required /></label>
+                <label class="field"><span>职业标题</span><input name="identity.role" type="text" /></label>
+                <label class="field"><span>所在地</span><input name="identity.location" type="text" /></label>
+                <label class="field"><span>手机号</span><input name="identity.phone" type="tel" /></label>
+                <label class="field"><span>微信号</span><input name="identity.wechat" type="text" /></label>
+                <label class="field"><span>简历 PDF 地址</span><input name="identity.cvUrl" type="text" /></label>
+              </div>
+            </section>
+
+            <section class="editor-section" id="hero-copy" data-section="hero">
+              <div class="editor-section-heading"><span class="editor-index">02</span><div><p class="eyebrow">Homepage</p><h2>首页首屏</h2></div></div>
+              <div class="editor-fields">
+                <label class="field"><span>首屏标题</span><input name="hero.title" type="text" /></label>
+                <label class="field"><span>首屏介绍</span><textarea name="hero.description" rows="4"></textarea></label>
+                <label class="field"><span>首屏补充信息</span><input name="hero.note" type="text" /></label>
+              </div>
+            </section>
+
+            <section class="editor-section" id="about-copy" data-section="about">
+              <div class="editor-section-heading"><span class="editor-index">03</span><div><p class="eyebrow">About</p><h2>个人简介</h2></div></div>
+              <div class="editor-fields">
+                <label class="field"><span>小标题</span><input name="about.eyebrow" type="text" /></label>
+                <label class="field"><span>简介标题（可用换行）</span><textarea name="about.title" rows="3"></textarea></label>
+                <label class="field"><span>简介正文</span><textarea name="about.body" rows="6"></textarea></label>
+                <label class="field"><span>突出语句</span><textarea name="about.quote" rows="2"></textarea></label>
+              </div>
+              <div class="editor-repeat" data-repeat="stats"></div>
+            </section>
+
+            <section class="editor-section" id="resume-copy" data-section="resume">
+              <div class="editor-section-heading"><span class="editor-index">04</span><div><p class="eyebrow">Resume</p><h2>简历内容</h2></div></div>
+              <div class="editor-fields">
+                <label class="field"><span>简历小标题</span><input name="resume.eyebrow" type="text" /></label>
+                <label class="field"><span>简历标题（可用换行）</span><textarea name="resume.title" rows="3"></textarea></label>
+                <label class="field"><span>简历摘要</span><textarea name="resume.intro" rows="4"></textarea></label>
+                <label class="field"><span>PDF 说明</span><input name="resume.fileNote" type="text" /></label>
+              </div>
+              <div class="editor-repeat" data-repeat="facts"></div>
+              <div class="editor-list-block"><div class="repeat-heading"><h3>专业技能</h3><span>用逗号分隔</span></div><label class="field"><textarea name="resume.skills" rows="3" data-array-field="comma"></textarea></label></div>
+              <div class="editor-repeat" data-repeat="experience"></div>
+            </section>
+
+            <section class="editor-section" id="strengths-copy" data-section="strengths">
+              <div class="editor-section-heading"><span class="editor-index">05</span><div><p class="eyebrow">Strengths</p><h2>个人优势</h2></div></div>
+              <div class="editor-repeat" data-repeat="strengths"></div>
+            </section>
+
+            <section class="editor-section" id="works-copy" data-section="works">
+              <div class="editor-section-heading"><span class="editor-index">06</span><div><p class="eyebrow">Portfolio</p><h2>作品文字</h2></div></div>
+              <p class="editor-section-note">这里修改作品卡片和弹窗中的文字；视频、封面和制作过程图片地址保持不变。</p>
+              <div class="editor-repeat" data-repeat="works"></div>
+            </section>
+
+            <div class="editor-bottom-actions">
+              <button class="button button-blue" type="button" data-download>下载 content.js <i data-lucide="download" aria-hidden="true"></i></button>
+              <button class="button button-quiet" type="button" data-save>保存草稿 <i data-lucide="save" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    <div class="toast" role="status" aria-live="polite" data-editor-toast></div>
+    <script src="content.js?v=6" defer></script>
+    <script src="editor.js?v=4" defer></script>
+  </body>
+</html>

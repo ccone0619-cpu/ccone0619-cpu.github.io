@@ -4,6 +4,10 @@
 
 这是一个无构建依赖的多页静态求职作品集网站。`index.html` 是求职首页，`resume.html` 是完整简历，`works.html` 是个人作品与项目经历。内容集中放在 `content.js`，图片和视频可以放在 `assets/images` 与 `assets/videos`，简历 PDF 放在 `assets`。
 
+## 使用文字编辑器
+
+打开 `editor.html` 可以通过表单修改个人信息、首页、简历、优势和作品文字。编辑器会把草稿保存在当前浏览器；点击“下载 content.js”后，用下载的文件替换项目根目录中的 `content.js`，再提交到 GitHub。编辑器不会直接修改线上网站。
+
 ## 方式一：直接在 GitHub 修改
 
 1. 打开仓库：<https://github.com/ccone0619-cpu/apple-portfolio-site>
