@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
 PDF_PATH = ASSETS / "zhao-zhouyu-resume.pdf"
 PORTFOLIO_URL = "https://ccone0619-cpu.github.io/"
+EMAIL = "ccone0619@gmail.com"
 
 INK = HexColor("#1D1D1F")
 MUTED = HexColor("#6E6E73")
@@ -113,7 +114,7 @@ def build_pdf():
     pdf = canvas.Canvas(str(PDF_PATH), pagesize=A4, pageCompression=1)
     pdf.setTitle("赵洲钰 - 个人简历")
     pdf.setAuthor("赵洲钰")
-    pdf.setSubject("AIGC 内容创作者 / 视频剪辑师")
+    pdf.setSubject("AIGC 内容创作者 / 编导 / 视频剪辑师")
 
     pdf.setFillColor(WHITE)
     pdf.rect(0, 0, width, height, stroke=0, fill=1)
@@ -124,14 +125,16 @@ def build_pdf():
     pdf.setFont(FONT_MEDIUM, 30)
     pdf.drawString(margin + 15, height - 64, "赵洲钰")
     pdf.setFont(FONT_MEDIUM, 11.5)
-    pdf.drawString(margin + 15, height - 86, "AIGC 内容创作者 / 视频剪辑师")
+    pdf.drawString(margin + 15, height - 86, "AIGC 内容创作者 / 编导 / 视频剪辑师")
 
     pdf.setFillColor(MUTED)
     pdf.setFont(FONT_LIGHT, 8.8)
-    pdf.drawString(margin, height - 112, "杭州 · 20 岁    |    18570252625    |    微信 Cc1_0619")
+    pdf.drawString(margin, height - 112, "20 岁    |    18570252625    |    微信 Cc1_0619")
+    pdf.drawString(margin, height - 129, f"邮箱  {EMAIL}")
+    pdf.linkURL(f"mailto:{EMAIL}", (margin, height - 134, margin + 155, height - 120), relative=0)
     pdf.setFillColor(ACCENT)
-    pdf.drawString(margin, height - 129, f"个人作品集  {PORTFOLIO_URL}")
-    pdf.linkURL(PORTFOLIO_URL, (margin, height - 134, margin + 230, height - 120), relative=0)
+    pdf.drawRightString(width - margin, height - 129, f"个人作品集  {PORTFOLIO_URL}")
+    pdf.linkURL(PORTFOLIO_URL, (width - margin - 230, height - 134, width - margin, height - 120), relative=0)
 
     pdf.setStrokeColor(INK)
     pdf.setLineWidth(1)
@@ -140,6 +143,7 @@ def build_pdf():
     y = height - 171
     y = draw_section_title(pdf, "个人简介", margin, y, width - margin * 2)
     y = draw_text_block(pdf, PROFILE, margin, y, width - margin * 2, FONT_LIGHT, 9.7, INK, 15)
+    y = draw_text_block(pdf, f"联系邮箱：{EMAIL}", margin, y - 2, width - margin * 2, FONT_LIGHT, 8.8, MUTED, 14)
     y -= 12
 
     left_x = margin
@@ -166,10 +170,10 @@ def build_pdf():
         left_y = draw_labeled_item(pdf, title, value, left_x, left_y, left_width)
 
     left_y -= 2
-    left_y = draw_section_title(pdf, "求职方向", left_x, left_y, left_width)
+    left_y = draw_section_title(pdf, "可直接承担", left_x, left_y, left_width)
     left_y = draw_text_block(
         pdf,
-        "视频剪辑 / 内容制作 / AIGC 视频相关岗位",
+        "独立完成分配剧集，兼顾画面统一、叙事节奏与成片交付",
         left_x,
         left_y,
         left_width,
@@ -209,21 +213,6 @@ def build_pdf():
     right_y = draw_section_title(pdf, "代表作品", right_x, right_y, right_width)
     for title, body in WORKS:
         right_y = draw_labeled_item(pdf, title, body, right_x, right_y, right_width)
-
-    workflow_y = 106
-    workflow_height = 58
-    pdf.setFillColor(SOFT)
-    pdf.roundRect(margin, workflow_y, width - margin * 2, workflow_height, 6, stroke=0, fill=1)
-    pdf.setFillColor(ACCENT)
-    pdf.setFont(FONT_MEDIUM, 8.4)
-    pdf.drawString(margin + 14, workflow_y + 36, "可直接承担")
-    pdf.setFillColor(INK)
-    pdf.setFont(FONT_MEDIUM, 9.1)
-    pdf.drawString(
-        margin + 14,
-        workflow_y + 17,
-        "独立完成分配剧集，兼顾画面统一、叙事节奏与成片交付",
-    )
 
     pdf.setStrokeColor(LINE)
     pdf.setLineWidth(0.6)

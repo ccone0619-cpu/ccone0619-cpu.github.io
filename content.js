@@ -3,18 +3,18 @@ window.PORTFOLIO_CONTENT = {
   identity: {
     mark: "ZZY",
     name: "赵洲钰",
-    role: "AIGC 内容创作者 ｜ 视频剪辑师",
-    location: "杭州 · 20 岁",
+    role: "AIGC 内容创作者 ｜ 编导 / 视频剪辑师",
+    location: "",
     phone: "18570252625",
     wechat: "Cc1_0619",
-    email: "",
-    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=3",
+    email: "ccone0619@gmail.com",
+    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=4",
     socials: []
   },
   hero: {
     title: "赵洲钰",
-    description: "AIGC 内容创作者 / 视频剪辑师。参与多部红果上线短剧，能独立完成分镜、视觉资产、视频生成、剪辑和成片交付。参与制作的项目进入红果漫剧新剧榜第 4 名。",
-    note: "杭州 · 20 岁 · 视频剪辑 / 内容制作 / AIGC 视频",
+    description: "AIGC 内容创作者，专注编导与视频剪辑。参与多部红果上线短剧，能独立完成分镜、视觉资产、视频生成、剪辑和成片交付。参与制作的项目进入红果漫剧新剧榜第 4 名。",
+    note: "20 岁 · 编导 / 视频剪辑 / AIGC 视频",
     proof: {
       eyebrow: "我参与的项目成果",
       value: "TOP 4",
@@ -36,15 +36,14 @@ window.PORTFOLIO_CONTENT = {
   resume: {
     eyebrow: "我的经历与能力",
     title: "我负责什么，\n我做出过什么。",
-    intro: "我现居杭州，20 岁。参与多部红果上线短剧，可独立承担所分配剧集的分镜、视觉资产、视频生成、剪辑与成片交付。",
-    fileNote: "PDF · 个人简历",
+    intro: "20 岁，专注编导与视频剪辑。参与多部红果上线短剧，可独立承担所分配剧集的分镜、视觉资产、视频生成、剪辑与成片交付。",
+    fileNote: "两份均为影视飓风岗位定制版 PDF",
     facts: [
-      { label: "求职方向", value: "视频剪辑 · 内容制作" },
+      { label: "可直接承担", value: "独立推进分配剧集至成片" },
       { label: "项目经验", value: "多部红果上线短剧" },
-      { label: "项目结果", value: "参与项目进入新剧榜第 4 名" },
-      { label: "可直接承担", value: "独立推进分配剧集至成片" }
+      { label: "项目结果", value: "参与项目进入新剧榜第 4 名" }
     ],
-    skills: ["视频剪辑", "分镜制作", "叙事节奏", "视觉统一", "After Effects", "Premiere Pro", "AIGC 视觉资产", "AI 视频生成", "Midjourney", "Nano Banana", "Seedance"],
+    skills: ["编导", "剧情拆解", "分镜制作", "视频剪辑", "叙事节奏", "视觉统一", "After Effects", "Premiere Pro", "AIGC 视觉资产", "AI 视频生成", "Midjourney", "Nano Banana", "Seedance"],
     experience: [
       {
         meta: "我负责",

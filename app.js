@@ -26,11 +26,24 @@
       phoneLink.href = `tel:${data.identity.phone}`;
     }
     setText("[data-wechat]", data.identity.wechat);
+    $$('[data-email-link]').forEach((emailLink) => {
+      const hasEmail = Boolean(data.identity.email);
+      emailLink.hidden = !hasEmail;
+      if (hasEmail) {
+        emailLink.textContent = data.identity.email;
+        emailLink.href = `mailto:${data.identity.email}`;
+      }
+    });
+    const hasCv = Boolean(data.identity.cvUrl && data.identity.cvUrl !== "#");
     $$('[data-cv-link]').forEach((cvLink) => {
-      const hasCv = Boolean(data.identity.cvUrl && data.identity.cvUrl !== "#");
       cvLink.hidden = !hasCv;
       if (hasCv) cvLink.href = data.identity.cvUrl;
     });
+    $$('[data-cv-download]').forEach((cvLink) => {
+      cvLink.hidden = !hasCv;
+      if (hasCv) cvLink.href = data.identity.cvUrl;
+    });
+    $$('[data-open-resume-viewer]').forEach((button) => { button.hidden = !hasCv; });
     const socials = $("[data-socials]");
     if (socials) socials.innerHTML = data.identity.socials.map((item) => `<a href="${item.url}" target="_blank" rel="noreferrer">${item.label}</a>`).join("");
   };
@@ -198,7 +211,10 @@
     process.hidden = !hasGallery;
     gallery.innerHTML = hasGallery ? project.gallery.map((item) => `
       <figure class="dialog-gallery-item">
-        <img src="${item.image}" alt="${item.alt}" loading="lazy" />
+        <button class="dialog-gallery-trigger" type="button" data-gallery-image="${item.image}" data-gallery-alt="${item.alt}" data-gallery-label="${item.label}" aria-label="放大查看 ${item.label}">
+          <img src="${item.image}" alt="${item.alt}" loading="lazy" />
+          <span class="dialog-gallery-zoom" aria-hidden="true"><i data-lucide="maximize-2"></i></span>
+        </button>
         <figcaption>${item.label}</figcaption>
       </figure>
     `).join("") : "";
@@ -257,6 +273,78 @@
       });
     }
 
+    const lightbox = $("#image-lightbox");
+    if (lightbox) {
+      const lightboxImage = $("[data-lightbox-image]", lightbox);
+      const lightboxCaption = $("[data-lightbox-caption]", lightbox);
+      const closeLightbox = () => {
+        if (lightbox.classList.contains("is-fallback")) {
+          lightbox.removeAttribute("open");
+          lightbox.classList.remove("is-fallback");
+          document.body.classList.remove("image-lightbox-open");
+        } else if (lightbox.open) {
+          lightbox.close();
+        }
+      };
+      const clearLightbox = () => {
+        lightboxImage.removeAttribute("src");
+        lightboxImage.alt = "";
+        lightboxCaption.textContent = "";
+      };
+      document.addEventListener("click", (event) => {
+        const trigger = event.target.closest("[data-gallery-image]");
+        if (!trigger) return;
+        lightboxImage.src = trigger.dataset.galleryImage;
+        lightboxImage.alt = trigger.dataset.galleryAlt;
+        lightboxCaption.textContent = trigger.dataset.galleryLabel;
+        if (typeof lightbox.showModal === "function") lightbox.showModal();
+        else {
+          lightbox.classList.add("is-fallback");
+          lightbox.setAttribute("open", "");
+          document.body.classList.add("image-lightbox-open");
+        }
+      });
+      $("[data-lightbox-close]", lightbox).addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (event) => { if (event.target === lightbox) closeLightbox(); });
+      lightbox.addEventListener("close", clearLightbox);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && lightbox.classList.contains("is-fallback")) {
+          closeLightbox();
+          clearLightbox();
+        }
+      });
+    }
+
+    const resumeViewer = $("#resume-viewer");
+    if (resumeViewer) {
+      const resumeFrame = $("[data-resume-frame]", resumeViewer);
+      const closeResumeViewer = () => {
+        if (resumeViewer.classList.contains("is-fallback")) {
+          resumeViewer.removeAttribute("open");
+          resumeViewer.classList.remove("is-fallback");
+          document.body.classList.remove("resume-viewer-open");
+        } else if (resumeViewer.open) {
+          resumeViewer.close();
+        }
+      };
+      const openResumeViewer = () => {
+        if (!data.identity.cvUrl) return;
+        if (!resumeFrame.getAttribute("src")) resumeFrame.src = data.identity.cvUrl;
+        if (typeof resumeViewer.showModal === "function") resumeViewer.showModal();
+        else {
+          resumeViewer.classList.add("is-fallback");
+          resumeViewer.setAttribute("open", "");
+          document.body.classList.add("resume-viewer-open");
+        }
+      };
+      $$('[data-open-resume-viewer]').forEach((button) => button.addEventListener("click", openResumeViewer));
+      $("[data-resume-viewer-close]", resumeViewer).addEventListener("click", closeResumeViewer);
+      resumeViewer.addEventListener("click", (event) => { if (event.target === resumeViewer) closeResumeViewer(); });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && resumeViewer.classList.contains("is-fallback")) closeResumeViewer();
+      });
+    }
+
     const copyToClipboard = async (value, message) => {
       try {
         await navigator.clipboard.writeText(value);
@@ -267,8 +355,10 @@
     };
     const copyPhone = $("[data-copy-phone]");
     const copyWechat = $("[data-copy-wechat]");
+    const copyEmail = $("[data-copy-email]");
     if (copyPhone) copyPhone.addEventListener("click", () => copyToClipboard(data.identity.phone, "手机号已复制"));
     if (copyWechat) copyWechat.addEventListener("click", () => copyToClipboard(data.identity.wechat, "微信号已复制"));
+    if (copyEmail) copyEmail.addEventListener("click", () => copyToClipboard(data.identity.email, "邮箱已复制"));
 
     const menuToggle = $(".menu-toggle");
     const mobileNav = $("#mobile-nav");

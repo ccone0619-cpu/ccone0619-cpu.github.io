@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#f5f5f7" />
     <meta name="description" content="赵洲钰的个人简历，包含视频剪辑、短剧项目经验、内容制作能力与上线项目成果。" />
     <title>赵洲钰 — 个人简历</title>
-    <link rel="stylesheet" href="styles.css?v=13" />
+    <link rel="stylesheet" href="styles.css?v=14" />
     <script src="assets/vendor/lucide.min.js?v=1.30.0" defer></script>
   </head>
   <body class="glass-shell page-shell">
@@ -45,7 +45,10 @@
           </div>
           <div class="page-intro-copy reveal" data-reveal-delay="80">
             <p data-resume-intro></p>
-            <a class="button button-blue" data-cv-link href="#" hidden>下载 PDF 简历 <i data-lucide="download" aria-hidden="true"></i></a>
+            <div class="page-intro-actions">
+              <button class="button button-blue" type="button" data-open-resume-viewer>在线浏览简历 <i data-lucide="eye" aria-hidden="true"></i></button>
+              <a class="page-intro-email" data-email-link href="mailto:ccone0619@gmail.com"></a>
+            </div>
           </div>
         </div>
       </section>
@@ -66,8 +69,12 @@
               <div class="resume-skill-list" data-resume-skills></div>
             </div>
             <div class="resume-download">
-              <a class="button button-blue" data-cv-link href="#" hidden>下载完整简历 <i data-lucide="download" aria-hidden="true"></i></a>
-              <span data-resume-file-note></span>
+              <button class="button button-blue" type="button" data-open-resume-viewer>在线浏览简历 <i data-lucide="eye" aria-hidden="true"></i></button>
+              <div class="resume-target-links">
+                <a class="button button-quiet" href="assets/zhao-zhouyu-director-resume.pdf" download="赵洲钰-编导版简历.pdf">编导版 PDF <i data-lucide="download" aria-hidden="true"></i></a>
+                <a class="button button-quiet" href="assets/zhao-zhouyu-editor-resume.pdf" download="赵洲钰-剪辑版简历.pdf">剪辑版 PDF <i data-lucide="download" aria-hidden="true"></i></a>
+              </div>
+              <span data-resume-file-note>两份均为影视飓风岗位定制版</span>
             </div>
           </aside>
           <div class="resume-experience" data-resume-experience></div>
@@ -93,8 +100,24 @@
       </div>
     </footer>
 
+    <dialog class="resume-viewer" id="resume-viewer" aria-labelledby="resume-viewer-title">
+      <div class="resume-viewer-shell">
+        <header class="resume-viewer-header">
+          <div>
+            <p class="eyebrow">在线浏览</p>
+            <h2 id="resume-viewer-title">赵洲钰 · 个人简历</h2>
+          </div>
+          <div class="resume-viewer-actions">
+            <a class="icon-button" data-cv-link href="#" target="_blank" rel="noreferrer" hidden aria-label="在新窗口打开简历" title="在新窗口打开简历"><i data-lucide="external-link" aria-hidden="true"></i></a>
+            <button class="icon-button" type="button" data-resume-viewer-close aria-label="关闭在线简历" title="关闭在线简历"><i data-lucide="x" aria-hidden="true"></i></button>
+          </div>
+        </header>
+        <iframe data-resume-frame title="赵洲钰个人简历" loading="lazy"></iframe>
+      </div>
+    </dialog>
+
     <noscript><div class="noscript-note">请开启 JavaScript 以查看完整简历。</div></noscript>
-    <script src="content.js?v=15" defer></script>
-    <script src="app.js?v=7" defer></script>
+    <script src="content.js?v=16" defer></script>
+    <script src="app.js?v=8" defer></script>
   </body>
 </html>
