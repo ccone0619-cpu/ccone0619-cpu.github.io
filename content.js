@@ -94,7 +94,7 @@ window.PORTFOLIO_CONTENT = {
       image: "assets/images/zhenbei-king-poster.jpg",
       imageAlt: "《镇北王》一集的成片画面，人物在暗色场景中交锋",
       video: "assets/videos/zhenbei-king-web.mp4",
-      summary: "红果上榜短剧中的一集，完整展示从角色与场景资产到视频节点的制作流程。",
+      summary: "红果上榜短剧中的一集，展示我在分镜、视觉资产、视频生成和剪辑交付中的实际承担。",
       detail: "这是参与红果上榜短剧制作的一集。我负责所分配剧集的分镜拆解、角色与场景视觉资产、画面生成、视频生成，以及后续剪辑和成片输出。右侧画布截图作为制作过程证据，同时也展示红果新剧榜第 4 名的项目结果。",
       role: "分镜 · 视觉资产 · AI 视频生成 · 剪辑交付",
       tags: ["红果上榜", "《镇北王》", "全流程制作"],
