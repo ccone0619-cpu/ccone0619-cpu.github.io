@@ -25,8 +25,9 @@ FONT_MEDIUM = "ResumeMedium"
 
 
 PROFILE = (
-    "熟悉 AI 漫剧完整制作流程及主流 AIGC 创作工具，拥有个人创作工作流。"
-    "参与多部红果上线短剧，能够独立完成所分配剧集的分镜、视觉资产、视频生成、剪辑及成片输出。"
+    "参与多部红果上线短剧，熟悉 AI 漫剧制作流程及主流 AIGC 创作工具。"
+    "能够独立完成所分配剧集的分镜、视觉资产、视频生成、剪辑和成片输出，"
+    "参与制作的一部 AI 漫剧进入红果漫剧新剧榜第 4 名。"
 )
 
 STRENGTHS = [
@@ -215,13 +216,13 @@ def build_pdf():
     pdf.roundRect(margin, workflow_y, width - margin * 2, workflow_height, 6, stroke=0, fill=1)
     pdf.setFillColor(ACCENT)
     pdf.setFont(FONT_MEDIUM, 8.4)
-    pdf.drawString(margin + 14, workflow_y + 36, "我的工作流")
+    pdf.drawString(margin + 14, workflow_y + 36, "可直接承担")
     pdf.setFillColor(INK)
     pdf.setFont(FONT_MEDIUM, 9.1)
     pdf.drawString(
         margin + 14,
         workflow_y + 17,
-        "剧情拆解  →  分镜设计  →  视觉资产  →  视频生成  →  后期剪辑  →  成片交付",
+        "独立完成分配剧集，兼顾画面统一、叙事节奏与成片交付",
     )
 
     pdf.setStrokeColor(LINE)

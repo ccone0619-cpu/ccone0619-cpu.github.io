@@ -8,7 +8,7 @@ window.PORTFOLIO_CONTENT = {
     phone: "18570252625",
     wechat: "Cc1_0619",
     email: "",
-    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=2",
+    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=3",
     socials: []
   },
   hero: {
@@ -19,7 +19,7 @@ window.PORTFOLIO_CONTENT = {
   about: {
     eyebrow: "我的优势",
     title: "我能不只完成一个环节，",
-    body: "我在接到分配剧集后，我可以独立完成分镜拆解、视觉资产、画面与视频生成、后期剪辑和成片输出。相比只完成单点任务，我更擅长把多个环节连成稳定的工作流，让素材最终成为节奏清楚、能够交付的作品。",
+    body: "接到分配剧集后，我可以独立完成分镜拆解、视觉资产、画面与视频生成、后期剪辑和成片输出。除了完成单个环节，我也能统一画面、叙事节奏和剪辑衔接，让素材最终成为可交付的成片。",
     quote: "能把事情从开始推进到交付，是我最明确的优势。"
   },
   stats: [
