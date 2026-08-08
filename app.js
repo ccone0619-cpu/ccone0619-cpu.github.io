@@ -41,6 +41,12 @@
     setText("[data-hero-title]", data.hero.title);
     setText("[data-hero-description]", data.hero.description);
     setText("[data-hero-note]", data.hero.note);
+    if (data.hero.proof) {
+      setText("[data-hero-proof-eyebrow]", data.hero.proof.eyebrow);
+      setText("[data-hero-proof-value]", data.hero.proof.value);
+      setText("[data-hero-proof-label]", data.hero.proof.label);
+      setText("[data-hero-proof-note]", data.hero.proof.note);
+    }
   };
 
   const renderAbout = () => {
