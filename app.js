@@ -8,11 +8,6 @@
     if (element) element.textContent = value;
   };
 
-  const setAttribute = (selector, name, value) => {
-    const element = $(selector);
-    if (element && value != null) element.setAttribute(name, value);
-  };
-
   const renderIcons = () => {
     if (window.lucide && typeof window.lucide.createIcons === "function") window.lucide.createIcons();
   };
@@ -46,13 +41,6 @@
     setText("[data-hero-title]", data.hero.title);
     setText("[data-hero-description]", data.hero.description);
     setText("[data-hero-note]", data.hero.note);
-    setText("[data-hero-target]", data.hero.profile.target);
-    setText("[data-hero-location]", data.identity.location);
-    setText("[data-hero-workstyle]", data.hero.profile.workstyle);
-    setText("[data-hero-tools]", data.hero.profile.tools);
-    setText("[data-hero-result]", data.hero.profile.result);
-    setAttribute("[data-hero-image]", "src", data.hero.image);
-    setAttribute("[data-hero-image]", "alt", data.hero.imageAlt);
   };
 
   const renderAbout = () => {
