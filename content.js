@@ -112,6 +112,48 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     {
+      id: "editing-selection-01",
+      title: "影视情绪混剪 01",
+      category: "剪辑作品",
+      year: "00:30",
+      type: "video",
+      image: "assets/images/editing-pt1-poster.jpg",
+      imageAlt: "影视情绪混剪中的人物关系画面",
+      video: "https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%89%AA%E8%BE%91pt1.mp4",
+      summary: "人物关系与情绪向剪辑，展示镜头筛选、画面统一和音乐节奏控制。",
+      detail: "围绕人物关系和情绪变化组织素材，通过镜头筛选、节奏推进和画面统一，让零散影视素材形成完整的情绪表达。",
+      role: "素材筛选 · 情绪节奏 · 画面统一",
+      tags: ["影视混剪", "情绪剪辑", "节奏控制"]
+    },
+    {
+      id: "anime-mix-selection-02",
+      title: "动漫节奏混剪",
+      category: "剪辑作品",
+      year: "00:13",
+      type: "video",
+      image: "assets/images/anime-mix-pt2-poster.jpg",
+      imageAlt: "动漫节奏混剪中的高对比人物画面",
+      video: "https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%8A%A8%E6%BC%AB%E6%B7%B7%E5%89%AApt2.mp4",
+      summary: "高密度动漫混剪片段，展示音乐卡点、镜头匹配和视觉冲击力。",
+      detail: "使用高密度镜头切换和音乐卡点组织动漫素材，在短时长内建立节奏变化、动作衔接和视觉冲击。",
+      role: "音乐卡点 · 动作衔接 · 节奏剪辑",
+      tags: ["动漫混剪", "音乐卡点", "动作节奏"]
+    },
+    {
+      id: "editing-selection-03",
+      title: "影视剧情混剪 02",
+      category: "剪辑作品",
+      year: "00:32",
+      type: "video",
+      image: "assets/images/editing-pt3-poster.jpg",
+      imageAlt: "影视剧情混剪中的人物冲突画面",
+      video: "https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%89%AA%E8%BE%91pt3.mp4",
+      summary: "动作与情绪结合的影视混剪，展示镜头衔接、节奏推进和高潮组织。",
+      detail: "围绕人物冲突与情绪爆发重新组织影视素材，通过动作衔接、节奏加速和情绪落点完成短片表达。",
+      role: "剧情重组 · 动作衔接 · 节奏推进",
+      tags: ["影视混剪", "剧情节奏", "动作剪辑"]
+    },
+    {
       id: "fang-pv-edit",
       title: "仿 PV 片段",
       category: "视频剪辑",
