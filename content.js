@@ -91,6 +91,21 @@ window.PORTFOLIO_CONTENT = {
   ],
   personalWorks: [
     {
+      id: "fang-shoot-short-film",
+      title: "仿实拍风格短片",
+      category: "代表作 · 视频剪辑",
+      year: "01:00",
+      type: "video",
+      layout: "feature",
+      image: "assets/images/fang-shoot-poster.jpg",
+      imageAlt: "仿实拍风格短片封面，男女主人公在冬日街头对视",
+      video: "https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E4%BB%BF%E5%AE%9E%E6%8B%8D.mp4",
+      summary: "一支仿实拍风格的视频作品，展示我对人物关系、镜头节奏和成片质感的处理。",
+      detail: "这支仿实拍风格短片作为我的代表作，围绕人物关系和场景氛围组织画面，通过镜头节奏、情绪衔接与成片质感完成一段完整的视频表达。",
+      role: "视频剪辑 · 镜头节奏 · 成片输出",
+      tags: ["代表作", "仿实拍", "视频剪辑"]
+    },
+    {
       id: "zhenbei-king-episode",
       title: "《镇北王》· 红果上榜短剧",
       category: "红果上线项目",
