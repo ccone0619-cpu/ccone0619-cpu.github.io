@@ -102,7 +102,14 @@ window.PORTFOLIO_CONTENT = {
       summary: "一支仿实拍风格的视频作品，展示我对人物关系、镜头节奏和成片质感的处理。",
       detail: "这支仿实拍风格短片作为我的代表作，围绕人物关系和场景氛围组织画面，通过镜头节奏、情绪衔接与成片质感完成一段完整的视频表达。",
       role: "视频剪辑 · 镜头节奏 · 成片输出",
-      tags: ["代表作", "仿实拍", "视频剪辑"]
+      tags: ["代表作", "仿实拍", "视频剪辑"],
+      gallery: [
+        {
+          image: "assets/images/fang-shoot-canvas-workflow.png",
+          alt: "仿实拍风格短片的制作画布，包含角色、服装、场景、镜头与视频生成节点",
+          label: "画布记录：从角色资产到成片镜头"
+        }
+      ]
     },
     {
       id: "zhenbei-king-episode",
