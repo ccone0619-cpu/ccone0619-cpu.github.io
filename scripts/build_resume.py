@@ -41,9 +41,9 @@ STRENGTHS = [
 ]
 
 PROJECT_BULLETS = [
-    "独立负责所分配剧集，从剧情拆解、分镜设计推进到最终成片。",
+    "参与多部红果上线短剧，独立负责所分配剧集并推进至成片交付。",
     "使用 Midjourney、Image 与 Nano Banana 制作角色、场景及 4K 视觉资产。",
-    "通过 Seedance 生成视频，并使用 After Effects、Premiere Pro 完成合成、节奏剪辑、声音配合与输出。",
+    "通过 Seedance 生成视频；使用 After Effects、Premiere Pro 完成素材筛选、剪辑、合成、声音配合与成片输出。",
     "参与多部红果上线项目，其中一部 AI 漫剧进入红果漫剧新剧榜第 4 名。",
 ]
 
@@ -259,20 +259,20 @@ def build_pdf():
     right_y = draw_text_block(pdf, PROFILE, right_x, right_y, right_width, FONT_LIGHT, 9, INK, 14)
     right_y -= 10
 
-    right_y = draw_editorial_title(pdf, "02", "项目经历", right_x, right_y, right_width)
+    right_y = draw_editorial_title(pdf, "02", "工作经历", right_x, right_y, right_width)
     pdf.setFillColor(INK)
     pdf.setFont(FONT_MEDIUM, 15)
-    pdf.drawString(right_x, right_y, "红果 AI 漫剧制作")
+    pdf.drawString(right_x, right_y, "AI 漫剧内容制作")
     pdf.setFillColor(MUTED)
     pdf.setFont(FONT_MEDIUM, 8.1)
-    pdf.drawRightString(right_x + right_width, right_y + 2, "多部平台上线项目")
+    pdf.drawRightString(right_x + right_width, right_y + 2, "2025.11 — 2026.07")
     right_y -= 18
     pdf.setFillColor(ACCENT)
     pdf.setFont("Helvetica-Bold", 7.2)
     pdf.drawString(right_x, right_y, "ROLE")
     pdf.setFillColor(MUTED)
     pdf.setFont(FONT_LIGHT, 8.2)
-    pdf.drawString(right_x + 32, right_y, "分配剧集独立交付")
+    pdf.drawString(right_x + 32, right_y, "AIGC 内容创作者 / 视频剪辑师")
     right_y -= 22
     for bullet in PROJECT_BULLETS:
         right_y = draw_bullet(pdf, bullet, right_x, right_y, right_width, font_size=8.6, leading=13)

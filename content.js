@@ -8,7 +8,7 @@ window.PORTFOLIO_CONTENT = {
     phone: "18570252625",
     wechat: "Cc1_0619",
     email: "ccone0619@gmail.com",
-    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=5",
+    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=6",
     socials: []
   },
   hero: {
@@ -36,20 +36,20 @@ window.PORTFOLIO_CONTENT = {
   resume: {
     eyebrow: "我的经历与能力",
     title: "我负责什么，\n我做出过什么。",
-    intro: "20 岁，专注编导与视频剪辑。参与多部红果上线短剧，可独立承担所分配剧集的分镜、视觉资产、视频生成、剪辑与成片交付。",
+    intro: "20 岁。2025.11–2026.07 参与 AI 漫剧内容制作，参与多部红果上线短剧，可独立承担所分配剧集的分镜、视觉资产、视频生成、剪辑与成片交付。",
     fileNote: "两份均为影视飓风岗位定制版 PDF",
     facts: [
       { label: "可直接承担", value: "独立推进分配剧集至成片" },
-      { label: "项目经验", value: "多部红果上线短剧" },
+      { label: "工作经历", value: "2025.11–2026.07 · AI 漫剧内容制作" },
       { label: "项目结果", value: "参与项目进入新剧榜第 4 名" }
     ],
     skills: ["编导", "剧情拆解", "分镜制作", "视频剪辑", "叙事节奏", "视觉统一", "After Effects", "Premiere Pro", "AIGC 视觉资产", "AI 视频生成", "Midjourney", "Nano Banana", "Seedance"],
     experience: [
       {
-        meta: "我负责",
-        title: "独立交付分配剧集",
-        role: "红果上线短剧 · 从拆解到成片",
-        body: "在多部红果上线短剧中，我独立负责分配给我的剧集，完成剧情拆解、素材规划、视频制作、后期剪辑和最终成片交付。"
+        meta: "工作经历 · 2025.11–2026.07",
+        title: "AI 漫剧内容制作",
+        role: "AIGC 内容创作者 / 视频剪辑师",
+        body: "参与多部红果上线短剧，独立负责分配给我的剧集，完成剧情拆解、素材规划、视频制作、后期剪辑和最终成片交付。"
       },
       {
         meta: "我串联",
@@ -61,7 +61,7 @@ window.PORTFOLIO_CONTENT = {
         meta: "我完成",
         title: "用剪辑把素材变成完整叙事",
         role: "After Effects · Premiere Pro",
-        body: "我围绕人物情绪、镜头衔接和叙事节奏筛选素材，完成合成、剪辑、声音配合与输出，让生成素材成为可以观看和交付的成片。"
+        body: "我围绕人物情绪、镜头衔接和叙事节奏筛选素材，使用 AE / PR 完成剪辑、合成、声音配合与输出，让生成素材成为可以观看和交付的成片。"
       },
       {
         meta: "我的结果",
