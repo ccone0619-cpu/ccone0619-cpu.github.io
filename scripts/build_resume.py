@@ -8,11 +8,17 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
+from reportlab.lib.utils import ImageReader
 
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
 PDF_PATH = ASSETS / "zhao-zhouyu-resume.pdf"
+PROFILE_PHOTO_PATHS = (
+    ASSETS / "images" / "resume-profile.jpg",
+    ASSETS / "images" / "resume-profile.jpeg",
+    ASSETS / "images" / "resume-profile.png",
+)
 PORTFOLIO_URL = "https://ccone0619-cpu.github.io/"
 EMAIL = "ccone0619@gmail.com"
 
@@ -159,6 +165,44 @@ def draw_qr(pdf, value, x, y, size):
     pdf.linkURL(value, (x, y, x + size, y + size), relative=0)
 
 
+def draw_profile_photo(pdf, x, y, size):
+    pdf.setFillColor(SOFT)
+    pdf.roundRect(x, y, size, size, 7, stroke=0, fill=1)
+    photo_path = next((path for path in PROFILE_PHOTO_PATHS if path.exists()), None)
+    if not photo_path:
+        pdf.setFillColor(ACCENT)
+        pdf.roundRect(x + 16, y + size - 20, 24, 3, 1.5, stroke=0, fill=1)
+        pdf.setFillColor(QUIET)
+        pdf.setFont("Helvetica-Bold", 7.2)
+        pdf.drawString(x + 16, y + size - 39, "PERSONAL PHOTO")
+        pdf.setFillColor(INK)
+        pdf.setFont(FONT_MEDIUM, 10)
+        pdf.drawString(x + 16, y + 30, "个人照片")
+        pdf.setFillColor(MUTED)
+        pdf.setFont(FONT_LIGHT, 7.6)
+        pdf.drawString(x + 16, y + 15, "待放入照片")
+        return
+
+    image = ImageReader(str(photo_path))
+    image_width, image_height = image.getSize()
+    scale = max(size / image_width, size / image_height)
+    draw_width = image_width * scale
+    draw_height = image_height * scale
+    clip_path = pdf.beginPath()
+    clip_path.roundRect(x, y, size, size, 7)
+    pdf.saveState()
+    pdf.clipPath(clip_path, stroke=0, fill=0)
+    pdf.drawImage(
+        image,
+        x + (size - draw_width) / 2,
+        y + (size - draw_height) / 2,
+        draw_width,
+        draw_height,
+        mask="auto",
+    )
+    pdf.restoreState()
+
+
 def build_pdf():
     register_fonts()
     width, height = A4
@@ -171,9 +215,9 @@ def build_pdf():
     pdf.setFillColor(WHITE)
     pdf.rect(0, 0, width, height, stroke=0, fill=1)
 
-    proof_width = 158
-    proof_x = width - margin - proof_width
-    proof_y = height - 156
+    photo_size = 108
+    photo_x = width - margin - photo_size
+    photo_y = height - 156
 
     pdf.setFillColor(ACCENT)
     pdf.rect(margin, height - 143, 4, 92, stroke=0, fill=1)
@@ -190,21 +234,7 @@ def build_pdf():
     pdf.setFont(FONT_MEDIUM, 11.3)
     pdf.drawString(margin + 14, height - 137, "AIGC 内容创作者 / 视频剪辑师")
 
-    pdf.setFillColor(SOFT)
-    pdf.roundRect(proof_x, proof_y, proof_width, 108, 7, stroke=0, fill=1)
-    pdf.setFillColor(ACCENT)
-    pdf.roundRect(proof_x + 16, proof_y + 91, 24, 3, 1.5, stroke=0, fill=1)
-    pdf.setFillColor(QUIET)
-    pdf.setFont("Helvetica-Bold", 7.2)
-    pdf.drawString(proof_x + 16, proof_y + 79, "VERIFIED PROJECT RESULT")
-    pdf.setFillColor(INK)
-    pdf.setFont("Helvetica-Bold", 27)
-    pdf.drawString(proof_x + 16, proof_y + 45, "TOP 4")
-    pdf.setFont(FONT_MEDIUM, 9.1)
-    pdf.drawString(proof_x + 16, proof_y + 25, "红果漫剧新剧榜")
-    pdf.setFillColor(MUTED)
-    pdf.setFont(FONT_LIGHT, 7.5)
-    pdf.drawString(proof_x + 16, proof_y + 10, "参与制作项目获得上线成绩")
+    draw_profile_photo(pdf, photo_x, photo_y, photo_size)
 
     contact_y = height - 178
     draw_contact_item(pdf, "PHONE", "18570252625", margin, contact_y, "tel:18570252625")
