@@ -8,7 +8,7 @@ window.PORTFOLIO_CONTENT = {
     phone: "18570252625",
     wechat: "Cc1_0619",
     email: "ccone0619@gmail.com",
-    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=4",
+    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=5",
     socials: []
   },
   hero: {

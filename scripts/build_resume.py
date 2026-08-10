@@ -1,5 +1,8 @@
 from pathlib import Path
 
+from reportlab.graphics import renderPDF
+from reportlab.graphics.barcode.qr import QrCodeWidget
+from reportlab.graphics.shapes import Drawing
 from reportlab.lib.colors import HexColor
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfbase import pdfmetrics
@@ -26,9 +29,9 @@ FONT_MEDIUM = "ResumeMedium"
 
 
 PROFILE = (
-    "参与多部红果上线短剧，熟悉 AI 漫剧制作流程及主流 AIGC 创作工具。"
-    "能够独立完成所分配剧集的分镜、视觉资产、视频生成、剪辑和成片输出，"
-    "参与制作的一部 AI 漫剧进入红果漫剧新剧榜第 4 名。"
+    "AIGC 内容创作者与视频剪辑师，参与多部红果上线短剧。"
+    "能够独立推进所分配剧集，从剧情拆解、分镜与视觉资产制作，到视频生成、"
+    "后期剪辑和成片交付。"
 )
 
 STRENGTHS = [
@@ -38,17 +41,22 @@ STRENGTHS = [
 ]
 
 PROJECT_BULLETS = [
-    "独立负责所分配剧集，从剧情拆解和分镜设计推进到最终成片。",
-    "使用 Midjourney、Image 生成画面，以 Nano Banana 制作 4K 视觉资产，并通过 Seedance 生成视频。",
-    "使用 After Effects 和 Premiere Pro 完成合成、节奏剪辑、声音配合与成片输出。",
-    "参与制作的一部 AI 漫剧进入红果漫剧新剧榜第 4 名。",
+    "独立负责所分配剧集，从剧情拆解、分镜设计推进到最终成片。",
+    "使用 Midjourney、Image 与 Nano Banana 制作角色、场景及 4K 视觉资产。",
+    "通过 Seedance 生成视频，并使用 After Effects、Premiere Pro 完成合成、节奏剪辑、声音配合与输出。",
+    "参与多部红果上线项目，其中一部 AI 漫剧进入红果漫剧新剧榜第 4 名。",
 ]
 
 WORKS = [
-    ("《镇北王》· 红果上榜短剧", "负责分镜、视觉资产、视频生成、剪辑与交付。"),
-    ("影视与动漫混剪", "展示镜头筛选、音乐卡点、动作衔接与情绪节奏。"),
-    ("《寒假》· 微电影风格短片", "完成视觉组织、素材筛选、AE 合成与节奏剪辑。"),
+    ("仿实拍风格短片", "人物关系、镜头节奏与成片质感处理。"),
+    ("《镇北王》· 红果上榜短剧", "分镜、视觉资产、视频生成、剪辑与交付。"),
+    ("《寒假》· 微电影风格短片", "视觉组织、素材筛选、AE 合成与节奏剪辑。"),
 ]
+
+DIRECT_DELIVERY = (
+    "剧情拆解、分镜与视觉资产制作、AI 视频生成、后期剪辑与成片输出；"
+    "可独立推进所分配剧集的完整制作。"
+)
 
 
 def register_fonts():
@@ -107,122 +115,207 @@ def draw_labeled_item(pdf, title, body, x, y, width):
     return y - 11
 
 
+def draw_editorial_title(pdf, index, title, x, y, width):
+    pdf.setFillColor(ACCENT)
+    pdf.setFont("Helvetica-Bold", 7.2)
+    pdf.drawString(x, y + 1, index)
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT_MEDIUM, 11.2)
+    pdf.drawString(x + 24, y, title)
+    pdf.setStrokeColor(LINE)
+    pdf.setLineWidth(0.6)
+    pdf.line(x, y - 9, x + width, y - 9)
+    return y - 27
+
+
+def draw_compact_item(pdf, title, body, x, y, width):
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT_MEDIUM, 9.2)
+    pdf.drawString(x, y, title)
+    y = draw_text_block(pdf, body, x, y - 15, width, FONT_LIGHT, 8.2, MUTED, 12.2)
+    return y - 9
+
+
+def draw_contact_item(pdf, label, value, x, y, link=None):
+    pdf.setFillColor(QUIET)
+    pdf.setFont(FONT_MEDIUM, 7.2)
+    pdf.drawString(x, y, label)
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT_LIGHT, 8.7)
+    pdf.drawString(x, y - 13, value)
+    if link:
+        link_width = pdfmetrics.stringWidth(value, FONT_LIGHT, 8.7)
+        pdf.linkURL(link, (x, y - 16, x + link_width, y - 3), relative=0)
+
+
+def draw_qr(pdf, value, x, y, size):
+    qr = QrCodeWidget(value)
+    x1, y1, x2, y2 = qr.getBounds()
+    width = x2 - x1
+    height = y2 - y1
+    drawing = Drawing(size, size, transform=[size / width, 0, 0, size / height, 0, 0])
+    drawing.add(qr)
+    renderPDF.draw(drawing, pdf, x, y)
+    pdf.linkURL(value, (x, y, x + size, y + size), relative=0)
+
+
 def build_pdf():
     register_fonts()
     width, height = A4
-    margin = 42
+    margin = 40
     pdf = canvas.Canvas(str(PDF_PATH), pagesize=A4, pageCompression=1)
     pdf.setTitle("赵洲钰 - 个人简历")
     pdf.setAuthor("赵洲钰")
-    pdf.setSubject("AIGC 内容创作者 / 编导 / 视频剪辑师")
+    pdf.setSubject("AIGC 内容创作者 / 视频剪辑师")
 
     pdf.setFillColor(WHITE)
     pdf.rect(0, 0, width, height, stroke=0, fill=1)
-    pdf.setFillColor(ACCENT)
-    pdf.roundRect(margin, height - 83, 4, 37, 2, stroke=0, fill=1)
 
+    proof_width = 158
+    proof_x = width - margin - proof_width
+    proof_y = height - 156
+
+    pdf.setFillColor(ACCENT)
+    pdf.rect(margin, height - 143, 4, 92, stroke=0, fill=1)
+    pdf.setFillColor(QUIET)
+    pdf.setFont("Helvetica-Bold", 7.3)
+    pdf.drawString(margin + 16, height - 50, "PERSONAL RESUME")
     pdf.setFillColor(INK)
-    pdf.setFont(FONT_MEDIUM, 30)
-    pdf.drawString(margin + 15, height - 64, "赵洲钰")
-    pdf.setFont(FONT_MEDIUM, 11.5)
-    pdf.drawString(margin + 15, height - 86, "AIGC 内容创作者 / 编导 / 视频剪辑师")
-
+    pdf.setFont(FONT_MEDIUM, 34)
+    pdf.drawString(margin + 14, height - 91, "赵洲钰")
     pdf.setFillColor(MUTED)
-    pdf.setFont(FONT_LIGHT, 8.8)
-    pdf.drawString(margin, height - 112, "20 岁    |    18570252625    |    微信 Cc1_0619")
-    pdf.drawString(margin, height - 129, f"邮箱  {EMAIL}")
-    pdf.linkURL(f"mailto:{EMAIL}", (margin, height - 134, margin + 155, height - 120), relative=0)
-    pdf.setFillColor(ACCENT)
-    pdf.drawRightString(width - margin, height - 129, f"个人作品集  {PORTFOLIO_URL}")
-    pdf.linkURL(PORTFOLIO_URL, (width - margin - 230, height - 134, width - margin, height - 120), relative=0)
+    pdf.setFont("Helvetica-Bold", 8.2)
+    pdf.drawString(margin + 16, height - 110, "ZHAO ZHOUYU")
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT_MEDIUM, 11.3)
+    pdf.drawString(margin + 14, height - 137, "AIGC 内容创作者 / 视频剪辑师")
 
+    pdf.setFillColor(SOFT)
+    pdf.roundRect(proof_x, proof_y, proof_width, 108, 7, stroke=0, fill=1)
+    pdf.setFillColor(ACCENT)
+    pdf.roundRect(proof_x + 16, proof_y + 91, 24, 3, 1.5, stroke=0, fill=1)
+    pdf.setFillColor(QUIET)
+    pdf.setFont("Helvetica-Bold", 7.2)
+    pdf.drawString(proof_x + 16, proof_y + 79, "VERIFIED PROJECT RESULT")
+    pdf.setFillColor(INK)
+    pdf.setFont("Helvetica-Bold", 27)
+    pdf.drawString(proof_x + 16, proof_y + 45, "TOP 4")
+    pdf.setFont(FONT_MEDIUM, 9.1)
+    pdf.drawString(proof_x + 16, proof_y + 25, "红果漫剧新剧榜")
+    pdf.setFillColor(MUTED)
+    pdf.setFont(FONT_LIGHT, 7.5)
+    pdf.drawString(proof_x + 16, proof_y + 10, "参与制作项目获得上线成绩")
+
+    contact_y = height - 178
+    draw_contact_item(pdf, "PHONE", "18570252625", margin, contact_y, "tel:18570252625")
+    draw_contact_item(pdf, "AGE", "20", margin + 112, contact_y)
+    draw_contact_item(pdf, "WECHAT", "Cc1_0619", margin + 177, contact_y)
+    draw_contact_item(pdf, "EMAIL", EMAIL, margin + 283, contact_y, f"mailto:{EMAIL}")
     pdf.setStrokeColor(INK)
     pdf.setLineWidth(1)
-    pdf.line(margin, height - 148, width - margin, height - 148)
-
-    y = height - 171
-    y = draw_section_title(pdf, "个人简介", margin, y, width - margin * 2)
-    y = draw_text_block(pdf, PROFILE, margin, y, width - margin * 2, FONT_LIGHT, 9.7, INK, 15)
-    y = draw_text_block(pdf, f"联系邮箱：{EMAIL}", margin, y - 2, width - margin * 2, FONT_LIGHT, 8.8, MUTED, 14)
-    y -= 12
+    pdf.line(margin, height - 204, width - margin, height - 204)
 
     left_x = margin
-    left_width = 165
-    gap = 27
+    left_width = 172
+    gap = 24
     right_x = left_x + left_width + gap
     right_width = width - margin - right_x
-    column_top = y
+    main_top = height - 230
 
-    left_y = draw_section_title(pdf, "核心优势", left_x, column_top, left_width)
+    pdf.setFillColor(HexColor("#F7F7F8"))
+    pdf.rect(left_x - 12, 62, left_width + 24, main_top - 48, stroke=0, fill=1)
+
+    left_y = draw_editorial_title(pdf, "01", "核心能力", left_x, main_top, left_width)
     for title, body in STRENGTHS:
-        left_y = draw_labeled_item(pdf, title, body, left_x, left_y, left_width)
+        left_y = draw_compact_item(pdf, title, body, left_x, left_y, left_width)
 
-    left_y -= 2
-    left_y = draw_section_title(pdf, "专业技能", left_x, left_y, left_width)
+    left_y -= 4
+    left_y = draw_editorial_title(pdf, "02", "工具与技能", left_x, left_y, left_width)
     skill_groups = [
         ("剪辑与后期", "Premiere Pro / After Effects"),
         ("内容制作", "分镜制作 / 叙事节奏 / 视觉统一"),
-        ("图像工具", "Midjourney / Nano Banana"),
-        ("视频工具", "Seedance / AI 视频生成"),
-        ("成片能力", "素材筛选 / 成片输出"),
+        ("视觉资产", "Midjourney / Image / Nano Banana"),
+        ("视频生成", "Seedance / AI 视频生成 / 成片输出"),
     ]
     for title, value in skill_groups:
-        left_y = draw_labeled_item(pdf, title, value, left_x, left_y, left_width)
+        left_y = draw_compact_item(pdf, title, value, left_x, left_y, left_width)
 
-    left_y -= 2
-    left_y = draw_section_title(pdf, "可直接承担", left_x, left_y, left_width)
-    left_y = draw_text_block(
-        pdf,
-        "独立完成分配剧集，兼顾画面统一、叙事节奏与成片交付",
-        left_x,
-        left_y,
-        left_width,
-        FONT_LIGHT,
-        8.7,
-        INK,
-        13,
-    )
-
-    right_y = draw_section_title(pdf, "项目经历", right_x, column_top, right_width)
+    qr_title_y = 173
+    draw_editorial_title(pdf, "03", "作品集", left_x, qr_title_y, left_width)
+    qr_size = 68
+    draw_qr(pdf, PORTFOLIO_URL, left_x, 74, qr_size)
     pdf.setFillColor(INK)
-    pdf.setFont(FONT_MEDIUM, 16)
-    pdf.drawString(right_x, right_y, "红果 AI 漫剧制作")
-    right_y -= 17
+    pdf.setFont(FONT_MEDIUM, 8.4)
+    pdf.drawString(left_x + 80, 124, "扫码查看成片")
     pdf.setFillColor(MUTED)
-    pdf.setFont(FONT_MEDIUM, 8.5)
-    pdf.drawString(right_x, right_y, "分配剧集独立交付  |  多部平台上线项目")
-    right_y -= 21
-    for bullet in PROJECT_BULLETS:
-        right_y = draw_bullet(pdf, bullet, right_x, right_y, right_width)
-
-    box_height = 55
-    right_y -= 2
-    pdf.setFillColor(SOFT)
-    pdf.roundRect(right_x, right_y - box_height + 8, right_width, box_height, 5, stroke=0, fill=1)
+    pdf.setFont(FONT_LIGHT, 7.6)
+    pdf.drawString(left_x + 80, 109, "视频 / 项目画布")
+    pdf.drawString(left_x + 80, 96, "制作过程证据")
     pdf.setFillColor(ACCENT)
-    pdf.setFont(FONT_MEDIUM, 8.3)
-    pdf.drawString(right_x + 13, right_y - 7, "项目结果")
-    pdf.setFillColor(INK)
-    pdf.setFont(FONT_MEDIUM, 12.5)
-    pdf.drawString(right_x + 13, right_y - 26, "红果漫剧新剧榜第 4 名")
-    pdf.setFillColor(MUTED)
-    pdf.setFont(FONT_LIGHT, 7.8)
-    pdf.drawString(right_x + 13, right_y - 40, "参与制作项目获得可验证的上线榜单成绩")
-    right_y -= box_height + 16
+    pdf.setFont("Helvetica-Bold", 6.8)
+    pdf.drawString(left_x + 80, 78, "PORTFOLIO")
 
-    right_y = draw_section_title(pdf, "代表作品", right_x, right_y, right_width)
-    for title, body in WORKS:
-        right_y = draw_labeled_item(pdf, title, body, right_x, right_y, right_width)
+    right_y = draw_editorial_title(pdf, "01", "个人简介", right_x, main_top, right_width)
+    right_y = draw_text_block(pdf, PROFILE, right_x, right_y, right_width, FONT_LIGHT, 9, INK, 14)
+    right_y -= 10
+
+    right_y = draw_editorial_title(pdf, "02", "项目经历", right_x, right_y, right_width)
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT_MEDIUM, 15)
+    pdf.drawString(right_x, right_y, "红果 AI 漫剧制作")
+    pdf.setFillColor(MUTED)
+    pdf.setFont(FONT_MEDIUM, 8.1)
+    pdf.drawRightString(right_x + right_width, right_y + 2, "多部平台上线项目")
+    right_y -= 18
+    pdf.setFillColor(ACCENT)
+    pdf.setFont("Helvetica-Bold", 7.2)
+    pdf.drawString(right_x, right_y, "ROLE")
+    pdf.setFillColor(MUTED)
+    pdf.setFont(FONT_LIGHT, 8.2)
+    pdf.drawString(right_x + 32, right_y, "分配剧集独立交付")
+    right_y -= 22
+    for bullet in PROJECT_BULLETS:
+        right_y = draw_bullet(pdf, bullet, right_x, right_y, right_width, font_size=8.6, leading=13)
+
+    result_height = 58
+    right_y -= 1
+    pdf.setFillColor(SOFT)
+    pdf.roundRect(right_x, right_y - result_height + 6, right_width, result_height, 5, stroke=0, fill=1)
+    pdf.setFillColor(ACCENT)
+    pdf.setFont("Helvetica-Bold", 7)
+    pdf.drawString(right_x + 13, right_y - 8, "RESULT")
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT_MEDIUM, 12.3)
+    pdf.drawString(right_x + 13, right_y - 27, "红果漫剧新剧榜第 4 名")
+    pdf.setFillColor(MUTED)
+    pdf.setFont(FONT_LIGHT, 7.6)
+    pdf.drawString(right_x + 13, right_y - 41, "参与制作项目获得可验证的上线榜单成绩")
+    right_y -= result_height + 12
+
+    right_y = draw_editorial_title(pdf, "03", "代表作品", right_x, right_y, right_width)
+    for index, (title, body) in enumerate(WORKS, start=1):
+        pdf.setFillColor(QUIET)
+        pdf.setFont("Helvetica-Bold", 7)
+        pdf.drawString(right_x, right_y + 1, f"0{index}")
+        pdf.setFillColor(INK)
+        pdf.setFont(FONT_MEDIUM, 9.4)
+        pdf.drawString(right_x + 25, right_y, title)
+        right_y = draw_text_block(pdf, body, right_x + 25, right_y - 14, right_width - 25, FONT_LIGHT, 8.1, MUTED, 12)
+        right_y -= 8
+
+    right_y = draw_editorial_title(pdf, "04", "可直接承担", right_x, right_y - 2, right_width)
+    draw_text_block(pdf, DIRECT_DELIVERY, right_x, right_y, right_width, FONT_LIGHT, 8.4, INK, 13)
 
     pdf.setStrokeColor(LINE)
     pdf.setLineWidth(0.6)
     pdf.line(margin, 44, width - margin, 44)
     pdf.setFillColor(QUIET)
-    pdf.setFont(FONT_LIGHT, 7.4)
-    pdf.drawString(margin, 28, "更多成片、项目画布与制作过程请查看个人作品集")
+    pdf.setFont(FONT_LIGHT, 7.2)
+    pdf.drawString(margin, 28, "完整成片、项目画布与制作过程请查看个人作品集")
     pdf.setFillColor(ACCENT)
+    pdf.setFont("Helvetica", 7.2)
     pdf.drawRightString(width - margin, 28, PORTFOLIO_URL)
-    pdf.linkURL(PORTFOLIO_URL, (width - margin - 150, 22, width - margin, 35), relative=0)
+    pdf.linkURL(PORTFOLIO_URL, (width - margin - 155, 22, width - margin, 35), relative=0)
 
     pdf.showPage()
     pdf.save()
