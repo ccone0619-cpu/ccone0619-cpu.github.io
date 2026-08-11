@@ -293,7 +293,7 @@ def build_pdf():
     right_y = draw_editorial_title(pdf, "02", "工作经历", right_x, right_y, right_width)
     pdf.setFillColor(INK)
     pdf.setFont(FONT_MEDIUM, 15)
-    pdf.drawString(right_x, right_y, "AI 漫剧内容制作")
+    pdf.drawString(right_x, right_y, "长沙雅枫信息科技有限公司")
     pdf.setFillColor(MUTED)
     pdf.setFont(FONT_MEDIUM, 8.1)
     pdf.drawRightString(right_x + right_width, right_y + 2, "2025.11 — 2026.07")
@@ -303,7 +303,7 @@ def build_pdf():
     pdf.drawString(right_x, right_y, "ROLE")
     pdf.setFillColor(MUTED)
     pdf.setFont(FONT_LIGHT, 8.2)
-    pdf.drawString(right_x + 32, right_y, "AIGC 内容创作者 / 视频剪辑师")
+    pdf.drawString(right_x + 32, right_y, "AIGC生成师")
     right_y -= 22
     for bullet in PROJECT_BULLETS:
         right_y = draw_bullet(pdf, bullet, right_x, right_y, right_width, font_size=8.6, leading=13)

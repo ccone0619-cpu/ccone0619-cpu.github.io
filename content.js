@@ -8,7 +8,7 @@ window.PORTFOLIO_CONTENT = {
     phone: "18570252625",
     wechat: "Cc1_0619",
     email: "ccone0619@gmail.com",
-    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=9",
+    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=10",
     socials: []
   },
   hero: {
@@ -36,19 +36,19 @@ window.PORTFOLIO_CONTENT = {
   resume: {
     eyebrow: "我的经历与能力",
     title: "我负责什么，\n我做出过什么。",
-    intro: "20 岁。2025.11–2026.07 参与 AI 漫剧内容制作，参与多部红果上线短剧，可独立承担所分配剧集的分镜、视觉资产、视频生成、剪辑与成片交付。",
+    intro: "20 岁。2025.11–2026.07 担任 AIGC生成师，参与多部红果上线短剧，可独立承担所分配剧集的分镜、视觉资产、视频生成、剪辑与成片交付。",
     fileNote: "两份均为影视飓风岗位定制版 PDF",
     facts: [
       { label: "个人优势", value: "独立推进 · 成片判断 · 上线经验" },
-      { label: "工作经历", value: "2025.11–2026.07 · AI 漫剧内容制作" },
+      { label: "工作经历", value: "2025.11–2026.07 · AIGC生成师" },
       { label: "项目结果", value: "参与项目进入新剧榜第 4 名" }
     ],
     skills: ["编导", "剧情拆解", "分镜制作", "视频剪辑", "叙事节奏", "视觉统一", "After Effects", "Premiere Pro", "AIGC 视觉资产", "AI 视频生成", "Midjourney", "Nano Banana", "Seedance"],
     experience: [
       {
         meta: "工作经历 · 2025.11–2026.07",
-        title: "AI 漫剧内容制作",
-        role: "AIGC 内容创作者 / 视频剪辑师",
+        title: "长沙雅枫信息科技有限公司",
+        role: "AIGC生成师",
         body: "参与多部红果上线短剧，独立负责分配给我的剧集，完成剧情拆解、素材规划、视频制作、后期剪辑和最终成片交付。"
       },
       {
