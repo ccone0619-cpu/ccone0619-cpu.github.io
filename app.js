@@ -317,7 +317,6 @@
 
     const resumeViewer = $("#resume-viewer");
     if (resumeViewer) {
-      const resumeFrame = $("[data-resume-frame]", resumeViewer);
       const closeResumeViewer = () => {
         if (resumeViewer.classList.contains("is-fallback")) {
           resumeViewer.removeAttribute("open");
@@ -329,7 +328,6 @@
       };
       const openResumeViewer = () => {
         if (!data.identity.cvUrl) return;
-        if (!resumeFrame.getAttribute("src")) resumeFrame.src = data.identity.cvUrl;
         if (typeof resumeViewer.showModal === "function") resumeViewer.showModal();
         else {
           resumeViewer.classList.add("is-fallback");

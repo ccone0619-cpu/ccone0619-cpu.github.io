@@ -1688,11 +1688,20 @@ body.dialog-open {
   gap: 8px;
 }
 
-.resume-viewer iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  background: var(--page);
+.resume-viewer-document {
+  overflow: auto;
+  padding: 24px;
+  background: #e8e8ed;
+  -webkit-overflow-scrolling: touch;
+}
+
+.resume-viewer-document img {
+  display: block;
+  width: min(860px, 100%);
+  height: auto;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, .14);
 }
 
 .image-lightbox.is-fallback,
@@ -2407,6 +2416,16 @@ body.resume-viewer-open {
 
   .resume-viewer-header h2 {
     font-size: 16px;
+  }
+
+  .resume-viewer-document {
+    padding: 0;
+  }
+
+  .resume-viewer-document img {
+    width: 100%;
+    max-width: none;
+    box-shadow: none;
   }
 
   .dialog-footer {

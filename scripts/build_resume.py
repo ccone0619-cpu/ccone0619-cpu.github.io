@@ -59,9 +59,9 @@ WORKS = [
     ("《寒假》· 微电影风格短片", "视觉组织、素材筛选、AE 合成与节奏剪辑。"),
 ]
 
-DIRECT_DELIVERY = (
-    "剧情拆解、分镜与视觉资产制作、AI 视频生成、后期剪辑与成片输出；"
-    "可独立推进所分配剧集的完整制作。"
+PERSONAL_ADVANTAGE = (
+    "具备独立推进能力与成片判断，能从剧情拆解持续推进至最终交付；"
+    "兼顾画面统一、叙事节奏和制作效率，并有多部红果上线项目经验。"
 )
 
 
@@ -333,8 +333,8 @@ def build_pdf():
         right_y = draw_text_block(pdf, body, right_x + 25, right_y - 14, right_width - 25, FONT_LIGHT, 8.1, MUTED, 12)
         right_y -= 8
 
-    right_y = draw_editorial_title(pdf, "04", "可直接承担", right_x, right_y - 2, right_width)
-    draw_text_block(pdf, DIRECT_DELIVERY, right_x, right_y, right_width, FONT_LIGHT, 8.4, INK, 13)
+    right_y = draw_editorial_title(pdf, "04", "个人优势", right_x, right_y - 2, right_width)
+    draw_text_block(pdf, PERSONAL_ADVANTAGE, right_x, right_y, right_width, FONT_LIGHT, 8.4, INK, 13)
 
     pdf.setStrokeColor(LINE)
     pdf.setLineWidth(0.6)

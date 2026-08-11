@@ -8,7 +8,7 @@ window.PORTFOLIO_CONTENT = {
     phone: "18570252625",
     wechat: "Cc1_0619",
     email: "ccone0619@gmail.com",
-    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=7",
+    cvUrl: "assets/zhao-zhouyu-resume.pdf?v=8",
     socials: []
   },
   hero: {
@@ -39,7 +39,7 @@ window.PORTFOLIO_CONTENT = {
     intro: "20 岁。2025.11–2026.07 参与 AI 漫剧内容制作，参与多部红果上线短剧，可独立承担所分配剧集的分镜、视觉资产、视频生成、剪辑与成片交付。",
     fileNote: "两份均为影视飓风岗位定制版 PDF",
     facts: [
-      { label: "可直接承担", value: "独立推进分配剧集至成片" },
+      { label: "个人优势", value: "独立推进 · 成片判断 · 上线经验" },
       { label: "工作经历", value: "2025.11–2026.07 · AI 漫剧内容制作" },
       { label: "项目结果", value: "参与项目进入新剧榜第 4 名" }
     ],
