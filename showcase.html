@@ -3,28 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#050506" />
+    <meta name="theme-color" content="#050505" />
     <meta name="robots" content="noindex,nofollow,noarchive" />
-    <meta name="description" content="AIGC 视频与剪辑作品展示，聚焦视觉组织、叙事节奏和成片能力。" />
-    <title>Selected Works — AIGC 视频作品集</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='36' fill='%232997ff'/></svg>" />
+    <meta name="description" content="AIGC 影像、上线短剧与个人剪辑作品展示。" />
+    <title>AIGC Works — 影像作品集</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='35' fill='%23f5f5f7'/></svg>" />
     <style>
       :root {
         color-scheme: dark;
-        --bg: #050506;
-        --surface: rgba(21, 21, 24, 0.72);
-        --surface-strong: rgba(27, 27, 31, 0.92);
+        --bg: #050505;
+        --surface: #101011;
+        --surface-raised: #161618;
         --text: #f5f5f7;
-        --muted: #a1a1a6;
-        --quiet: #727277;
-        --line: rgba(255, 255, 255, 0.12);
+        --secondary: #c7c7cc;
+        --muted: #8e8e93;
+        --quiet: #636366;
+        --line: rgba(255, 255, 255, 0.11);
         --line-strong: rgba(255, 255, 255, 0.2);
-        --accent: #2997ff;
-        --accent-soft: rgba(41, 151, 255, 0.18);
-        --radius-lg: 32px;
-        --radius-md: 22px;
-        --shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
-        --max: 1240px;
+        --blue: #2997ff;
+        --radius-xl: 32px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --max: 1200px;
       }
 
       * {
@@ -41,8 +41,7 @@
         min-width: 320px;
         overflow-x: hidden;
         background:
-          radial-gradient(circle at 8% 8%, rgba(41, 151, 255, 0.12), transparent 29rem),
-          radial-gradient(circle at 92% 31%, rgba(144, 85, 255, 0.09), transparent 30rem),
+          radial-gradient(circle at 84% 0%, rgba(41, 151, 255, 0.07), transparent 28rem),
           var(--bg);
         color: var(--text);
         font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
@@ -76,8 +75,8 @@
 
       .skip-link {
         position: fixed;
-        top: 12px;
-        left: 12px;
+        top: 10px;
+        left: 10px;
         z-index: 100;
         padding: 10px 14px;
         border-radius: 999px;
@@ -101,52 +100,57 @@
         top: max(14px, env(safe-area-inset-top));
         left: 50%;
         z-index: 50;
-        width: min(calc(100% - 32px), 760px);
+        width: min(calc(100% - 32px), 900px);
         transform: translateX(-50%);
       }
 
       .glass-nav {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: space-between;
         min-height: 58px;
-        padding: 8px 10px 8px 18px;
-        border: 1px solid var(--line-strong);
+        padding: 7px 9px 7px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
         border-radius: 999px;
-        background: linear-gradient(135deg, rgba(39, 39, 44, 0.78), rgba(14, 14, 17, 0.64));
-        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-        -webkit-backdrop-filter: blur(26px) saturate(160%);
-        backdrop-filter: blur(26px) saturate(160%);
+        background: rgba(24, 24, 27, 0.72);
+        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+        -webkit-backdrop-filter: blur(26px) saturate(150%);
+        backdrop-filter: blur(26px) saturate(150%);
       }
 
       .brand {
         display: inline-flex;
+        min-height: 44px;
         align-items: center;
         gap: 10px;
-        min-height: 44px;
+        color: #fff;
         font-size: 12px;
         font-weight: 700;
         letter-spacing: 0.12em;
+        white-space: nowrap;
       }
 
       .brand-dot {
-        width: 9px;
-        height: 9px;
+        width: 8px;
+        height: 8px;
+        flex: 0 0 8px;
         border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 20px rgba(41, 151, 255, 0.8);
+        background: var(--blue);
+        box-shadow: 0 0 18px rgba(41, 151, 255, 0.75);
       }
 
       .nav-links {
         display: flex;
-        gap: 4px;
+        align-items: center;
+        gap: 2px;
       }
 
       .nav-links a {
         display: grid;
-        min-width: 70px;
         min-height: 44px;
         place-items: center;
+        padding: 0 15px;
         border-radius: 999px;
         color: #d2d2d7;
         font-size: 13px;
@@ -155,25 +159,24 @@
 
       .nav-links a:hover,
       .nav-links a:focus-visible {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.09);
         color: #fff;
       }
 
       .scroll-progress {
         position: absolute;
-        right: 26px;
+        right: 24px;
         bottom: -1px;
-        left: 26px;
+        left: 24px;
         height: 1px;
         overflow: hidden;
-        border-radius: 1px;
       }
 
       .scroll-progress span {
         display: block;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, var(--accent), #9b7dff);
+        background: #fff;
         transform: scaleX(0);
         transform-origin: left;
       }
@@ -182,312 +185,191 @@
         overflow: clip;
       }
 
-      .hero {
+      section[id] {
+        scroll-margin-top: 94px;
+      }
+
+      .intro {
+        padding: clamp(126px, 10vw, 148px) 0 clamp(58px, 6vw, 76px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .intro-grid {
         display: grid;
-        min-height: 100svh;
+        grid-template-columns: minmax(0, 1.32fr) minmax(310px, 0.68fr);
+        gap: clamp(46px, 8vw, 112px);
         align-items: end;
-        padding: 150px 0 72px;
       }
 
-      .hero-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
-        gap: clamp(36px, 6vw, 88px);
-        align-items: center;
-      }
-
-      .kicker,
+      .eyebrow,
       .section-index,
-      .work-meta,
-      .dialog-kicker {
+      .card-type,
+      .dialog-kicker,
+      .ability-label {
         color: var(--muted);
-        font-size: 12px;
-        font-weight: 650;
+        font-size: 11px;
+        font-weight: 680;
         letter-spacing: 0.13em;
         text-transform: uppercase;
       }
 
-      .hero h1 {
-        max-width: 690px;
-        margin: 20px 0 24px;
-        font-size: clamp(62px, 9vw, 132px);
-        font-weight: 650;
-        letter-spacing: -0.075em;
-        line-height: 0.92;
+      .intro h1 {
+        max-width: 820px;
+        margin: 17px 0 24px;
+        font-size: clamp(50px, 6.5vw, 84px);
+        font-weight: 610;
+        letter-spacing: -0.07em;
+        line-height: 0.96;
       }
 
-      .hero-copy {
-        max-width: 600px;
+      .intro-copy {
+        max-width: 760px;
         margin: 0;
-        color: #c7c7cc;
+        color: var(--secondary);
         font-size: clamp(18px, 2vw, 23px);
+        letter-spacing: -0.02em;
         line-height: 1.55;
       }
 
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 38px;
+      .discipline-list {
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--line);
+        list-style: none;
       }
 
-      .pill-link {
-        display: inline-flex;
-        min-height: 48px;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 0 22px;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.06);
-        color: #f5f5f7;
-        font-size: 14px;
-        font-weight: 620;
-        transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
-      }
-
-      .pill-link.primary {
-        border-color: transparent;
-        background: var(--accent);
-        color: #fff;
-      }
-
-      .pill-link:hover,
-      .pill-link:focus-visible {
-        transform: translateY(-2px);
-        border-color: rgba(255, 255, 255, 0.28);
-        background: rgba(255, 255, 255, 0.12);
-      }
-
-      .pill-link.primary:hover,
-      .pill-link.primary:focus-visible {
-        background: #147ce5;
-      }
-
-      .hero-frame {
-        position: relative;
-        overflow: hidden;
-        aspect-ratio: 4 / 5;
-        border: 1px solid var(--line);
-        border-radius: clamp(28px, 4vw, 48px);
-        background: #111;
-        box-shadow: var(--shadow);
-        isolation: isolate;
-      }
-
-      .hero-frame::before {
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        background: linear-gradient(180deg, transparent 36%, rgba(0, 0, 0, 0.78));
-        content: "";
-      }
-
-      .hero-frame::after {
-        position: absolute;
-        inset: 1px;
-        z-index: 3;
-        border: 1px solid rgba(255, 255, 255, 0.13);
-        border-radius: inherit;
-        pointer-events: none;
-        content: "";
-      }
-
-      .hero-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 900ms cubic-bezier(0.2, 0.75, 0.25, 1);
-      }
-
-      .hero-frame:hover img {
-        transform: scale(1.025);
-      }
-
-      .hero-frame-caption {
-        position: absolute;
-        right: 24px;
-        bottom: 22px;
-        left: 24px;
-        z-index: 2;
-        display: flex;
-        align-items: end;
-        justify-content: space-between;
-        gap: 20px;
-      }
-
-      .hero-frame-caption strong {
-        display: block;
-        font-size: 21px;
-        letter-spacing: -0.03em;
-      }
-
-      .hero-frame-caption span {
-        display: block;
-        margin-top: 5px;
-        color: #c7c7cc;
-        font-size: 13px;
-      }
-
-      .glass-chip {
+      .discipline-list li {
         display: grid;
-        width: 46px;
-        height: 46px;
-        flex: 0 0 46px;
-        place-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.24);
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.13);
-        -webkit-backdrop-filter: blur(18px);
-        backdrop-filter: blur(18px);
-      }
-
-      .glass-chip::before {
-        width: 0;
-        height: 0;
-        margin-left: 3px;
-        border-top: 6px solid transparent;
-        border-bottom: 6px solid transparent;
-        border-left: 9px solid #fff;
-        content: "";
-      }
-
-      .section {
-        padding: clamp(88px, 11vw, 154px) 0;
-      }
-
-      .section-heading {
-        display: grid;
-        grid-template-columns: 120px minmax(0, 1fr);
-        gap: 28px;
-        align-items: start;
-        margin-bottom: clamp(44px, 7vw, 82px);
-      }
-
-      .section-heading h2 {
-        max-width: 880px;
-        margin: -8px 0 0;
-        font-size: clamp(42px, 6.4vw, 88px);
-        font-weight: 610;
-        letter-spacing: -0.065em;
-        line-height: 0.98;
-      }
-
-      .section-heading h2 span {
-        color: var(--quiet);
-      }
-
-      .strengths {
-        position: relative;
-      }
-
-      .strength-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: 34px minmax(0, 1fr);
         gap: 14px;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--line);
       }
 
-      .strength-card {
-        min-height: 310px;
-        padding: 26px;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-md);
-        background:
-          linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025) 48%),
-          var(--surface);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      .discipline-list small {
+        padding-top: 4px;
+        color: var(--quiet);
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
       }
 
-      .strength-card span {
-        color: var(--accent);
-        font-size: 12px;
-        font-weight: 700;
+      .discipline-list strong {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 16px;
+        font-weight: 590;
+        letter-spacing: -0.02em;
       }
 
-      .strength-card h3 {
-        margin: 92px 0 14px;
-        font-size: 24px;
-        font-weight: 600;
-        letter-spacing: -0.035em;
+      .discipline-list li > span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
       }
 
-      .strength-card p {
+      .discipline-list em {
+        display: block;
+        font-style: normal;
+      }
+
+      .work-section,
+      .capability-section {
+        padding: clamp(88px, 11vw, 144px) 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: 155px minmax(0, 1fr);
+        gap: 30px;
+        align-items: start;
+        margin-bottom: clamp(38px, 6vw, 66px);
+      }
+
+      .section-head h2 {
+        margin: -8px 0 14px;
+        font-size: clamp(40px, 6vw, 72px);
+        font-weight: 610;
+        letter-spacing: -0.06em;
+        line-height: 1;
+      }
+
+      .section-head p {
+        max-width: 720px;
         margin: 0;
         color: var(--muted);
-        font-size: 15px;
-        line-height: 1.68;
+        font-size: 16px;
+        line-height: 1.7;
       }
 
-      .works {
-        padding-top: 80px;
-      }
-
-      .work-grid {
+      .project-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 18px;
       }
 
-      .work-card {
+      .project-grid.two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .project-grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .project-card {
         position: relative;
+        display: flex;
         width: 100%;
+        min-width: 0;
         overflow: hidden;
+        flex-direction: column;
         padding: 0;
         border: 1px solid var(--line);
         border-radius: var(--radius-lg);
-        background: #111113;
+        background: var(--surface);
         color: var(--text);
         text-align: left;
         cursor: pointer;
-        box-shadow: 0 22px 70px rgba(0, 0, 0, 0.24);
-        transition: transform 260ms cubic-bezier(0.2, 0.75, 0.25, 1), border-color 260ms ease, box-shadow 260ms ease;
+        box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2);
+        transition: transform 260ms cubic-bezier(0.2, 0.75, 0.25, 1), border-color 220ms ease, box-shadow 260ms ease;
       }
 
-      .work-card:first-child {
-        grid-column: 1 / -1;
-      }
-
-      .work-card:hover,
-      .work-card:focus-visible {
-        transform: translateY(-5px);
-        border-color: rgba(255, 255, 255, 0.26);
-        box-shadow: 0 34px 90px rgba(0, 0, 0, 0.36);
+      .project-card:hover,
+      .project-card:focus-visible {
+        transform: translateY(-4px);
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 30px 84px rgba(0, 0, 0, 0.34);
         outline: none;
       }
 
-      .work-visual {
+      .card-media {
         position: relative;
+        display: block;
         overflow: hidden;
         aspect-ratio: 16 / 10;
-        background: #151518;
+        background: #151515;
       }
 
-      .work-card:first-child .work-visual {
-        aspect-ratio: 16 / 8;
-      }
-
-      .work-visual::after {
+      .card-media::after {
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, transparent 52%, rgba(0, 0, 0, 0.46));
+        background: linear-gradient(180deg, transparent 56%, rgba(0, 0, 0, 0.38));
         content: "";
       }
 
-      .work-visual img {
+      .card-media img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1), filter 300ms ease;
+        transition: transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1), filter 240ms ease;
       }
 
-      .work-card:hover img,
-      .work-card:focus-visible img {
-        transform: scale(1.035);
-        filter: saturate(1.06);
+      .project-card:hover img,
+      .project-card:focus-visible img {
+        transform: scale(1.025);
+        filter: saturate(1.05);
       }
 
-      .play-badge {
+      .play-button {
         position: absolute;
         right: 18px;
         bottom: 18px;
@@ -496,14 +378,14 @@
         width: 48px;
         height: 48px;
         place-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.28);
+        border: 1px solid rgba(255, 255, 255, 0.26);
         border-radius: 50%;
-        background: rgba(20, 20, 23, 0.42);
+        background: rgba(15, 15, 17, 0.48);
         -webkit-backdrop-filter: blur(18px) saturate(150%);
         backdrop-filter: blur(18px) saturate(150%);
       }
 
-      .play-badge::before {
+      .play-button::before {
         width: 0;
         height: 0;
         margin-left: 3px;
@@ -513,40 +395,174 @@
         content: "";
       }
 
-      .work-info {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 18px;
-        padding: 24px 26px 28px;
-        background: linear-gradient(180deg, rgba(22, 22, 25, 0.96), rgba(13, 13, 15, 0.98));
+      .card-copy {
+        display: flex;
+        min-height: 190px;
+        flex: 1;
+        flex-direction: column;
+        padding: 22px 24px 25px;
       }
 
-      .work-info h3 {
-        margin: 7px 0 8px;
-        font-size: clamp(22px, 2.4vw, 32px);
+      .card-copy h3 {
+        margin: 8px 0 10px;
+        font-size: clamp(23px, 2.6vw, 32px);
+        font-weight: 600;
+        letter-spacing: -0.045em;
+        line-height: 1.12;
+      }
+
+      .card-copy p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: auto;
+        padding-top: 20px;
+      }
+
+      .card-tags i,
+      .result-note {
+        display: inline-flex;
+        min-height: 28px;
+        align-items: center;
+        padding: 0 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.035);
+        color: #b7b7bd;
+        font-size: 11px;
+        font-style: normal;
+        white-space: nowrap;
+      }
+
+      .feature-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(310px, 0.72fr);
+        flex-direction: initial;
+      }
+
+      .feature-card .card-media {
+        min-height: 460px;
+        aspect-ratio: auto;
+      }
+
+      .feature-card .card-copy {
+        min-height: 460px;
+        padding: clamp(28px, 4vw, 48px);
+        border-left: 1px solid var(--line);
+      }
+
+      .feature-card .card-copy h3 {
+        margin-top: 12px;
+        font-size: clamp(32px, 4.4vw, 52px);
+      }
+
+      .feature-card .card-copy p {
+        font-size: 15px;
+      }
+
+      .feature-meta {
+        display: block;
+        margin-top: auto;
+        padding-top: 30px;
+      }
+
+      .feature-meta .result-note {
+        min-height: 34px;
+        border-color: rgba(41, 151, 255, 0.36);
+        background: rgba(41, 151, 255, 0.09);
+        color: #d9edff;
+      }
+
+      .feature-meta .card-tags {
+        margin-top: 14px;
+        padding-top: 0;
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+      }
+
+      .process-step {
+        min-height: 180px;
+        padding: 22px 20px;
+        border-right: 1px solid var(--line);
+      }
+
+      .process-step:last-child {
+        border-right: 0;
+      }
+
+      .process-step span {
+        color: var(--quiet);
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .process-step h3 {
+        margin: 50px 0 8px;
+        font-size: 17px;
+        font-weight: 590;
+        letter-spacing: -0.025em;
+      }
+
+      .process-step p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      .ability-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .ability-card {
+        min-height: 280px;
+        padding: 26px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+      }
+
+      .ability-card h3 {
+        margin: 66px 0 14px;
+        font-size: 27px;
         font-weight: 600;
         letter-spacing: -0.04em;
       }
 
-      .work-info p {
-        max-width: 600px;
+      .ability-card p {
         margin: 0;
         color: var(--muted);
         font-size: 14px;
-        line-height: 1.62;
+        line-height: 1.7;
       }
 
-      .work-duration {
-        align-self: start;
-        padding-top: 3px;
+      .tool-line {
+        margin: 32px 0 0;
         color: var(--quiet);
         font-size: 12px;
-        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.035em;
+        line-height: 1.8;
       }
 
       footer {
-        padding: 30px 0 max(36px, env(safe-area-inset-bottom));
-        border-top: 1px solid var(--line);
+        padding: 28px 0 max(34px, env(safe-area-inset-bottom));
       }
 
       .footer-inner {
@@ -555,14 +571,14 @@
         justify-content: space-between;
         gap: 20px;
         color: var(--quiet);
-        font-size: 12px;
-        letter-spacing: 0.08em;
+        font-size: 11px;
+        letter-spacing: 0.11em;
       }
 
       .back-top {
         display: grid;
-        min-width: 44px;
-        min-height: 44px;
+        width: 44px;
+        height: 44px;
         place-items: center;
         border: 1px solid var(--line);
         border-radius: 50%;
@@ -572,7 +588,7 @@
       .back-top:hover,
       .back-top:focus-visible {
         border-color: var(--line-strong);
-        background: rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.07);
       }
 
       .back-top svg,
@@ -587,23 +603,23 @@
       }
 
       dialog {
-        width: min(calc(100% - 28px), 980px);
+        width: min(calc(100% - 28px), 1020px);
         max-height: calc(100svh - 28px);
         overflow: hidden;
         padding: 0;
         border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 30px;
-        background: rgba(13, 13, 15, 0.94);
+        border-radius: 28px;
+        background: rgba(14, 14, 16, 0.96);
         color: var(--text);
-        box-shadow: 0 40px 140px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-        -webkit-backdrop-filter: blur(30px) saturate(145%);
-        backdrop-filter: blur(30px) saturate(145%);
+        box-shadow: 0 40px 140px rgba(0, 0, 0, 0.76), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        -webkit-backdrop-filter: blur(28px) saturate(145%);
+        backdrop-filter: blur(28px) saturate(145%);
       }
 
       dialog::backdrop {
-        background: rgba(0, 0, 0, 0.74);
-        -webkit-backdrop-filter: blur(12px);
-        backdrop-filter: blur(12px);
+        background: rgba(0, 0, 0, 0.76);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
       }
 
       dialog.is-fallback {
@@ -625,12 +641,12 @@
         top: 0;
         z-index: 4;
         display: flex;
+        min-height: 62px;
         align-items: center;
         justify-content: space-between;
-        min-height: 64px;
-        padding: 8px 10px 8px 22px;
+        padding: 8px 9px 8px 22px;
         border-bottom: 1px solid var(--line);
-        background: rgba(18, 18, 21, 0.84);
+        background: rgba(18, 18, 20, 0.86);
         -webkit-backdrop-filter: blur(24px);
         backdrop-filter: blur(24px);
       }
@@ -659,42 +675,53 @@
       }
 
       .dialog-content {
-        padding: clamp(26px, 4vw, 46px);
+        padding: clamp(26px, 4vw, 44px);
       }
 
       .dialog-content h2 {
         margin: 10px 0 14px;
-        font-size: clamp(31px, 5vw, 54px);
-        font-weight: 620;
+        font-size: clamp(31px, 5vw, 52px);
+        font-weight: 610;
         letter-spacing: -0.055em;
+        line-height: 1.03;
       }
 
       .dialog-description {
-        max-width: 740px;
+        max-width: 760px;
         margin: 0;
         color: #b7b7bd;
-        font-size: 17px;
+        font-size: 16px;
         line-height: 1.72;
       }
 
-      .dialog-role {
+      .dialog-details {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
         margin-top: 28px;
-        padding-top: 20px;
-        border-top: 1px solid var(--line);
+      }
+
+      .dialog-detail {
+        min-height: 112px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .dialog-detail strong {
+        display: block;
+        margin-bottom: 9px;
+        color: var(--quiet);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .dialog-detail span {
         color: #d2d2d7;
         font-size: 14px;
-        line-height: 1.7;
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 620ms ease, transform 620ms cubic-bezier(0.2, 0.75, 0.25, 1);
-      }
-
-      .reveal.is-visible {
-        opacity: 1;
-        transform: none;
+        line-height: 1.65;
       }
 
       :focus-visible {
@@ -702,25 +729,64 @@
         outline-offset: 3px;
       }
 
-      @media (max-width: 900px) {
-        .hero {
-          padding-top: 130px;
-        }
-
-        .hero-grid {
+      @media (max-width: 980px) {
+        .feature-card {
           grid-template-columns: 1fr;
         }
 
-        .hero-copy-wrap {
-          max-width: 720px;
+        .feature-card .card-media {
+          min-height: 0;
+          aspect-ratio: 16 / 9;
         }
 
-        .hero-frame {
-          aspect-ratio: 16 / 11;
+        .feature-card .card-copy {
+          min-height: 330px;
+          border-top: 1px solid var(--line);
+          border-left: 0;
         }
 
-        .strength-grid {
+        .project-grid.three {
           grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .process-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .process-step:nth-child(3) {
+          border-right: 0;
+        }
+
+        .process-step:nth-child(-n + 3) {
+          border-bottom: 1px solid var(--line);
+        }
+      }
+
+      @media (max-width: 760px) {
+        .intro-grid {
+          grid-template-columns: 1fr;
+          gap: 42px;
+        }
+
+        .section-head {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .section-head h2 {
+          margin-top: 0;
+        }
+
+        .ability-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .ability-card {
+          min-height: 230px;
+        }
+
+        .ability-card h3 {
+          margin-top: 48px;
         }
       }
 
@@ -730,96 +796,157 @@
         }
 
         .site-header {
-          width: calc(100% - 20px);
           top: max(8px, env(safe-area-inset-top));
+          width: calc(100% - 16px);
         }
 
         .glass-nav {
           min-height: 54px;
-          padding-left: 14px;
+          padding: 5px 7px;
         }
 
         .brand {
-          font-size: 11px;
+          width: 40px;
+          min-height: 42px;
+          justify-content: center;
+        }
+
+        .brand-label {
+          display: none;
+        }
+
+        .nav-links {
+          flex: 1;
+          justify-content: space-between;
         }
 
         .nav-links a {
-          min-width: 58px;
+          min-height: 42px;
+          padding: 0 8px;
+          font-size: 12px;
         }
 
-        .hero {
-          min-height: auto;
-          padding: 124px 0 50px;
+        .intro {
+          padding: 108px 0 52px;
         }
 
-        .hero h1 {
-          margin-top: 17px;
-          font-size: clamp(58px, 20vw, 86px);
+        .intro-grid {
+          gap: 28px;
         }
 
-        .hero-copy {
+        .intro h1 {
+          font-size: clamp(48px, 16vw, 66px);
+        }
+
+        .intro-copy {
           font-size: 17px;
         }
 
-        .hero-frame {
-          aspect-ratio: 4 / 5;
-          border-radius: 28px;
+        .discipline-list {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          border-bottom: 1px solid var(--line);
         }
 
-        .hero-frame-caption {
-          right: 18px;
-          bottom: 18px;
-          left: 18px;
+        .discipline-list li {
+          display: block;
+          padding: 14px 8px;
+          border-right: 1px solid var(--line);
+          border-bottom: 0;
+          text-align: center;
         }
 
-        .section {
-          padding: 86px 0;
+        .discipline-list li:first-child {
+          padding-left: 0;
         }
 
-        .section-heading {
+        .discipline-list li:last-child {
+          padding-right: 0;
+          border-right: 0;
+        }
+
+        .discipline-list small,
+        .discipline-list em {
+          display: none;
+        }
+
+        .discipline-list strong {
+          margin: 0;
+          font-size: 12px;
+          white-space: nowrap;
+        }
+
+        .work-section,
+        .capability-section {
+          padding: 68px 0;
+        }
+
+        .section-head {
+          margin-bottom: 30px;
+        }
+
+        .section-head h2 {
+          font-size: 44px;
+        }
+
+        .project-grid.two,
+        .project-grid.three {
           grid-template-columns: 1fr;
-          gap: 24px;
         }
 
-        .section-heading h2 {
-          margin-top: 0;
-          font-size: 48px;
+        .project-card,
+        .feature-card {
+          border-radius: 20px;
         }
 
-        .strength-grid,
-        .work-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .strength-card {
-          min-height: 250px;
-        }
-
-        .strength-card h3 {
-          margin-top: 62px;
-        }
-
-        .work-card:first-child {
-          grid-column: auto;
-        }
-
-        .work-card:first-child .work-visual,
-        .work-visual {
-          aspect-ratio: 16 / 10;
-        }
-
-        .work-info {
+        .card-copy,
+        .feature-card .card-copy {
+          min-height: 0;
           padding: 20px 20px 23px;
         }
 
-        .footer-inner {
-          align-items: flex-start;
+        .card-tags {
+          margin-top: 20px;
+        }
+
+        .feature-meta {
+          margin-top: 26px;
+          padding-top: 0;
+        }
+
+        .process-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .process-step {
+          min-height: 165px;
+          padding: 19px 17px;
+        }
+
+        .process-step:nth-child(2n) {
+          border-right: 0;
+        }
+
+        .process-step:nth-child(3) {
+          border-right: 1px solid var(--line);
+        }
+
+        .process-step:nth-child(-n + 4) {
+          border-bottom: 1px solid var(--line);
+        }
+
+        .process-step h3 {
+          margin-top: 42px;
+        }
+
+        .dialog-details {
+          grid-template-columns: 1fr;
         }
 
         dialog {
           width: calc(100% - 12px);
           max-height: calc(100svh - 12px);
-          border-radius: 24px;
+          border-radius: 22px;
         }
 
         .dialog-scroll {
@@ -837,12 +964,6 @@
         *::after {
           scroll-behavior: auto !important;
           transition-duration: 0.01ms !important;
-          animation-duration: 0.01ms !important;
-        }
-
-        .reveal {
-          opacity: 1;
-          transform: none;
         }
       }
     </style>
@@ -852,128 +973,159 @@
 
     <header class="site-header">
       <nav class="glass-nav" aria-label="页面导航">
-        <a class="brand" href="#top" aria-label="返回顶部"><span class="brand-dot" aria-hidden="true"></span>SELECTED WORKS</a>
+        <a class="brand" href="#top" aria-label="返回顶部"><span class="brand-dot" aria-hidden="true"></span><span class="brand-label">AIGC WORKS</span></a>
         <div class="nav-links">
-          <a href="#strengths">优势</a>
-          <a href="#works">作品</a>
+          <a href="#hongguo">上线项目</a>
+          <a href="#personal">个人作品</a>
+          <a href="#editing">剪辑作品</a>
+          <a href="#capability">全流程</a>
         </div>
         <div class="scroll-progress" aria-hidden="true"><span data-progress></span></div>
       </nav>
     </header>
 
     <main id="main-content">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <div class="container hero-grid">
-          <div class="hero-copy-wrap reveal is-visible">
-            <p class="kicker">AIGC VIDEO · EDITING · VISUAL STORYTELLING</p>
-            <h1 id="hero-title">作品<br />说话。</h1>
-            <p class="hero-copy">从视觉组织到镜头生成，再到剪辑与成片，让每一段素材形成完整、清楚、有节奏的表达。</p>
-            <div class="hero-actions">
-              <a class="pill-link primary" href="#works">浏览作品 <span aria-hidden="true">↓</span></a>
-              <a class="pill-link" href="#strengths">查看优势</a>
-            </div>
+      <section class="intro" id="top" aria-labelledby="intro-title">
+        <div class="container intro-grid">
+          <div>
+            <p class="eyebrow">AIGC FILMMAKING · DIRECTING · EDITING</p>
+            <h1 id="intro-title">AIGC 影像作品集</h1>
+            <p class="intro-copy">从创意构思、导演拆解与视觉资产，到视频生成、后期合成与成片精剪。</p>
           </div>
-          <a class="hero-frame reveal is-visible" href="#works" aria-label="前往作品区域">
-            <img src="https://ccone0619-cpu.github.io/assets/images/fang-shoot-poster.jpg" alt="电影感人物关系短片画面" decoding="async" />
-            <div class="hero-frame-caption">
-              <div><strong>Selected Work 01</strong><span>实拍质感 · 镜头节奏 · 成片输出</span></div>
-              <i class="glass-chip" aria-hidden="true"></i>
-            </div>
-          </a>
+          <ol class="discipline-list" aria-label="核心能力">
+            <li><small>01</small><span><strong>导演思维</strong><em>剧情拆解 · 分镜设计 · 情绪节奏</em></span></li>
+            <li><small>02</small><span><strong>AIGC 制作</strong><em>视觉资产 · 一致性控制 · 视频生成</em></span></li>
+            <li><small>03</small><span><strong>后期精剪</strong><em>素材判断 · 合成处理 · 成片输出</em></span></li>
+          </ol>
         </div>
       </section>
 
-      <section class="section strengths" id="strengths" aria-labelledby="strengths-title">
+      <section class="work-section" id="hongguo" aria-labelledby="hongguo-title">
         <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-index">01 / 优势</span>
-            <h2 id="strengths-title">从镜头到成片，<br /><span>保持完整判断。</span></h2>
-          </div>
-          <div class="strength-grid">
-            <article class="strength-card reveal"><span>01</span><h3>成片交付</h3><p>把创作意图拆成分镜、画面和剪辑任务，从素材组织持续推进到最终成片。</p></article>
-            <article class="strength-card reveal"><span>02</span><h3>视觉一致性</h3><p>控制人物、场景、色调与镜头语言，减少不同生成素材之间的拼接感。</p></article>
-            <article class="strength-card reveal"><span>03</span><h3>叙事节奏</h3><p>围绕人物情绪和剧情节点筛选镜头，处理动作衔接、节奏推进与观看体验。</p></article>
-            <article class="strength-card reveal"><span>04</span><h3>工具协同</h3><p>串联视觉资产、AI 视频生成与 AE / PR 后期，让工具服务于作品而不是喧宾夺主。</p></article>
+          <header class="section-head">
+            <span class="section-index">01 / 上线项目</span>
+            <div><h2 id="hongguo-title">红果上线短剧项目</h2><p>参与上线短剧的分集制作，覆盖剧情拆解、视觉资产、视频生成与后期交付。</p></div>
+          </header>
+
+          <button class="project-card feature-card" type="button" data-title="《镇北王》· 上线短剧项目" data-category="红果上线短剧项目" data-poster="https://ccone0619-cpu.github.io/assets/images/zhenbei-king-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/zhenbei-king-web.mp4" data-description="负责所分配剧集的完整制作：从剧情与人物关系拆解开始，完成分镜、视觉资产、视频生成、镜头筛选及后期成片。" data-role="剧情拆解 · 分镜设计 · 视觉资产 · AI 视频生成 · 后期剪辑" data-focus="人物关系、情绪节奏、动作连续性与画面统一" aria-label="播放《镇北王》上线短剧项目">
+            <span class="card-media"><img src="https://ccone0619-cpu.github.io/assets/images/zhenbei-king-poster.jpg" alt="《镇北王》短剧项目封面" decoding="async" fetchpriority="high" /><i class="play-button" aria-hidden="true"></i></span>
+            <span class="card-copy">
+              <span><span class="card-type">HONGGUO · RELEASED PROJECT</span><h3>《镇北王》</h3><p>独立推进所分配剧集，从分镜与视觉资产持续完成至视频生成和后期交付。</p></span>
+              <span class="feature-meta"><span class="result-note">参与项目进入红果漫剧新剧榜第 4 名</span><span class="card-tags"><i>分镜</i><i>视觉资产</i><i>视频生成</i><i>后期剪辑</i></span></span>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section class="work-section" id="personal" aria-labelledby="personal-title">
+        <div class="container">
+          <header class="section-head">
+            <span class="section-index">02 / 个人作品</span>
+            <div><h2 id="personal-title">个人 AIGC 作品</h2><p>以不同题材验证人物、场景、镜头与叙事的组织能力，均可点击播放。</p></div>
+          </header>
+
+          <div class="project-grid two">
+            <button class="project-card" type="button" data-title="仿实拍风格短片" data-category="个人代表作" data-poster="https://ccone0619-cpu.github.io/assets/images/fang-shoot-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E4%BB%BF%E5%AE%9E%E6%8B%8D.mp4" data-description="以接近实拍的画面质感组织人物关系与场景氛围，完成镜头设计、动态控制、素材筛选和最终剪辑。" data-role="视觉设定 · 镜头组织 · AI 视频生成 · 后期精剪" data-focus="真人质感、人物关系、自然运动与镜头连续性" aria-label="播放仿实拍风格短片">
+              <span class="card-media"><img src="https://ccone0619-cpu.github.io/assets/images/fang-shoot-poster.jpg" alt="仿实拍风格短片封面" loading="lazy" decoding="async" /><i class="play-button" aria-hidden="true"></i></span>
+              <span class="card-copy"><span class="card-type">FEATURED · AIGC FILM</span><h3>仿实拍风格短片</h3><p>真人质感、人物关系与自然镜头运动。</p><span class="card-tags"><i>导演拆解</i><i>一致性</i><i>精剪</i></span></span>
+            </button>
+
+            <button class="project-card" type="button" data-title="《寒假》" data-category="个人微电影" data-poster="https://ccone0619-cpu.github.io/assets/images/holiday-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/holiday-web-hq.mp4" data-description="以返乡与亲情为情绪核心，通过画面设定、镜头生成、素材判断、后期合成和声音配合完成完整短片。" data-role="创意构思 · 视觉资产 · AI 视频生成 · AE 合成 · 剪辑" data-focus="情绪递进、生活质感、镜头衔接与完整叙事" aria-label="播放《寒假》">
+              <span class="card-media"><img src="https://ccone0619-cpu.github.io/assets/images/holiday-poster.jpg" alt="《寒假》微电影封面" loading="lazy" decoding="async" /><i class="play-button" aria-hidden="true"></i></span>
+              <span class="card-copy"><span class="card-type">SHORT FILM · AIGC</span><h3>《寒假》</h3><p>情绪叙事、生活质感与完整成片。</p><span class="card-tags"><i>创意</i><i>情绪节奏</i><i>AE 合成</i></span></span>
+            </button>
+
+            <button class="project-card" type="button" data-title="PV 风格片段" data-category="个人作品" data-poster="https://ccone0619-cpu.github.io/assets/images/fangpv-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E4%BB%BFpv.mp4" data-description="面向 PV 视觉表达完成画面组织与节奏设计，通过镜头密度、运动关系和剪辑落点建立观看节奏。" data-role="视觉设计 · AI 视频生成 · 节奏剪辑 · 成片输出" data-focus="镜头密度、视觉冲击、音乐落点与画面统一" aria-label="播放 PV 风格片段">
+              <span class="card-media"><img src="https://ccone0619-cpu.github.io/assets/images/fangpv-poster.jpg" alt="PV 风格片段封面" loading="lazy" decoding="async" /><i class="play-button" aria-hidden="true"></i></span>
+              <span class="card-copy"><span class="card-type">PV · VISUAL RHYTHM</span><h3>PV 风格片段</h3><p>镜头密度、视觉冲击与节奏落点。</p><span class="card-tags"><i>视觉设计</i><i>动态</i><i>节奏</i></span></span>
+            </button>
+
+            <button class="project-card" type="button" data-title="女频叙事片段" data-category="个人作品" data-poster="https://ccone0619-cpu.github.io/assets/images/women-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/women-web.mp4" data-description="围绕女频人物关系与情绪变化设计镜头，完成视觉生成、动态素材组织与后期剪辑。" data-role="人物关系拆解 · 视觉生成 · 情绪衔接 · 后期剪辑" data-focus="表演情绪、关系推进、镜头衔接与叙事节奏" aria-label="播放女频叙事片段">
+              <span class="card-media"><img src="https://ccone0619-cpu.github.io/assets/images/women-poster.jpg" alt="女频叙事片段封面" loading="lazy" decoding="async" /><i class="play-button" aria-hidden="true"></i></span>
+              <span class="card-copy"><span class="card-type">AIGC · STORY</span><h3>女频叙事片段</h3><p>人物情绪、关系推进与叙事节奏。</p><span class="card-tags"><i>表演</i><i>情绪</i><i>连续性</i></span></span>
+            </button>
+
+            <button class="project-card" type="button" data-title="《归还》" data-category="个人作品" data-poster="https://ccone0619-cpu.github.io/assets/images/return-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/return-web.mp4" data-description="以人物情绪为核心组织视觉素材与动态镜头，通过镜头筛选和剪辑完成完整剧情表达。" data-role="分镜组织 · 视觉生成 · 情绪剪辑 · 成片输出" data-focus="人物状态、情绪落点、画面统一与叙事完整性" aria-label="播放《归还》">
+              <span class="card-media"><img src="https://ccone0619-cpu.github.io/assets/images/return-poster.jpg" alt="《归还》作品封面" loading="lazy" decoding="async" /><i class="play-button" aria-hidden="true"></i></span>
+              <span class="card-copy"><span class="card-type">AIGC · EMOTION</span><h3>《归还》</h3><p>人物状态、情绪落点与完整表达。</p><span class="card-tags"><i>分镜</i><i>情绪</i><i>剪辑</i></span></span>
+            </button>
+
+            <button class="project-card" type="button" data-title="《攀登》" data-category="个人作品" data-poster="https://ccone0619-cpu.github.io/assets/images/climb-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/climb-web.mp4" data-description="以动作与成长为主题设计镜头推进，重点处理动作连续性、动态节奏与后期衔接。" data-role="镜头设计 · AI 视频生成 · 动作连续性 · 节奏剪辑" data-focus="动作顺序、空间关系、镜头推进与节奏控制" aria-label="播放《攀登》">
+              <span class="card-media"><img src="https://ccone0619-cpu.github.io/assets/images/climb-poster.jpg" alt="《攀登》作品封面" loading="lazy" decoding="async" /><i class="play-button" aria-hidden="true"></i></span>
+              <span class="card-copy"><span class="card-type">AIGC · ACTION</span><h3>《攀登》</h3><p>动作顺序、镜头推进与节奏控制。</p><span class="card-tags"><i>动作</i><i>空间</i><i>节奏</i></span></span>
+            </button>
           </div>
         </div>
       </section>
 
-      <section class="section works" id="works" aria-labelledby="works-title">
+      <section class="work-section" id="editing" aria-labelledby="editing-title">
         <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-index">02 / 作品</span>
-            <h2 id="works-title">十段作品，<br /><span>十种表达。</span></h2>
-          </div>
+          <header class="section-head">
+            <span class="section-index">03 / 剪辑作品</span>
+            <div><h2 id="editing-title">个人剪辑作品</h2><p>三种剪辑方向，分别展示情绪组织、音乐卡点和剧情重组能力。</p></div>
+          </header>
 
-          <div class="work-grid">
-            <button class="work-card reveal" type="button" data-title="实拍质感短片" data-category="代表作品" data-duration="01:00" data-poster="https://ccone0619-cpu.github.io/assets/images/fang-shoot-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E4%BB%BF%E5%AE%9E%E6%8B%8D.mp4" data-description="围绕人物关系与场景氛围组织画面，通过镜头节奏、情绪衔接和画面质感完成完整表达。" data-role="镜头节奏 · 画面组织 · 视频剪辑 · 成片输出" aria-label="播放实拍质感短片">
-              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/fang-shoot-poster.jpg" alt="实拍质感短片封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
-              <span class="work-info"><span><span class="work-meta">FEATURED · VIDEO</span><h3>实拍质感短片</h3><p>人物关系、镜头节奏与画面质感。</p></span><span class="work-duration">01:00</span></span>
+          <div class="project-grid three">
+            <button class="project-card" type="button" data-title="影视情绪混剪" data-category="个人剪辑作品" data-poster="https://ccone0619-cpu.github.io/assets/images/editing-pt1-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%89%AA%E8%BE%91pt1.mp4" data-description="围绕人物关系与情绪变化筛选素材，通过音乐结构、镜头呼吸和画面统一建立情绪表达。" data-role="素材筛选 · 音乐结构 · 情绪节奏 · 画面统一" data-focus="人物关系、情绪递进、镜头呼吸与音乐配合" aria-label="播放影视情绪混剪">
+              <span class="card-media"><img src="https://ccone0619-cpu.github.io/assets/images/editing-pt1-poster.jpg" alt="影视情绪混剪封面" loading="lazy" decoding="async" /><i class="play-button" aria-hidden="true"></i></span>
+              <span class="card-copy"><span class="card-type">EDITING · MOOD</span><h3>影视情绪混剪</h3><p>人物关系、情绪递进与音乐结构。</p><span class="card-tags"><i>选材</i><i>情绪</i><i>音乐</i></span></span>
             </button>
 
-            <button class="work-card reveal" type="button" data-title="古风剧情片段" data-category="剧情创作" data-duration="VIDEO" data-poster="https://ccone0619-cpu.github.io/assets/images/zhenbei-king-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/zhenbei-king-web.mp4" data-description="围绕古风人物关系完成镜头拆解、画面组织、动态生成与后期剪辑，强调剧情推进与动作连续。" data-role="分镜拆解 · 视觉组织 · 动态生成 · 剪辑" aria-label="播放古风剧情片段">
-              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/zhenbei-king-poster.jpg" alt="古风剧情片段封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
-              <span class="work-info"><span><span class="work-meta">STORY · VIDEO</span><h3>古风剧情片段</h3><p>分镜、人物关系与剧情推进。</p></span><span class="work-duration">VIDEO</span></span>
+            <button class="project-card" type="button" data-title="动漫节奏混剪" data-category="个人剪辑作品" data-poster="https://ccone0619-cpu.github.io/assets/images/anime-mix-pt2-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%8A%A8%E6%BC%AB%E6%B7%B7%E5%89%AApt2.mp4" data-description="使用高密度镜头切换和音乐卡点组织画面，在短时长内建立动作衔接与视觉冲击。" data-role="素材重组 · 音乐卡点 · 动作衔接 · 节奏剪辑" data-focus="切点准确度、动作匹配、速度变化与视觉冲击" aria-label="播放动漫节奏混剪">
+              <span class="card-media"><img src="https://ccone0619-cpu.github.io/assets/images/anime-mix-pt2-poster.jpg" alt="动漫节奏混剪封面" loading="lazy" decoding="async" /><i class="play-button" aria-hidden="true"></i></span>
+              <span class="card-copy"><span class="card-type">EDITING · RHYTHM</span><h3>动漫节奏混剪</h3><p>音乐卡点、动作匹配与视觉冲击。</p><span class="card-tags"><i>卡点</i><i>动作</i><i>速度</i></span></span>
             </button>
 
-            <button class="work-card reveal" type="button" data-title="微电影风格短片" data-category="叙事短片" data-duration="01:35" data-poster="https://ccone0619-cpu.github.io/assets/images/holiday-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/holiday-web-hq.mp4" data-description="以返乡与亲情为情绪核心，通过视觉资产组织、镜头生成、素材筛选与后期合成完成完整短片。" data-role="视觉资产 · AI 视频生成 · AE 后期 · 剪辑" aria-label="播放微电影风格短片">
-              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/holiday-poster.jpg" alt="微电影风格短片封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
-              <span class="work-info"><span><span class="work-meta">SHORT FILM · AIGC</span><h3>微电影风格短片</h3><p>情绪叙事、视觉组织与后期合成。</p></span><span class="work-duration">01:35</span></span>
-            </button>
-
-            <button class="work-card reveal" type="button" data-title="影视情绪混剪" data-category="剪辑作品" data-duration="00:30" data-poster="https://ccone0619-cpu.github.io/assets/images/editing-pt1-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%89%AA%E8%BE%91pt1.mp4" data-description="围绕人物关系与情绪变化组织素材，通过镜头筛选、音乐节奏和画面统一形成情绪表达。" data-role="素材筛选 · 情绪节奏 · 画面统一" aria-label="播放影视情绪混剪">
-              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/editing-pt1-poster.jpg" alt="影视情绪混剪封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
-              <span class="work-info"><span><span class="work-meta">EDITING · MOOD</span><h3>影视情绪混剪</h3><p>人物关系、情绪变化与音乐节奏。</p></span><span class="work-duration">00:30</span></span>
-            </button>
-
-            <button class="work-card reveal" type="button" data-title="动漫节奏混剪" data-category="剪辑作品" data-duration="00:13" data-poster="https://ccone0619-cpu.github.io/assets/images/anime-mix-pt2-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%8A%A8%E6%BC%AB%E6%B7%B7%E5%89%AApt2.mp4" data-description="使用高密度镜头切换和音乐卡点组织画面，在短时长内建立动作衔接与视觉冲击。" data-role="音乐卡点 · 动作衔接 · 节奏剪辑" aria-label="播放动漫节奏混剪">
-              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/anime-mix-pt2-poster.jpg" alt="动漫节奏混剪封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
-              <span class="work-info"><span><span class="work-meta">EDITING · RHYTHM</span><h3>动漫节奏混剪</h3><p>音乐卡点、动作衔接与视觉冲击。</p></span><span class="work-duration">00:13</span></span>
-            </button>
-
-            <button class="work-card reveal" type="button" data-title="影视剧情混剪" data-category="剪辑作品" data-duration="00:32" data-poster="https://ccone0619-cpu.github.io/assets/images/editing-pt3-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%89%AA%E8%BE%91pt3.mp4" data-description="围绕人物冲突重新组织素材，通过动作匹配、节奏加速和情绪落点完成短片表达。" data-role="剧情重组 · 动作衔接 · 节奏推进" aria-label="播放影视剧情混剪">
-              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/editing-pt3-poster.jpg" alt="影视剧情混剪封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
-              <span class="work-info"><span><span class="work-meta">EDITING · STORY</span><h3>影视剧情混剪</h3><p>剧情重组、动作衔接与高潮组织。</p></span><span class="work-duration">00:32</span></span>
-            </button>
-
-            <button class="work-card reveal" type="button" data-title="PV 风格片段" data-category="剪辑作品" data-duration="VIDEO" data-poster="https://ccone0619-cpu.github.io/assets/images/fangpv-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E4%BB%BFpv.mp4" data-description="偏 PV 质感的剪辑片段，重点处理画面组织、镜头密度、节奏落点与成片输出。" data-role="画面组织 · 节奏剪辑 · 成片输出" aria-label="播放 PV 风格片段">
-              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/fangpv-poster.jpg" alt="PV 风格片段封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
-              <span class="work-info"><span><span class="work-meta">EDITING · PV</span><h3>PV 风格片段</h3><p>镜头密度、节奏落点与成片输出。</p></span><span class="work-duration">VIDEO</span></span>
-            </button>
-
-            <button class="work-card reveal" type="button" data-title="女频叙事片段" data-category="AIGC 剧情" data-duration="01:00" data-poster="https://ccone0619-cpu.github.io/assets/images/women-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/women-web.mp4" data-description="围绕人物情绪与女频叙事节奏完成画面生成、动态素材组织和后期剪辑。" data-role="AI 视频生成 · 情绪衔接 · 剪辑" aria-label="播放女频叙事片段">
-              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/women-poster.jpg" alt="女频叙事片段封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
-              <span class="work-info"><span><span class="work-meta">AIGC · STORY</span><h3>女频叙事片段</h3><p>人物情绪、镜头衔接与叙事节奏。</p></span><span class="work-duration">01:00</span></span>
-            </button>
-
-            <button class="work-card reveal" type="button" data-title="情绪叙事片段" data-category="AIGC 剧情" data-duration="00:49" data-poster="https://ccone0619-cpu.github.io/assets/images/return-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/return-web.mp4" data-description="偏叙事与情绪表达的剧情片段，通过视觉素材组织、动态生成和剪辑完成完整表达。" data-role="视觉组织 · 视频生成 · 情绪剪辑" aria-label="播放情绪叙事片段">
-              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/return-poster.jpg" alt="情绪叙事片段封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
-              <span class="work-info"><span><span class="work-meta">AIGC · EMOTION</span><h3>情绪叙事片段</h3><p>视觉组织、情绪表达与成片节奏。</p></span><span class="work-duration">00:49</span></span>
-            </button>
-
-            <button class="work-card reveal" type="button" data-title="动作成长片段" data-category="AIGC 剧情" data-duration="00:53" data-poster="https://ccone0619-cpu.github.io/assets/images/climb-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/climb-web.mp4" data-description="动作与成长主题的剧情片段，重点处理镜头推进、动作连续性和剪辑节奏。" data-role="AI 视频生成 · 动作连续 · 节奏剪辑" aria-label="播放动作成长片段">
-              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/climb-poster.jpg" alt="动作成长片段封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
-              <span class="work-info"><span><span class="work-meta">AIGC · ACTION</span><h3>动作成长片段</h3><p>镜头推进、动作连续与节奏控制。</p></span><span class="work-duration">00:53</span></span>
+            <button class="project-card" type="button" data-title="影视剧情混剪" data-category="个人剪辑作品" data-poster="https://ccone0619-cpu.github.io/assets/images/editing-pt3-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%89%AA%E8%BE%91pt3.mp4" data-description="围绕人物冲突重新组织素材，通过动作匹配、节奏加速和情绪落点完成短片表达。" data-role="剧情重组 · 动作衔接 · 节奏推进 · 高潮设计" data-focus="信息取舍、冲突建立、动作匹配与高潮组织" aria-label="播放影视剧情混剪">
+              <span class="card-media"><img src="https://ccone0619-cpu.github.io/assets/images/editing-pt3-poster.jpg" alt="影视剧情混剪封面" loading="lazy" decoding="async" /><i class="play-button" aria-hidden="true"></i></span>
+              <span class="card-copy"><span class="card-type">EDITING · STORY</span><h3>影视剧情混剪</h3><p>剧情重组、动作衔接与高潮组织。</p><span class="card-tags"><i>叙事</i><i>冲突</i><i>高潮</i></span></span>
             </button>
           </div>
+        </div>
+      </section>
 
+      <section class="capability-section" id="capability" aria-labelledby="capability-title">
+        <div class="container">
+          <header class="section-head">
+            <span class="section-index">04 / 全流程</span>
+            <div><h2 id="capability-title">从想法到成片精剪</h2><p>按制作目标拆解任务，让导演判断、AIGC 技术与后期剪辑在同一条工作链路中完成。</p></div>
+          </header>
+
+          <div class="process-grid" aria-label="完整制作流程">
+            <article class="process-step"><span>01</span><h3>创意构思</h3><p>主题、受众与情绪方向</p></article>
+            <article class="process-step"><span>02</span><h3>导演拆解</h3><p>剧情、分镜、机位与表演</p></article>
+            <article class="process-step"><span>03</span><h3>视觉资产</h3><p>角色、场景、风格与一致性</p></article>
+            <article class="process-step"><span>04</span><h3>视频生成</h3><p>动作、运镜、连续性与返工</p></article>
+            <article class="process-step"><span>05</span><h3>后期精剪</h3><p>选材、节奏、合成与声音</p></article>
+            <article class="process-step"><span>06</span><h3>成片交付</h3><p>统一检查、输出与版本整理</p></article>
+          </div>
+
+          <div class="ability-grid">
+            <article class="ability-card"><span class="ability-label">DIRECTING</span><h3>导演思维</h3><p>先判断人物关系、情绪目标和剧情节点，再决定景别、机位、动作顺序与剪辑节奏。</p></article>
+            <article class="ability-card"><span class="ability-label">AIGC PRODUCTION</span><h3>AIGC 技术</h3><p>建立角色与场景资产，控制风格和画面一致性，并根据成片标准筛选、返工动态素材。</p></article>
+            <article class="ability-card"><span class="ability-label">POST-PRODUCTION</span><h3>后期精剪</h3><p>使用 AE / PR 处理素材组织、节奏、合成与声音配合，把分散镜头整理为完整表达。</p></article>
+          </div>
+          <p class="tool-line">工具链：Midjourney · Image · Nano Banana · Seedance · After Effects · Premiere Pro</p>
         </div>
       </section>
     </main>
 
     <footer>
-      <div class="container footer-inner"><span>END OF SHOWREEL</span><a class="back-top" href="#top" aria-label="返回顶部"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6" /></svg></a></div>
+      <div class="container footer-inner"><span>AIGC WORKS / 2026</span><a class="back-top" href="#top" aria-label="返回顶部"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6" /></svg></a></div>
     </footer>
 
     <dialog id="work-dialog" aria-labelledby="dialog-title">
       <div class="dialog-scroll">
-        <header class="dialog-topbar"><span class="dialog-kicker">PLAYBACK</span><button class="dialog-close" type="button" data-dialog-close aria-label="关闭作品详情"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button></header>
+        <header class="dialog-topbar"><span class="dialog-kicker">PROJECT VIEW</span><button class="dialog-close" type="button" data-dialog-close aria-label="关闭作品详情"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button></header>
         <div class="dialog-media" data-dialog-media></div>
         <div class="dialog-content">
           <p class="dialog-kicker" data-dialog-category></p>
           <h2 id="dialog-title" data-dialog-title></h2>
           <p class="dialog-description" data-dialog-description></p>
-          <p class="dialog-role" data-dialog-role></p>
+          <div class="dialog-details">
+            <div class="dialog-detail"><strong>制作范围</strong><span data-dialog-role></span></div>
+            <div class="dialog-detail"><strong>创作重点</strong><span data-dialog-focus></span></div>
+          </div>
         </div>
       </div>
     </dialog>
@@ -987,6 +1139,7 @@
         const category = dialog.querySelector("[data-dialog-category]");
         const description = dialog.querySelector("[data-dialog-description]");
         const role = dialog.querySelector("[data-dialog-role]");
+        const focus = dialog.querySelector("[data-dialog-focus]");
         let lastTrigger = null;
 
         const closeDialog = () => {
@@ -1006,9 +1159,11 @@
         const openDialog = (card) => {
           lastTrigger = card;
           title.textContent = card.dataset.title;
-          category.textContent = `${card.dataset.category} · ${card.dataset.duration}`;
+          category.textContent = card.dataset.category;
           description.textContent = card.dataset.description;
           role.textContent = card.dataset.role;
+          focus.textContent = card.dataset.focus;
+
           const video = document.createElement("video");
           video.controls = true;
           video.playsInline = true;
@@ -1020,6 +1175,7 @@
           source.type = "video/mp4";
           video.append(source, document.createTextNode("当前浏览器不支持视频播放。"));
           media.replaceChildren(video);
+
           if (typeof dialog.showModal === "function") dialog.showModal();
           else {
             dialog.classList.add("is-fallback");
@@ -1028,7 +1184,7 @@
           document.body.classList.add("dialog-open");
         };
 
-        document.querySelectorAll(".work-card").forEach((card) => card.addEventListener("click", () => openDialog(card)));
+        document.querySelectorAll(".project-card").forEach((card) => card.addEventListener("click", () => openDialog(card)));
         dialog.querySelector("[data-dialog-close]").addEventListener("click", closeDialog);
         dialog.addEventListener("cancel", (event) => {
           event.preventDefault();
@@ -1040,20 +1196,6 @@
         document.addEventListener("keydown", (event) => {
           if (event.key === "Escape" && dialog.classList.contains("is-fallback")) closeDialog();
         });
-
-        const reveals = document.querySelectorAll(".reveal:not(.is-visible)");
-        if ("IntersectionObserver" in window) {
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            });
-          }, { threshold: 0.08, rootMargin: "0px 0px -5%" });
-          reveals.forEach((element) => observer.observe(element));
-        } else {
-          reveals.forEach((element) => element.classList.add("is-visible"));
-        }
 
         const progress = document.querySelector("[data-progress]");
         const updateProgress = () => {
