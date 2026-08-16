@@ -1,0 +1,1070 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#050506" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="description" content="AIGC 视频与剪辑作品展示，聚焦视觉组织、叙事节奏和成片能力。" />
+    <title>Selected Works — AIGC 视频作品集</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='36' fill='%232997ff'/></svg>" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #050506;
+        --surface: rgba(21, 21, 24, 0.72);
+        --surface-strong: rgba(27, 27, 31, 0.92);
+        --text: #f5f5f7;
+        --muted: #a1a1a6;
+        --quiet: #727277;
+        --line: rgba(255, 255, 255, 0.12);
+        --line-strong: rgba(255, 255, 255, 0.2);
+        --accent: #2997ff;
+        --accent-soft: rgba(41, 151, 255, 0.18);
+        --radius-lg: 32px;
+        --radius-md: 22px;
+        --shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+        --max: 1240px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background: var(--bg);
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        overflow-x: hidden;
+        background:
+          radial-gradient(circle at 8% 8%, rgba(41, 151, 255, 0.12), transparent 29rem),
+          radial-gradient(circle at 92% 31%, rgba(144, 85, 255, 0.09), transparent 30rem),
+          var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      body.dialog-open {
+        overflow: hidden;
+      }
+
+      img,
+      video {
+        display: block;
+        max-width: 100%;
+      }
+
+      button,
+      a {
+        font: inherit;
+      }
+
+      button {
+        color: inherit;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 100;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: #fff;
+        color: #000;
+        transform: translateY(-160%);
+        transition: transform 180ms ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .container {
+        width: min(calc(100% - 48px), var(--max));
+        margin-inline: auto;
+      }
+
+      .site-header {
+        position: fixed;
+        top: max(14px, env(safe-area-inset-top));
+        left: 50%;
+        z-index: 50;
+        width: min(calc(100% - 32px), 760px);
+        transform: translateX(-50%);
+      }
+
+      .glass-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 58px;
+        padding: 8px 10px 8px 18px;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        background: linear-gradient(135deg, rgba(39, 39, 44, 0.78), rgba(14, 14, 17, 0.64));
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        -webkit-backdrop-filter: blur(26px) saturate(160%);
+        backdrop-filter: blur(26px) saturate(160%);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 44px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+
+      .brand-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 20px rgba(41, 151, 255, 0.8);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 4px;
+      }
+
+      .nav-links a {
+        display: grid;
+        min-width: 70px;
+        min-height: 44px;
+        place-items: center;
+        border-radius: 999px;
+        color: #d2d2d7;
+        font-size: 13px;
+        transition: background 180ms ease, color 180ms ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+
+      .scroll-progress {
+        position: absolute;
+        right: 26px;
+        bottom: -1px;
+        left: 26px;
+        height: 1px;
+        overflow: hidden;
+        border-radius: 1px;
+      }
+
+      .scroll-progress span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), #9b7dff);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+
+      main {
+        overflow: clip;
+      }
+
+      .hero {
+        display: grid;
+        min-height: 100svh;
+        align-items: end;
+        padding: 150px 0 72px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+        gap: clamp(36px, 6vw, 88px);
+        align-items: center;
+      }
+
+      .kicker,
+      .section-index,
+      .work-meta,
+      .dialog-kicker {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 650;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .hero h1 {
+        max-width: 690px;
+        margin: 20px 0 24px;
+        font-size: clamp(62px, 9vw, 132px);
+        font-weight: 650;
+        letter-spacing: -0.075em;
+        line-height: 0.92;
+      }
+
+      .hero-copy {
+        max-width: 600px;
+        margin: 0;
+        color: #c7c7cc;
+        font-size: clamp(18px, 2vw, 23px);
+        line-height: 1.55;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 38px;
+      }
+
+      .pill-link {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 22px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        color: #f5f5f7;
+        font-size: 14px;
+        font-weight: 620;
+        transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+      }
+
+      .pill-link.primary {
+        border-color: transparent;
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .pill-link:hover,
+      .pill-link:focus-visible {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.28);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .pill-link.primary:hover,
+      .pill-link.primary:focus-visible {
+        background: #147ce5;
+      }
+
+      .hero-frame {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4 / 5;
+        border: 1px solid var(--line);
+        border-radius: clamp(28px, 4vw, 48px);
+        background: #111;
+        box-shadow: var(--shadow);
+        isolation: isolate;
+      }
+
+      .hero-frame::before {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(180deg, transparent 36%, rgba(0, 0, 0, 0.78));
+        content: "";
+      }
+
+      .hero-frame::after {
+        position: absolute;
+        inset: 1px;
+        z-index: 3;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: inherit;
+        pointer-events: none;
+        content: "";
+      }
+
+      .hero-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 900ms cubic-bezier(0.2, 0.75, 0.25, 1);
+      }
+
+      .hero-frame:hover img {
+        transform: scale(1.025);
+      }
+
+      .hero-frame-caption {
+        position: absolute;
+        right: 24px;
+        bottom: 22px;
+        left: 24px;
+        z-index: 2;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .hero-frame-caption strong {
+        display: block;
+        font-size: 21px;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-frame-caption span {
+        display: block;
+        margin-top: 5px;
+        color: #c7c7cc;
+        font-size: 13px;
+      }
+
+      .glass-chip {
+        display: grid;
+        width: 46px;
+        height: 46px;
+        flex: 0 0 46px;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.13);
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
+      }
+
+      .glass-chip::before {
+        width: 0;
+        height: 0;
+        margin-left: 3px;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 9px solid #fff;
+        content: "";
+      }
+
+      .section {
+        padding: clamp(88px, 11vw, 154px) 0;
+      }
+
+      .section-heading {
+        display: grid;
+        grid-template-columns: 120px minmax(0, 1fr);
+        gap: 28px;
+        align-items: start;
+        margin-bottom: clamp(44px, 7vw, 82px);
+      }
+
+      .section-heading h2 {
+        max-width: 880px;
+        margin: -8px 0 0;
+        font-size: clamp(42px, 6.4vw, 88px);
+        font-weight: 610;
+        letter-spacing: -0.065em;
+        line-height: 0.98;
+      }
+
+      .section-heading h2 span {
+        color: var(--quiet);
+      }
+
+      .strengths {
+        position: relative;
+      }
+
+      .strength-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .strength-card {
+        min-height: 310px;
+        padding: 26px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025) 48%),
+          var(--surface);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      }
+
+      .strength-card span {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .strength-card h3 {
+        margin: 92px 0 14px;
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: -0.035em;
+      }
+
+      .strength-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.68;
+      }
+
+      .works {
+        padding-top: 80px;
+      }
+
+      .work-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .work-card {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: #111113;
+        color: var(--text);
+        text-align: left;
+        cursor: pointer;
+        box-shadow: 0 22px 70px rgba(0, 0, 0, 0.24);
+        transition: transform 260ms cubic-bezier(0.2, 0.75, 0.25, 1), border-color 260ms ease, box-shadow 260ms ease;
+      }
+
+      .work-card:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .work-card:hover,
+      .work-card:focus-visible {
+        transform: translateY(-5px);
+        border-color: rgba(255, 255, 255, 0.26);
+        box-shadow: 0 34px 90px rgba(0, 0, 0, 0.36);
+        outline: none;
+      }
+
+      .work-visual {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16 / 10;
+        background: #151518;
+      }
+
+      .work-card:first-child .work-visual {
+        aspect-ratio: 16 / 8;
+      }
+
+      .work-visual::after {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 52%, rgba(0, 0, 0, 0.46));
+        content: "";
+      }
+
+      .work-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1), filter 300ms ease;
+      }
+
+      .work-card:hover img,
+      .work-card:focus-visible img {
+        transform: scale(1.035);
+        filter: saturate(1.06);
+      }
+
+      .play-badge {
+        position: absolute;
+        right: 18px;
+        bottom: 18px;
+        z-index: 2;
+        display: grid;
+        width: 48px;
+        height: 48px;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 50%;
+        background: rgba(20, 20, 23, 0.42);
+        -webkit-backdrop-filter: blur(18px) saturate(150%);
+        backdrop-filter: blur(18px) saturate(150%);
+      }
+
+      .play-badge::before {
+        width: 0;
+        height: 0;
+        margin-left: 3px;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 9px solid #fff;
+        content: "";
+      }
+
+      .work-info {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 18px;
+        padding: 24px 26px 28px;
+        background: linear-gradient(180deg, rgba(22, 22, 25, 0.96), rgba(13, 13, 15, 0.98));
+      }
+
+      .work-info h3 {
+        margin: 7px 0 8px;
+        font-size: clamp(22px, 2.4vw, 32px);
+        font-weight: 600;
+        letter-spacing: -0.04em;
+      }
+
+      .work-info p {
+        max-width: 600px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.62;
+      }
+
+      .work-duration {
+        align-self: start;
+        padding-top: 3px;
+        color: var(--quiet);
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      footer {
+        padding: 30px 0 max(36px, env(safe-area-inset-bottom));
+        border-top: 1px solid var(--line);
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        color: var(--quiet);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+      }
+
+      .back-top {
+        display: grid;
+        min-width: 44px;
+        min-height: 44px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        transition: background 180ms ease, border-color 180ms ease;
+      }
+
+      .back-top:hover,
+      .back-top:focus-visible {
+        border-color: var(--line-strong);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .back-top svg,
+      .dialog-close svg {
+        width: 19px;
+        height: 19px;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.8;
+      }
+
+      dialog {
+        width: min(calc(100% - 28px), 980px);
+        max-height: calc(100svh - 28px);
+        overflow: hidden;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 30px;
+        background: rgba(13, 13, 15, 0.94);
+        color: var(--text);
+        box-shadow: 0 40px 140px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        -webkit-backdrop-filter: blur(30px) saturate(145%);
+        backdrop-filter: blur(30px) saturate(145%);
+      }
+
+      dialog::backdrop {
+        background: rgba(0, 0, 0, 0.74);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+      }
+
+      dialog.is-fallback {
+        position: fixed;
+        inset: 14px;
+        z-index: 90;
+        display: block;
+        margin: auto;
+      }
+
+      .dialog-scroll {
+        max-height: calc(100svh - 30px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+
+      .dialog-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 64px;
+        padding: 8px 10px 8px 22px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(18, 18, 21, 0.84);
+        -webkit-backdrop-filter: blur(24px);
+        backdrop-filter: blur(24px);
+      }
+
+      .dialog-close {
+        display: grid;
+        width: 44px;
+        height: 44px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+        cursor: pointer;
+      }
+
+      .dialog-media {
+        aspect-ratio: 16 / 9;
+        background: #000;
+      }
+
+      .dialog-media video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: #000;
+      }
+
+      .dialog-content {
+        padding: clamp(26px, 4vw, 46px);
+      }
+
+      .dialog-content h2 {
+        margin: 10px 0 14px;
+        font-size: clamp(31px, 5vw, 54px);
+        font-weight: 620;
+        letter-spacing: -0.055em;
+      }
+
+      .dialog-description {
+        max-width: 740px;
+        margin: 0;
+        color: #b7b7bd;
+        font-size: 17px;
+        line-height: 1.72;
+      }
+
+      .dialog-role {
+        margin-top: 28px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        color: #d2d2d7;
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 620ms ease, transform 620ms cubic-bezier(0.2, 0.75, 0.25, 1);
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      :focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 3px;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          padding-top: 130px;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-copy-wrap {
+          max-width: 720px;
+        }
+
+        .hero-frame {
+          aspect-ratio: 16 / 11;
+        }
+
+        .strength-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 680px) {
+        .container {
+          width: min(calc(100% - 28px), var(--max));
+        }
+
+        .site-header {
+          width: calc(100% - 20px);
+          top: max(8px, env(safe-area-inset-top));
+        }
+
+        .glass-nav {
+          min-height: 54px;
+          padding-left: 14px;
+        }
+
+        .brand {
+          font-size: 11px;
+        }
+
+        .nav-links a {
+          min-width: 58px;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: 124px 0 50px;
+        }
+
+        .hero h1 {
+          margin-top: 17px;
+          font-size: clamp(58px, 20vw, 86px);
+        }
+
+        .hero-copy {
+          font-size: 17px;
+        }
+
+        .hero-frame {
+          aspect-ratio: 4 / 5;
+          border-radius: 28px;
+        }
+
+        .hero-frame-caption {
+          right: 18px;
+          bottom: 18px;
+          left: 18px;
+        }
+
+        .section {
+          padding: 86px 0;
+        }
+
+        .section-heading {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .section-heading h2 {
+          margin-top: 0;
+          font-size: 48px;
+        }
+
+        .strength-grid,
+        .work-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .strength-card {
+          min-height: 250px;
+        }
+
+        .strength-card h3 {
+          margin-top: 62px;
+        }
+
+        .work-card:first-child {
+          grid-column: auto;
+        }
+
+        .work-card:first-child .work-visual,
+        .work-visual {
+          aspect-ratio: 16 / 10;
+        }
+
+        .work-info {
+          padding: 20px 20px 23px;
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+        }
+
+        dialog {
+          width: calc(100% - 12px);
+          max-height: calc(100svh - 12px);
+          border-radius: 24px;
+        }
+
+        .dialog-scroll {
+          max-height: calc(100svh - 14px);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+    <header class="site-header">
+      <nav class="glass-nav" aria-label="页面导航">
+        <a class="brand" href="#top" aria-label="返回顶部"><span class="brand-dot" aria-hidden="true"></span>SELECTED WORKS</a>
+        <div class="nav-links">
+          <a href="#strengths">优势</a>
+          <a href="#works">作品</a>
+        </div>
+        <div class="scroll-progress" aria-hidden="true"><span data-progress></span></div>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="container hero-grid">
+          <div class="hero-copy-wrap reveal is-visible">
+            <p class="kicker">AIGC VIDEO · EDITING · VISUAL STORYTELLING</p>
+            <h1 id="hero-title">作品<br />说话。</h1>
+            <p class="hero-copy">从视觉组织到镜头生成，再到剪辑与成片，让每一段素材形成完整、清楚、有节奏的表达。</p>
+            <div class="hero-actions">
+              <a class="pill-link primary" href="#works">浏览作品 <span aria-hidden="true">↓</span></a>
+              <a class="pill-link" href="#strengths">查看优势</a>
+            </div>
+          </div>
+          <a class="hero-frame reveal is-visible" href="#works" aria-label="前往作品区域">
+            <img src="https://ccone0619-cpu.github.io/assets/images/fang-shoot-poster.jpg" alt="电影感人物关系短片画面" decoding="async" />
+            <div class="hero-frame-caption">
+              <div><strong>Selected Work 01</strong><span>实拍质感 · 镜头节奏 · 成片输出</span></div>
+              <i class="glass-chip" aria-hidden="true"></i>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="section strengths" id="strengths" aria-labelledby="strengths-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="section-index">01 / 优势</span>
+            <h2 id="strengths-title">从镜头到成片，<br /><span>保持完整判断。</span></h2>
+          </div>
+          <div class="strength-grid">
+            <article class="strength-card reveal"><span>01</span><h3>成片交付</h3><p>把创作意图拆成分镜、画面和剪辑任务，从素材组织持续推进到最终成片。</p></article>
+            <article class="strength-card reveal"><span>02</span><h3>视觉一致性</h3><p>控制人物、场景、色调与镜头语言，减少不同生成素材之间的拼接感。</p></article>
+            <article class="strength-card reveal"><span>03</span><h3>叙事节奏</h3><p>围绕人物情绪和剧情节点筛选镜头，处理动作衔接、节奏推进与观看体验。</p></article>
+            <article class="strength-card reveal"><span>04</span><h3>工具协同</h3><p>串联视觉资产、AI 视频生成与 AE / PR 后期，让工具服务于作品而不是喧宾夺主。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section works" id="works" aria-labelledby="works-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="section-index">02 / 作品</span>
+            <h2 id="works-title">十段作品，<br /><span>十种表达。</span></h2>
+          </div>
+
+          <div class="work-grid">
+            <button class="work-card reveal" type="button" data-title="实拍质感短片" data-category="代表作品" data-duration="01:00" data-poster="https://ccone0619-cpu.github.io/assets/images/fang-shoot-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E4%BB%BF%E5%AE%9E%E6%8B%8D.mp4" data-description="围绕人物关系与场景氛围组织画面，通过镜头节奏、情绪衔接和画面质感完成完整表达。" data-role="镜头节奏 · 画面组织 · 视频剪辑 · 成片输出" aria-label="播放实拍质感短片">
+              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/fang-shoot-poster.jpg" alt="实拍质感短片封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
+              <span class="work-info"><span><span class="work-meta">FEATURED · VIDEO</span><h3>实拍质感短片</h3><p>人物关系、镜头节奏与画面质感。</p></span><span class="work-duration">01:00</span></span>
+            </button>
+
+            <button class="work-card reveal" type="button" data-title="古风剧情片段" data-category="剧情创作" data-duration="VIDEO" data-poster="https://ccone0619-cpu.github.io/assets/images/zhenbei-king-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/zhenbei-king-web.mp4" data-description="围绕古风人物关系完成镜头拆解、画面组织、动态生成与后期剪辑，强调剧情推进与动作连续。" data-role="分镜拆解 · 视觉组织 · 动态生成 · 剪辑" aria-label="播放古风剧情片段">
+              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/zhenbei-king-poster.jpg" alt="古风剧情片段封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
+              <span class="work-info"><span><span class="work-meta">STORY · VIDEO</span><h3>古风剧情片段</h3><p>分镜、人物关系与剧情推进。</p></span><span class="work-duration">VIDEO</span></span>
+            </button>
+
+            <button class="work-card reveal" type="button" data-title="微电影风格短片" data-category="叙事短片" data-duration="01:35" data-poster="https://ccone0619-cpu.github.io/assets/images/holiday-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/holiday-web-hq.mp4" data-description="以返乡与亲情为情绪核心，通过视觉资产组织、镜头生成、素材筛选与后期合成完成完整短片。" data-role="视觉资产 · AI 视频生成 · AE 后期 · 剪辑" aria-label="播放微电影风格短片">
+              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/holiday-poster.jpg" alt="微电影风格短片封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
+              <span class="work-info"><span><span class="work-meta">SHORT FILM · AIGC</span><h3>微电影风格短片</h3><p>情绪叙事、视觉组织与后期合成。</p></span><span class="work-duration">01:35</span></span>
+            </button>
+
+            <button class="work-card reveal" type="button" data-title="影视情绪混剪" data-category="剪辑作品" data-duration="00:30" data-poster="https://ccone0619-cpu.github.io/assets/images/editing-pt1-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%89%AA%E8%BE%91pt1.mp4" data-description="围绕人物关系与情绪变化组织素材，通过镜头筛选、音乐节奏和画面统一形成情绪表达。" data-role="素材筛选 · 情绪节奏 · 画面统一" aria-label="播放影视情绪混剪">
+              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/editing-pt1-poster.jpg" alt="影视情绪混剪封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
+              <span class="work-info"><span><span class="work-meta">EDITING · MOOD</span><h3>影视情绪混剪</h3><p>人物关系、情绪变化与音乐节奏。</p></span><span class="work-duration">00:30</span></span>
+            </button>
+
+            <button class="work-card reveal" type="button" data-title="动漫节奏混剪" data-category="剪辑作品" data-duration="00:13" data-poster="https://ccone0619-cpu.github.io/assets/images/anime-mix-pt2-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%8A%A8%E6%BC%AB%E6%B7%B7%E5%89%AApt2.mp4" data-description="使用高密度镜头切换和音乐卡点组织画面，在短时长内建立动作衔接与视觉冲击。" data-role="音乐卡点 · 动作衔接 · 节奏剪辑" aria-label="播放动漫节奏混剪">
+              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/anime-mix-pt2-poster.jpg" alt="动漫节奏混剪封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
+              <span class="work-info"><span><span class="work-meta">EDITING · RHYTHM</span><h3>动漫节奏混剪</h3><p>音乐卡点、动作衔接与视觉冲击。</p></span><span class="work-duration">00:13</span></span>
+            </button>
+
+            <button class="work-card reveal" type="button" data-title="影视剧情混剪" data-category="剪辑作品" data-duration="00:32" data-poster="https://ccone0619-cpu.github.io/assets/images/editing-pt3-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E5%89%AA%E8%BE%91pt3.mp4" data-description="围绕人物冲突重新组织素材，通过动作匹配、节奏加速和情绪落点完成短片表达。" data-role="剧情重组 · 动作衔接 · 节奏推进" aria-label="播放影视剧情混剪">
+              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/editing-pt3-poster.jpg" alt="影视剧情混剪封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
+              <span class="work-info"><span><span class="work-meta">EDITING · STORY</span><h3>影视剧情混剪</h3><p>剧情重组、动作衔接与高潮组织。</p></span><span class="work-duration">00:32</span></span>
+            </button>
+
+            <button class="work-card reveal" type="button" data-title="PV 风格片段" data-category="剪辑作品" data-duration="VIDEO" data-poster="https://ccone0619-cpu.github.io/assets/images/fangpv-poster.jpg" data-video="https://ccone-1439577316.cos.ap-guangzhou.myqcloud.com/videos/%E4%BB%BFpv.mp4" data-description="偏 PV 质感的剪辑片段，重点处理画面组织、镜头密度、节奏落点与成片输出。" data-role="画面组织 · 节奏剪辑 · 成片输出" aria-label="播放 PV 风格片段">
+              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/fangpv-poster.jpg" alt="PV 风格片段封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
+              <span class="work-info"><span><span class="work-meta">EDITING · PV</span><h3>PV 风格片段</h3><p>镜头密度、节奏落点与成片输出。</p></span><span class="work-duration">VIDEO</span></span>
+            </button>
+
+            <button class="work-card reveal" type="button" data-title="女频叙事片段" data-category="AIGC 剧情" data-duration="01:00" data-poster="https://ccone0619-cpu.github.io/assets/images/women-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/women-web.mp4" data-description="围绕人物情绪与女频叙事节奏完成画面生成、动态素材组织和后期剪辑。" data-role="AI 视频生成 · 情绪衔接 · 剪辑" aria-label="播放女频叙事片段">
+              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/women-poster.jpg" alt="女频叙事片段封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
+              <span class="work-info"><span><span class="work-meta">AIGC · STORY</span><h3>女频叙事片段</h3><p>人物情绪、镜头衔接与叙事节奏。</p></span><span class="work-duration">01:00</span></span>
+            </button>
+
+            <button class="work-card reveal" type="button" data-title="情绪叙事片段" data-category="AIGC 剧情" data-duration="00:49" data-poster="https://ccone0619-cpu.github.io/assets/images/return-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/return-web.mp4" data-description="偏叙事与情绪表达的剧情片段，通过视觉素材组织、动态生成和剪辑完成完整表达。" data-role="视觉组织 · 视频生成 · 情绪剪辑" aria-label="播放情绪叙事片段">
+              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/return-poster.jpg" alt="情绪叙事片段封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
+              <span class="work-info"><span><span class="work-meta">AIGC · EMOTION</span><h3>情绪叙事片段</h3><p>视觉组织、情绪表达与成片节奏。</p></span><span class="work-duration">00:49</span></span>
+            </button>
+
+            <button class="work-card reveal" type="button" data-title="动作成长片段" data-category="AIGC 剧情" data-duration="00:53" data-poster="https://ccone0619-cpu.github.io/assets/images/climb-poster.jpg" data-video="https://ccone0619-cpu.github.io/assets/videos/climb-web.mp4" data-description="动作与成长主题的剧情片段，重点处理镜头推进、动作连续性和剪辑节奏。" data-role="AI 视频生成 · 动作连续 · 节奏剪辑" aria-label="播放动作成长片段">
+              <span class="work-visual"><img src="https://ccone0619-cpu.github.io/assets/images/climb-poster.jpg" alt="动作成长片段封面" loading="lazy" decoding="async" /><i class="play-badge" aria-hidden="true"></i></span>
+              <span class="work-info"><span><span class="work-meta">AIGC · ACTION</span><h3>动作成长片段</h3><p>镜头推进、动作连续与节奏控制。</p></span><span class="work-duration">00:53</span></span>
+            </button>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner"><span>END OF SHOWREEL</span><a class="back-top" href="#top" aria-label="返回顶部"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6" /></svg></a></div>
+    </footer>
+
+    <dialog id="work-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-scroll">
+        <header class="dialog-topbar"><span class="dialog-kicker">PLAYBACK</span><button class="dialog-close" type="button" data-dialog-close aria-label="关闭作品详情"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button></header>
+        <div class="dialog-media" data-dialog-media></div>
+        <div class="dialog-content">
+          <p class="dialog-kicker" data-dialog-category></p>
+          <h2 id="dialog-title" data-dialog-title></h2>
+          <p class="dialog-description" data-dialog-description></p>
+          <p class="dialog-role" data-dialog-role></p>
+        </div>
+      </div>
+    </dialog>
+
+    <noscript><p class="container">请开启 JavaScript 以播放作品视频。</p></noscript>
+    <script>
+      (() => {
+        const dialog = document.querySelector("#work-dialog");
+        const media = dialog.querySelector("[data-dialog-media]");
+        const title = dialog.querySelector("[data-dialog-title]");
+        const category = dialog.querySelector("[data-dialog-category]");
+        const description = dialog.querySelector("[data-dialog-description]");
+        const role = dialog.querySelector("[data-dialog-role]");
+        let lastTrigger = null;
+
+        const closeDialog = () => {
+          const video = media.querySelector("video");
+          if (video) video.pause();
+          media.replaceChildren();
+          if (dialog.classList.contains("is-fallback")) {
+            dialog.removeAttribute("open");
+            dialog.classList.remove("is-fallback");
+          } else if (dialog.open) {
+            dialog.close();
+          }
+          document.body.classList.remove("dialog-open");
+          if (lastTrigger) lastTrigger.focus({ preventScroll: true });
+        };
+
+        const openDialog = (card) => {
+          lastTrigger = card;
+          title.textContent = card.dataset.title;
+          category.textContent = `${card.dataset.category} · ${card.dataset.duration}`;
+          description.textContent = card.dataset.description;
+          role.textContent = card.dataset.role;
+          const video = document.createElement("video");
+          video.controls = true;
+          video.playsInline = true;
+          video.preload = "metadata";
+          video.poster = card.dataset.poster;
+          video.setAttribute("aria-label", `播放${card.dataset.title}`);
+          const source = document.createElement("source");
+          source.src = card.dataset.video;
+          source.type = "video/mp4";
+          video.append(source, document.createTextNode("当前浏览器不支持视频播放。"));
+          media.replaceChildren(video);
+          if (typeof dialog.showModal === "function") dialog.showModal();
+          else {
+            dialog.classList.add("is-fallback");
+            dialog.setAttribute("open", "");
+          }
+          document.body.classList.add("dialog-open");
+        };
+
+        document.querySelectorAll(".work-card").forEach((card) => card.addEventListener("click", () => openDialog(card)));
+        dialog.querySelector("[data-dialog-close]").addEventListener("click", closeDialog);
+        dialog.addEventListener("cancel", (event) => {
+          event.preventDefault();
+          closeDialog();
+        });
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) closeDialog();
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && dialog.classList.contains("is-fallback")) closeDialog();
+        });
+
+        const reveals = document.querySelectorAll(".reveal:not(.is-visible)");
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          }, { threshold: 0.08, rootMargin: "0px 0px -5%" });
+          reveals.forEach((element) => observer.observe(element));
+        } else {
+          reveals.forEach((element) => element.classList.add("is-visible"));
+        }
+
+        const progress = document.querySelector("[data-progress]");
+        const updateProgress = () => {
+          const height = document.documentElement.scrollHeight - window.innerHeight;
+          const value = height > 0 ? Math.min(window.scrollY / height, 1) : 0;
+          progress.style.transform = `scaleX(${value})`;
+        };
+        updateProgress();
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+      })();
+    </script>
+  </body>
+</html>
